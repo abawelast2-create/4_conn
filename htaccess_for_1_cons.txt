@@ -1,0 +1,59 @@
+# .htaccess لمجلد 1_cons على sarh.site
+# ضع هذا الملف في: public_html/1_cons/.htaccess
+
+# تفعيل Rewrite Engine
+RewriteEngine On
+RewriteBase /1_cons/
+
+# إعادة توجيه HTTP إلى HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# توجيه طلبات API إلى email_server.php
+RewriteCond %{REQUEST_URI} ^/1_cons/api/
+RewriteRule ^api/(.*)$ email_server.php [L,QSA]
+
+# السماح بالوصول للملفات الثابتة
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# الصفحة الرئيسية
+DirectoryIndex index.html
+
+# تعطيل عرض محتوى المجلدات
+Options -Indexes
+
+# تفعيل الضغط
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# حماية الملفات الحساسة
+<FilesMatch "^\.env$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# السماح بـ CORS
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>
+
+# تعيين الترميز
+AddDefaultCharset UTF-8
+
+# معالجة PHP
+<Files "email_server.php">
+    SetHandler application/x-httpd-php
+</Files>
+
+<Files "email-test.php">
+    SetHandler application/x-httpd-php
+</Files>

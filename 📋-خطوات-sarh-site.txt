@@ -1,0 +1,227 @@
+✅ خطوات حل مشكلة البريد على sarh.site
+==========================================
+
+🌐 موقعك: https://sarh.site/1_cons/
+
+📋 الخطوات (نفذها بالترتيب):
+==============================
+
+الخطوة 1️⃣: استبدل email_server.php
+------------------------------------
+
+في File Manager على Hostinger:
+
+1. اذهب إلى: public_html/1_cons/
+
+2. ابحث عن ملف: email_server.php
+
+3. أعد تسميته إلى: email_server_old.php
+   (احتياطياً في حال احتجته)
+
+4. ابحث عن ملف: email_server_smtp.php
+
+5. أعد تسميته إلى: email_server.php
+
+6. ✅ الآن لديك النسخة الجديدة التي تستخدم SMTP مباشرة!
+
+
+الخطوة 2️⃣: تحقق من .htaccess
+------------------------------
+
+افتح ملف: .htaccess
+
+تأكد أنه يحتوي على هذه الأسطر:
+
+```
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ email_server.php [L,QSA]
+```
+
+إذا لم تكن موجودة، أضفها.
+
+
+الخطوة 3️⃣: اختبر API
+---------------------
+
+افتح في المتصفح:
+
+🔗 https://sarh.site/1_cons/api/health
+
+يجب أن ترى رسالة JSON مثل:
+
+```json
+{
+  "status": "running",
+  "message": "✅ السيرفر يعمل بشكل صحيح (SMTP Version)",
+  "smtp": "Gmail SMTP (ssl://smtp.gmail.com:465)"
+}
+```
+
+✅ إذا رأيت هذه الرسالة → ممتاز!
+❌ إذا رأيت خطأ 404 → راجع .htaccess
+
+
+الخطوة 4️⃣: ارفع أدوات التشخيص
+--------------------------------
+
+في File Manager، ارفع هذين الملفين إلى: public_html/1_cons/
+
+✅ email-diagnostics.html
+✅ email-test.php
+
+
+الخطوة 5️⃣: افتح أداة التشخيص
+--------------------------------
+
+افتح في المتصفح:
+
+🔗 https://sarh.site/1_cons/email-diagnostics.html
+
+ستظهر لك صفحة فيها 4 أزرار.
+
+
+الخطوة 6️⃣: اختبر البريد
+-------------------------
+
+اضغط على الأزرار بالترتيب:
+
+1️⃣ 🔍 فحص إعدادات PHP
+   ↳ سيعرض معلومات PHP و mail()
+
+2️⃣ 📮 اختبار mail() البسيطة  
+   ↳ سيحاول إرسال بريد بـ mail() function
+
+3️⃣ 📧 اختبار Gmail SMTP ← الأهم!
+   ↳ سيحاول الاتصال بـ Gmail SMTP مباشرة
+
+4️⃣ 🌐 اختبار API Endpoint
+   ↳ سيختبر /api/send-approval-email
+
+
+الخطوة 7️⃣: تحليل النتائج
+--------------------------
+
+✅ إذا نجح اختبار Gmail SMTP:
+   → البريد سيعمل!
+   → جرب إنشاء وثيقة من:
+     https://sarh.site/1_cons/document-creator.html
+   → اضغط "إرسال للتوثيق"
+   → تحقق من البريد:
+     - alkurdiabdullah444@gmail.com
+     - carsspace88@gmail.com
+   → ابحث في Inbox و Spam
+
+❌ إذا فشل اختبار Gmail SMTP:
+   
+   السبب المحتمل: منفذ SMTP محظور من Hostinger
+   
+   الحل:
+   1. اتصل بدعم Hostinger (Live Chat)
+   2. قل لهم:
+      
+      "مرحباً، موقعي sarh.site
+      
+      أحتاج إرسال بريد إلكتروني عبر Gmail SMTP.
+      
+      الرجاء فتح منافذ SMTP:
+      - Port 465 (SSL)
+      - Port 587 (TLS)
+      
+      شكراً!"
+   
+   3. عادة يحلون المشكلة خلال 10-30 دقيقة
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔄 حل بديل: استخدم بريد Hostinger بدلاً من Gmail
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+إذا لم يعمل Gmail SMTP:
+
+1. في hPanel → Emails
+
+2. أنشئ بريد جديد:
+   noreply@sarh.site
+
+3. احفظ كلمة المرور
+
+4. افتح email_server.php وعدّل (حوالي السطر 17-20):
+   
+   من:
+   ```php
+   $EMAIL_USER = 'abawelast@gmail.com';
+   $EMAIL_PASSWORD = 'ilkgojrrmoqaqerw';
+   ```
+   
+   إلى:
+   ```php
+   $EMAIL_USER = 'noreply@sarh.site';
+   $EMAIL_PASSWORD = 'كلمة-المرور-التي-أنشأتها';
+   ```
+
+5. ابحث عن send_gmail_smtp (حوالي السطر 28):
+   
+   من:
+   ```php
+   $smtp = @fsockopen('ssl://smtp.gmail.com', 465, ...
+   ```
+   
+   إلى:
+   ```php
+   $smtp = @fsockopen('ssl://smtp.hostinger.com', 465, ...
+   ```
+
+6. احفظ واختبر!
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 روابط سريعة لموقعك:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ الصفحة الرئيسية:
+   https://sarh.site/1_cons/
+
+✅ إنشاء وثيقة:
+   https://sarh.site/1_cons/document-creator.html
+
+✅ اختبار API:
+   https://sarh.site/1_cons/api/health
+
+✅ أداة التشخيص (بعد رفعها):
+   https://sarh.site/1_cons/email-diagnostics.html
+
+✅ اختبار quick-action:
+   https://sarh.site/1_cons/quick-action.html?uuid=test&action=approve
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ ملاحظات مهمة:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. تأكد أن المجلد: public_html/1_cons/
+
+2. جميع الملفات يجب أن تكون في 1_cons/ وليس public_html مباشرة
+
+3. إذا كان الموقع على: https://sarh.site/1_cons/
+   فإن API يجب أن يكون: https://sarh.site/1_cons/api/health
+
+4. لو كان الموقع على: https://sarh.site/ (بدون 1_cons)
+   فانقل جميع الملفات من 1_cons/ إلى public_html/
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 ابدأ الآن:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ✅ استبدل email_server.php بالنسخة الجديدة (SMTP)
+
+2. ✅ ارفع email-diagnostics.html و email-test.php
+
+3. ✅ افتح: https://sarh.site/1_cons/email-diagnostics.html
+
+4. ✅ اضغط "اختبار Gmail SMTP"
+
+5. 📧 تحقق من النتيجة وأخبرني!
+
+
+حظاً موفقاً! 🎉

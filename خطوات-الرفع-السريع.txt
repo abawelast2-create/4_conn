@@ -1,0 +1,244 @@
+🚀 خطوات سريعة لرفع التطبيق على Hostinger
+==============================================
+
+📋 الطريقة السريعة: استخدام Shared Hosting + PHP Backend
+=========================================================
+
+الخطوة 1️⃣: تحضير الملفات
+--------------------------
+
+✅ الملفات التي يجب رفعها:
+
+Frontend (HTML/JS/CSS):
+├── index.html
+├── document-creator.html
+├── quick-action.html
+├── approval.html
+├── test-quick-action.html
+├── اداري.html
+├── administrative-decisions.html
+├── announcement-multilingual.html
+├── constitution-main.html
+├── discipline-report.html
+├── housing-pledge.html
+├── js/ (المجلد كاملاً)
+│   └── document-creator.js
+└── SEC/ (المجلد كاملاً)
+    └── جميع الملفات
+
+Backend (PHP):
+├── email_server.php  ⚠️ جديد! (بديل لـ email_server.py)
+└── .htaccess (موجود بالفعل)
+
+❌ لا ترفع هذه:
+├── email_server.py (لا يعمل على Shared Hosting)
+├── __pycache__/
+├── *.log
+└── .env (احتفظ به محلياً، عدّل البيانات في email_server.php مباشرة)
+
+الخطوة 2️⃣: رفع الملفات على Hostinger
+---------------------------------------
+
+طريقة 1: عبر File Manager:
+
+1. سجل دخول إلى hPanel على Hostinger
+2. اذهب إلى Files → File Manager
+3. افتح مجلد public_html
+4. احذف محتوياته القديم (إن وجد)
+5. ارفع جميع الملفات المذكورة أعلاه
+6. تأكد من البنية:
+   
+   public_html/
+   ├── index.html
+   ├── document-creator.html
+   ├── quick-action.html
+   ├── email_server.php
+   ├── .htaccess
+   ├── js/
+   │   └── document-creator.js
+   └── SEC/
+       └── ...
+
+طريقة 2: عبر FTP (FileZilla):
+
+1. حمّل FileZilla من: https://filezilla-project.org
+2. اتصل بـ:
+   - Host: ftp.yourdomain.com (أو من hPanel)
+   - Username: من hPanel
+   - Password: من hPanel
+   - Port: 21
+3. اسحب الملفات من جهازك إلى public_html/
+
+الخطوة 3️⃣: تعديل email_server.php
+----------------------------------
+
+1. في File Manager، افتح email_server.php
+2. عدّل هذه الأسطر (حوالي السطر 17-22):
+
+   قبل:
+   ```php
+   $EMAIL_USER = 'abawelast@gmail.com';
+   $EMAIL_PASSWORD = 'ilkgojrrmoqaqerw';
+   $ADMIN_EMAILS = ['alkurdiabdullah444@gmail.com', 'carsspace88@gmail.com'];
+   ```
+   
+   بعد: (نفس البيانات أو عدّلها حسب الحاجة)
+   ```php
+   $EMAIL_USER = 'abawelast@gmail.com';
+   $EMAIL_PASSWORD = 'ilkgojrrmoqaqerw';  // App Password
+   $ADMIN_EMAILS = ['alkurdiabdullah444@gmail.com', 'carsspace88@gmail.com'];
+   ```
+
+3. احفظ الملف
+
+ملاحظة: لا تحتاج تعديل SERVER_URL - سيتم اكتشافه تلقائياً!
+
+الخطوة 4️⃣: تعديل js/document-creator.js
+-----------------------------------------
+
+1. افتح js/document-creator.js
+2. ابحث عن السطر ~661 (sendApprovalEmailsViaGmail)
+3. عدّل عنوان API:
+
+   من:
+   ```javascript
+   fetch('http://localhost:5000/api/send-approval-email', {
+   ```
+   
+   إلى:
+   ```javascript
+   fetch('/api/send-approval-email', {
+   ```
+   
+   أو:
+   ```javascript
+   fetch('https://yourdomain.com/api/send-approval-email', {
+   ```
+
+4. احفظ الملف
+
+الخطوة 5️⃣: تفعيل SSL (مهم!)
+-----------------------------
+
+1. في hPanel → SSL
+2. اختر Free SSL (Let's Encrypt)
+3. فعّل Force HTTPS
+4. انتظر 5-10 دقائق
+
+الخطوة 6️⃣: اختبار التطبيق
+---------------------------
+
+1. افتح: https://yourdomain.com
+   
+   ✅ يجب أن تظهر index.html
+
+2. افتح: https://yourdomain.com/document-creator.html
+   
+   ✅ يجب أن تظهر صفحة إنشاء الوثائق
+
+3. افتح: https://yourdomain.com/api/health
+   
+   ✅ يجب أن تظهر:
+   ```json
+   {
+     "status": "running",
+     "message": "✅ السيرفر يعمل بشكل صحيح"
+   }
+   ```
+
+4. أنشئ وثيقة واضغط "إرسال للتوثيق"
+   
+   ✅ يجب أن يصل البريد إلى:
+   - alkurdiabdullah444@gmail.com
+   - carsspace88@gmail.com
+
+5. افتح البريد واضغط "موافقة" أو "رفض"
+   
+   ✅ يجب أن تفتح صفحة quick-action.html
+
+================================================================================
+⚠️ مشاكل محتملة وحلولها:
+================================================================================
+
+مشكلة 1: البريد لا يُرسل
+-------------------------
+الحل:
+- تأكد من إعدادات PHP mail() على Hostinger
+- في hPanel → Advanced → PHP Configuration
+- تأكد من تفعيل mail() function
+- أو استخدم SMTP بدلاً من mail() (يحتاج PHPMailer)
+
+مشكلة 2: خطأ 500 Internal Server Error
+----------------------------------------
+الحل:
+- تحقق من ملف .htaccess
+- تأكد من صلاحيات الملفات (644 للملفات، 755 للمجلدات)
+- تحقق من error_log في hPanel → Files → error_log
+
+مشكلة 3: CORS Error في المتصفح
+-------------------------------
+الحل:
+- تأكد من وجود .htaccess
+- تأكد من سطور CORS في email_server.php
+- جرب إضافة هذا في .htaccess:
+  ```
+  Header set Access-Control-Allow-Origin "*"
+  ```
+
+مشكلة 4: الروابط في البريد لا تعمل
+----------------------------------
+الحل:
+- تحقق من أن SERVER_URL صحيح في email_server.php
+- أو اضبطه يدوياً:
+  ```php
+  $SERVER_URL = 'https://yourdomain.com';
+  ```
+
+================================================================================
+🎯 استخدام PHPMailer (بديل أفضل لـ mail())
+================================================================================
+
+إذا لم تعمل mail()، استخدم PHPMailer:
+
+1. حمّل PHPMailer:
+   https://github.com/PHPMailer/PHPMailer
+
+2. ارفع مجلد PHPMailer/ إلى public_html/
+
+3. عدّل email_server.php:
+   ```php
+   use PHPMailer\PHPMailer\PHPMailer;
+   require 'PHPMailer/PHPMailer.php';
+   require 'PHPMailer/SMTP.php';
+   
+   $mail = new PHPMailer(true);
+   $mail->isSMTP();
+   $mail->Host = 'smtp.gmail.com';
+   $mail->SMTPAuth = true;
+   $mail->Username = $EMAIL_USER;
+   $mail->Password = $EMAIL_PASSWORD;
+   $mail->SMTPSecure = 'ssl';
+   $mail->Port = 465;
+   $mail->CharSet = 'UTF-8';
+   
+   $mail->setFrom($EMAIL_USER);
+   foreach ($ADMIN_EMAILS as $email) {
+       $mail->addAddress($email);
+   }
+   $mail->Subject = "🔔 طلب توثيق وثيقة - $title";
+   $mail->isHTML(true);
+   $mail->Body = $html_content;
+   
+   $mail->send();
+   ```
+
+================================================================================
+✅ بعد اكتمال الرفع:
+================================================================================
+
+التطبيق سيعمل على:
+✅ Frontend: https://yourdomain.com
+✅ API: https://yourdomain.com/api/send-approval-email
+✅ الروابط في البريد: https://yourdomain.com/quick-action.html
+
+كل شيء في مكان واحد على Shared Hosting! 🎉

@@ -1,5 +1,9 @@
 {
     "deepscan.enable": true,
     "liveServer.settings.port": 5501,
-    "livePreview.defaultPreviewPath": "/index copy.html"
+    "livePreview.defaultPreviewPath": "/index.html",
+    "angular.enable-experimental-ivy-prompt": false,
+    "files.associations": {
+        "*.html": "html"
+    }
 }

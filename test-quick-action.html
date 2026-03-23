@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار النظام الجديد</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #f0f9ff;
+            border-right: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .test-section {
+            margin: 30px 0;
+        }
+        .test-section h2 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            color: white !important;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .btn-approve {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .btn-reject {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        .btn-create {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .status {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        code {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .step {
+            background: #fff7ed;
+            border-right: 3px solid #ea580c;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 اختبار نظام الموافقة السريع</h1>
+        
+        <div class="info-box">
+            <p><strong>✅ حالة السيرفرات:</strong></p>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li>📡 سيرفر HTTP: <code>http://localhost:8765</code></li>
+                <li>📧 سيرفر البريد: <code>http://localhost:5000</code></li>
+                <li>⚡ صفحة الموافقة السريعة: <code>quick-action.html</code></li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 اختبار 1: الموافقة السريعة</h2>
+            <p style="margin-bottom: 15px; color: #6c757d;">اضغط على الأزرار التالية لتجربة نظام الموافقة/الرفض السريع:</p>
+            
+            <div class="button-group">
+                <a href="quick-action.html?uuid=test-uuid-12345&action=approve" 
+                   class="btn btn-approve"
+                   target="_blank">
+                    ✅ تجريب الموافقة
+                </a>
+                
+                <a href="quick-action.html?uuid=test-uuid-12345&action=reject" 
+                   class="btn btn-reject"
+                   target="_blank">
+                    ❌ تجريب الرفض
+                </a>
+            </div>
+            
+            <div class="step">
+                <strong>📝 ملاحظة:</strong> لتجربة حقيقية، يجب أن تكون هناك وثيقة بالـ UUID: <code>test-uuid-12345</code> في localStorage
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 اختبار 2: إنشاء وثيقة وإرسال بريد</h2>
+            <p style="margin-bottom: 15px; color: #6c757d;">اذهب إلى صفحة إنشاء الوثائق:</p>
+            
+            <div class="button-group">
+                <a href="document-creator.html" 
+                   class="btn btn-create">
+                    📄 إنشاء وثيقة جديدة
+                </a>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 خطوات الاختبار الكاملة:</h2>
+            
+            <div class="step">
+                <strong>الخطوة 1:</strong> افتح <a href="document-creator.html" style="color: #667eea;">document-creator.html</a>
+            </div>
+            
+            <div class="step">
+                <strong>الخطوة 2:</strong> أنشئ وثيقة جديدة
+            </div>
+            
+            <div class="step">
+                <strong>الخطوة 3:</strong> اضغط على "إرسال للتوثيق" لإرسال بريد إلكتروني للمديرين
+            </div>
+            
+            <div class="step">
+                <strong>الخطوة 4:</strong> افتح البريد الإلكتروني (على alkurdiabdullah444@gmail.com أو carsspace88@gmail.com)
+            </div>
+            
+            <div class="step">
+                <strong>الخطوة 5:</strong> اضغط على زر "✅ موافقة" أو "❌ رفض" في البريد
+            </div>
+            
+            <div class="step" style="background: #dcfce7; border-right-color: #16a34a;">
+                <strong>النتيجة المتوقعة:</strong> 
+                <ul style="margin: 8px 0 0 20px;">
+                    <li>✅ تفتح صفحة quick-action.html بشكل سريع</li>
+                    <li>✅ تظهر رسالة "جاري المعالجة..."</li>
+                    <li>✅ بعد 0.5 ثانية تظهر رسالة النجاح</li>
+                    <li>✅ تعرض تفاصيل الوثيقة بشكل جميل</li>
+                    <li>✅ تُغلق الصفحة تلقائياً بعد 5 ثواني</li>
+                    <li>❌ لا يتم التحويل إلى صفحة approval.html الكبيرة</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="status">
+            🚀 النظام جاهز للاختبار!
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #e9ecef;">
+            <p style="color: #6c757d; font-size: 14px;">
+                مجموعة صرح الإتقان المحدودة • نظام إدارة الوثائق الذكي
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // إنشاء بيانات تجريبية في localStorage
+        window.addEventListener('DOMContentLoaded', function() {
+            // إنشاء وثيقة تجريبية
+            const testDoc = {
+                uuid: 'test-uuid-12345',
+                title: 'وثيقة تجريبية للاختبار',
+                description: 'هذه وثيقة تم إنشاؤها للاختبار',
+                serialNumber: 'TEST-2026-001',
+                date: '15/02/2026',
+                status: 'pending',
+                createdAt: new Date().toISOString(),
+                html: '<div>محتوى تجريبي</div>'
+            };
+
+            // حفظ في pending_documents
+            const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+            const exists = pendingDocs.some(d => d.uuid === testDoc.uuid);
+            
+            if (!exists) {
+                pendingDocs.push(testDoc);
+                localStorage.setItem('pending_documents', JSON.stringify(pendingDocs));
+                console.log('✅ تم إنشاء وثيقة تجريبية:', testDoc);
+            }
+        });
+    </script>
+</body>
+</html>

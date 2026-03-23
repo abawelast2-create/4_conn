@@ -2,862 +2,1303 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مسودة النظام الداخلي - مجموعة صرح الإتقان وشركة فضاء المحركات</title>
-    <meta name="description" content="مسودة الدستور التنظيمي واللائحة الداخلية لمجموعة صرح الإتقان المحدودة وشركة فضاء المحركات. الإطار الفلسفي والقانوني لمنظومة الحوكمة الإدارية.">
-    <!-- معاينة واتساب ووسائل التواصل -->
-    <meta property="og:title" content="مسودة النظام الداخلي - مجموعة صرح الإتقان وشركة فضاء المحركات">
-    <meta property="og:description" content="مسودة الدستور التنظيمي واللائحة الداخلية المتكاملة. الإطار الفلسفي والقانوني لمنظومة الحوكمة الإدارية. تحت إشراف الأستاذ عبدالحكيم المذهول والأستاذ متعب الهاجري.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>مجموعة صرح الإتقان وشركة فضاء المحركات - الوثائق الرسمية</title>
+    <meta name="description" content="الوثائق الرسمية والنظام الداخلي لمجموعة صرح الإتقان المحدودة وشركة فضاء المحركات">
+    <meta property="og:title" content="مجموعة صرح الإتقان وشركة فضاء المحركات - الوثائق الرسمية">
+    <meta property="og:description" content="الوثائق الرسمية والنظام الداخلي لمجموعة صرح الإتقان المحدودة وشركة فضاء المحركات">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_SA">
     <meta property="og:site_name" content="صرح الإتقان وفضاء المحركات">
     <meta property="og:image" content="https://sarh.site/1_cons/1.jpeg">
     <meta property="og:url" content="https://sarh.site/1_cons/">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="مسودة النظام الداخلي - مجموعة صرح الإتقان وشركة فضاء المحركات">
-    <meta name="twitter:description" content="مسودة الدستور التنظيمي واللائحة الداخلية المتكاملة. الإطار الفلسفي والقانوني لمنظومة الحوكمة الإدارية.">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="constitution-theme.css">
     <style>
         :root {
-            --royal-gold: #b8860b;
-            --deep-gold: #6b5b2e;
-            --antique-gold: #d4af37;
-            --lux-gold: #c9a227;
-            --paper-bg: #faf8f3;
-            --cream: #fffef9;
-            --text-dark: #1a1a1a;
-            --frame-margin: 15mm;
-            --content-padding: 22mm;
-            --content-padding-bottom: 32mm;
+            --primary: #d4af37;
+            --primary-dark: #b8860b;
+            --primary-light: #f4e4b8;
+            --text-dark: #2c2416;
+            --text-light: #6b5b2e;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(212, 175, 55, 0.18);
+            --shadow-soft: 0 8px 32px rgba(107, 91, 46, 0.12);
+            --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.15);
+        }
+        
+        * { 
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: 'Amiri', serif;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(220,210,190,0.4) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(210,200,180,0.3) 0%, transparent 50%),
-                linear-gradient(180deg, #d8d0c0 0%, #e2dcd0 30%, #ddd6c8 70%, #d5cdc0 100%);
-            color: var(--text-dark);
-            line-height: 1.8;
             margin: 0;
-            padding: 32px 0;
-            font-size: 12pt;
             min-height: 100vh;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* صفحات A4 - مظهر الورق */
-        .page-container {
-            background: 
-                linear-gradient(180deg, 
-                    rgba(255,252,245,0.98) 0%, 
-                    rgba(252,248,238,0.99) 25%,
-                    rgba(250,246,235,0.99) 50%,
-                    rgba(252,248,238,0.99) 75%,
-                    rgba(255,252,245,0.98) 100%);
-            width: 210mm;
-            height: 297mm;
-            min-height: 297mm;
-            margin: 28px auto;
-            padding: 0;
-            box-sizing: border-box;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 1px 3px rgba(0,0,0,0.08),
-                0 4px 12px rgba(0,0,0,0.06),
-                inset 0 1px 0 rgba(255,255,255,0.9);
-            border: 1px solid rgba(180,170,150,0.25);
-        }
-        .page-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* منطقة المحتوى - داخل الإطار مع هوامش ومساحة للترويسة والتذييل */
-        .page-content {
-            position: relative;
-            height: calc(100% - 30mm);
-            padding: var(--content-padding) var(--content-padding) var(--content-padding) var(--content-padding);
-            overflow-y: auto;
+            font-family: 'Amiri', serif;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            z-index: 3;
-            background: rgba(255,254,249,0.4);
         }
 
-        /* منطقة المحتوى - مع التمرير */
-        .content-area {
-            flex: 1 1 auto;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding: 0 4mm 0 0;
-            margin: 0 2mm 0 2mm;
-            min-height: 0;
-        }
-        .content-area::-webkit-scrollbar {
-            width: 6px;
-        }
-        .content-area::-webkit-scrollbar-track {
-            background: rgba(241, 241, 241, 0.5);
-        }
-        .content-area::-webkit-scrollbar-thumb {
-            background: rgba(212, 175, 55, 0.5);
-            border-radius: 3px;
-        }
-        .content-area::-webkit-scrollbar-thumb:hover {
-            background: rgba(212, 175, 55, 0.7);
-        }
-        .cover-page .content-area {
-            flex: 1 1 auto;
-            align-self: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* الإطار الرئيسي - مع زخارف إضافية */
-        .page-frame {
-            position: absolute;
-            top: var(--frame-margin);
-            right: var(--frame-margin);
-            bottom: var(--frame-margin);
-            left: var(--frame-margin);
-            border: 3px double var(--royal-gold);
-            box-shadow: 
-                inset 0 0 30px rgba(212, 175, 55, 0.12),
-                inset 0 0 0 1px rgba(212, 175, 55, 0.2),
-                0 0 1px rgba(184, 134, 11, 0.3);
-            pointer-events: none;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 20px 48px;
+            position: relative;
             z-index: 1;
         }
-        .page-frame::before {
+
+        .header {
+            text-align: center;
+            padding: 48px 32px;
+            border-radius: 32px;
+            margin-bottom: 40px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 
+                var(--shadow-soft),
+                inset 0 1px 0 rgba(255,255,255,0.8),
+                0 0 0 1px rgba(212,175,55,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .header::before {
             content: '';
             position: absolute;
-            top: 8px;
-            right: 8px;
-            bottom: 8px;
-            left: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            pointer-events: none;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+            animation: headerPulse 8s ease-in-out infinite;
+        }
+        
+        .header:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 12px 48px rgba(107, 91, 46, 0.18),
+                var(--shadow-glow),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+        
+        @keyframes headerPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
         }
 
-        /* زوايا الإطار الممتدة */
-        .frame-corner {
-            position: absolute;
-            width: calc(var(--frame-margin) - 5mm);
-            height: calc(var(--frame-margin) - 5mm);
+        .header-logo {
+            width: 160px;
+            height: 120px;
+            margin: 0 auto 24px;
+            position: relative;
             z-index: 2;
-            pointer-events: none;
-            border-color: rgba(184, 134, 11, 0.9);
-            border-style: solid;
-            border-width: 0;
+            filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.4));
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .frame-corner.tr { top: 5mm; right: 5mm; border-top-width: 3px; border-right-width: 3px; }
-        .frame-corner.tl { top: 5mm; left: 5mm; border-top-width: 3px; border-left-width: 3px; }
-        .frame-corner.br { bottom: 5mm; right: 5mm; border-bottom-width: 3px; border-right-width: 3px; }
-        .frame-corner.bl { bottom: 5mm; left: 5mm; border-bottom-width: 3px; border-left-width: 3px; }
-
-        /* زخارف الأركان الأربعة - متعددة ومتنوعة */
-        .corner-ornament {
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            z-index: 4;
-            pointer-events: none;
-            font-size: 24px;
-            color: var(--royal-gold);
-            line-height: 1;
-            opacity: 0.95;
-            text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        
+        .header-logo:hover {
+            transform: scale(1.15) translateY(-5px);
+            filter: 
+                drop-shadow(0 15px 45px rgba(212, 175, 55, 0.6))
+                drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
         }
-        .corner-ornament::before {
-            content: '❧';
-        }
-        .corner-tr { top: 10mm; right: 10mm; }
-        .corner-tl { top: 10mm; left: 10mm; transform: scale(-1, 1); }
-        .corner-br { bottom: 10mm; right: 10mm; transform: scale(1, -1); }
-        .corner-bl { bottom: 10mm; left: 10mm; transform: scale(-1, -1); }
-
-        /* الترويسة - مع زخارف وبدون تداخل مع المحتوى */
-        .print-header {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-direction: row-reverse;
-            padding: 8px 0 12px 0;
-            margin-bottom: 14px;
-            border-bottom: 2px solid var(--royal-gold);
-            background: linear-gradient(180deg, rgba(255,249,237,0.7) 0%, rgba(255,254,249,0.3) 100%);
-            min-height: 44px;
-            box-shadow: 0 2px 6px rgba(212, 175, 55, 0.08);
-        }
-        .print-header img {
-            border: 1px solid var(--antique-gold);
-            padding: 3px;
-            border-radius: 6px;
-            height: 32px;
-            box-shadow: 0 1px 4px rgba(107, 91, 46, 0.15);
+        
+        .header-logo svg {
+            width: 100%;
+            height: 100%;
         }
 
-        /* التذييل - مدمج وبدون تداخل */
-        .print-footer {
-            flex-shrink: 0;
-            margin-top: auto;
-            padding: 4px 0;
-            border-top: 1px solid rgba(212, 175, 55, 0.4);
-            text-align: center;
-            font-size: 8pt;
-            color: var(--deep-gold);
-            letter-spacing: 0.3px;
+        .header h1 {
+            margin: 0 0 16px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 2.2rem;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
             opacity: 0.9;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 0 4px;
+        }
+        
+        .toolbar-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+        /* شريط البحث */
+        .search-bar {
+            margin-bottom: 28px;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 16px 56px 16px 20px;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px) saturate(180%);
+            -webkit-backdrop-filter: blur(8px) saturate(180%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 
+                0 0 0 4px rgba(212,175,55,0.12),
+                inset 0 1px 3px rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.85);
+        }
+        .search-bar input::placeholder {
+            color: var(--text-light);
+            opacity: 0.6;
+        }
+        .search-bar::before {
+            content: '🔍';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            pointer-events: none;
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+        .search-bar:focus-within::before {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* الإحصائيات */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,254,249,0.95), rgba(255,249,237,0.85));
+            border: 2px solid rgba(212,175,55,0.25);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .stat-card .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #b8860b;
+            font-family: 'Reem Kufi', sans-serif;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .stat-card .stat-label {
+            font-size: 0.85rem;
+            color: #6b5b2e;
+        }
+        .toolbar-title {
+            margin: 0;
+            font-family: 'Reem Kufi', sans-serif;
+            color: #6b5b2e;
+            font-size: 1rem;
+        }
+
+        .add-btn {
+            width: 56px;
+            height: 56px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            box-shadow: 
+                0 8px 24px rgba(212,175,55,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .add-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .add-btn:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .add-btn:hover {
+            transform: scale(1.12) rotate(90deg);
+            box-shadow: 
+                0 12px 36px rgba(212,175,55,0.45),
+                0 0 0 8px rgba(212,175,55,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+        
+        .add-btn:active {
+            transform: scale(1.05) rotate(90deg);
+        }
+
+        .documents-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .document-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 16px;
+            align-items: center;
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            box-shadow: 
+                var(--shadow-soft),
+                inset 0 1px 0 rgba(255,255,255,0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .document-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .document-item:hover::before {
+            left: 100%;
+        }
+        
+        .document-item:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(212,175,55,0.3);
+            box-shadow: 
+                0 12px 40px rgba(107, 91, 46, 0.15),
+                0 0 30px rgba(212,175,55,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .document-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            box-shadow: 
+                0 8px 20px rgba(212,175,55,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .document-item:hover .document-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 
+                0 12px 30px rgba(212,175,55,0.35),
+                inset 0 1px 0 rgba(255,255,255,0.4);
         }
 
-        @media screen {
-            .page-container {
-                box-shadow: 
-                    0 1px 3px rgba(0,0,0,0.08),
-                    0 6px 20px rgba(0,0,0,0.08),
-                    inset 0 1px 0 rgba(255,255,255,0.9);
+        .document-content h3 {
+            margin: 0 0 8px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .document-content p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        .doc-meta {
+            margin-top: 6px;
+            color: #8b6914;
+            font-size: 0.78rem;
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: linear-gradient(135deg, rgba(76,175,80,0.1) 0%, rgba(46,125,50,0.08) 100%);
+            border: 1px solid rgba(76,175,80,0.3);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #2E7D32;
+            margin-top: 6px;
+            font-family: 'Amiri', serif;
+        }
+        .security-serial {
+            font-family: 'Courier New', monospace;
+            background: rgba(212,175,55,0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: #6b5b2e;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .document-link {
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(212,175,55,0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .document-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .document-link:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .document-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212,175,55,0.4);
+        }
+        
+        .document-link:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 22px;
+            padding: 10px;
+            color: #6b5b2e;
+            font-size: 0.85rem;
+        }
+
+        .footer p { margin: 0 0 4px; }
+
+
+
+        @media (max-width: 700px) {
+            .document-item {
+                grid-template-columns: auto 1fr;
+            }
+
+            .document-link {
+                grid-column: 1 / -1;
+                text-align: center;
             }
         }
 
-        h1, h2, h3 {
-            font-family: 'Reem Kufi', sans-serif;
-            color: var(--deep-gold);
-            text-align: center;
-            margin-bottom: 1.2rem;
+        /* ════════════════════════════════════════════════════════ */
+        /*               ✦ الطابع الملكي — زخارف وشفافيات وسحر ✦               */
+        /* ════════════════════════════════════════════════════════ */
+
+        /* نسيج ورق عتيق */
+        body {
+            background:
+                radial-gradient(ellipse at 15% 15%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 85%, rgba(184,134,11,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 0%, rgba(255,249,237,0.3) 0%, transparent 40%),
+                linear-gradient(180deg, #d8d0c0 0%, #e2dcd0 30%, #ddd6c8 70%, #d5cdc0 100%) !important;
         }
-        h1 { 
-            font-size: 20pt !important; 
-            font-weight: bold;
-        }
-        h2 { 
-            font-size: 16pt !important; 
-            font-weight: bold;
-        }
-        h3 { 
-            font-size: 14pt !important; 
-            font-weight: bold;
+        body::before {
+            content: '' !important;
+            position: fixed !important;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E") !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
         }
 
-        .gold-divider {
-            height: 4px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(212,175,55,0.2) 10%,
-                rgba(212,175,55,0.5) 25%,
-                var(--antique-gold) 50%, 
-                rgba(212,175,55,0.5) 75%,
-                rgba(212,175,55,0.2) 90%,
-                transparent 100%);
-            margin: 1.5rem auto;
-            max-width: 350px;
-            border-radius: 2px;
-            box-shadow: 0 1px 3px rgba(212, 175, 55, 0.2);
+        /* حركات ذهبية ساحرة */
+        @keyframes goldShimmer {
+            0% { background-position: -300% center; }
+            100% { background-position: 300% center; }
+        }
+        @keyframes pulseAura {
+            0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.2), 0 4px 12px rgba(184,134,11,0.3); }
+            50% { box-shadow: 0 0 40px rgba(212,175,55,0.45), 0 4px 12px rgba(184,134,11,0.3), 0 0 80px rgba(212,175,55,0.12); }
+        }
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes cornerPulse {
+            0%, 100% { opacity: 0.1; text-shadow: 0 0 15px rgba(212,175,55,0.3); }
+            50% { opacity: 0.22; text-shadow: 0 0 30px rgba(212,175,55,0.5); }
+        }
+        @keyframes ornamentSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        p { 
-            font-size: 12pt !important; 
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            text-align: justify;
+        /* الحاوية الرئيسية */
+        .container {
+            position: relative;
+            z-index: 1;
+            animation: slideUpFade 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .ornament {
-            text-align: center;
-            font-size: 26px;
-            color: var(--royal-gold);
-            margin: 12px 0;
-            letter-spacing: 0.4em;
-            text-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+        /* ❧ زخرفة الترويسة */
+        .header {
+            position: relative !important;
+            overflow: hidden !important;
+            background: linear-gradient(180deg,
+                rgba(255,254,247,0.96) 0%,
+                rgba(255,250,240,0.98) 30%,
+                rgba(254,249,237,0.97) 60%,
+                rgba(255,254,247,0.96) 100%) !important;
+            border: 2px solid rgba(212,175,55,0.4) !important;
+            box-shadow:
+                0 8px 40px rgba(212,175,55,0.18),
+                0 2px 8px rgba(0,0,0,0.04),
+                inset 0 0 80px rgba(255,249,237,0.6),
+                inset 0 1px 0 rgba(255,255,255,0.9) !important;
+        }
+        /* وميض ذهبي على الترويسة */
+        .header::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0; left: -100%; right: -100%; bottom: 0;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(212,175,55,0.03) 20%,
+                rgba(255,249,237,0.14) 40%,
+                rgba(212,175,55,0.07) 50%,
+                rgba(255,249,237,0.14) 60%,
+                rgba(212,175,55,0.03) 80%,
+                transparent 100%) !important;
+            background-size: 200% 100%;
+            animation: goldShimmer 7s ease-in-out infinite !important;
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* إطار داخلي زخرفي */
+        .header::after {
+            content: '' !important;
+            position: absolute !important;
+            top: 6px; right: 6px; bottom: 6px; left: 6px;
+            border: 1px solid rgba(212,175,55,0.18) !important;
+            border-radius: 11px !important;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .header > * { position: relative; z-index: 1; }
+
+        /* الشعار - توهج وحركة */
+        .header-logo {
+            animation: smoothFloat 6s ease-in-out infinite;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 18px 0;
-            background: white;
-            border: 2px solid var(--antique-gold);
-            font-size: 11pt;
-            box-shadow: 0 2px 12px rgba(107, 91, 46, 0.1);
-            border-radius: 4px;
+        /* البطاقات - شفافية زجاجية */
+        .document-item {
+            backdrop-filter: blur(14px) saturate(1.4) !important;
+            -webkit-backdrop-filter: blur(14px) saturate(1.4) !important;
+            background: linear-gradient(180deg,
+                rgba(255,254,249,0.88) 0%,
+                rgba(250,248,243,0.84) 100%) !important;
+            border: 1px solid rgba(212,175,55,0.2) !important;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            animation: fadeSlideUp 0.6s ease-out backwards;
+        }
+        /* خط ذهبي جانبي */
+        .document-item::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0; right: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg,
+                transparent,
+                rgba(212,175,55,0.5) 20%,
+                #d4af37 50%,
+                rgba(212,175,55,0.5) 80%,
+                transparent) !important;
+            opacity: 0;
+            transition: opacity 0.4s !important;
+        }
+        /* وميض خفيف */
+        .document-item::after {
+            content: '' !important;
+            position: absolute !important;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255,249,237,0.18),
+                transparent) !important;
+            transition: left 0.7s ease !important;
+            pointer-events: none;
+        }
+        .document-item:hover {
+            transform: translateY(-4px) scale(1.005) !important;
+            box-shadow:
+                0 16px 40px rgba(212,175,55,0.18),
+                0 4px 12px rgba(0,0,0,0.06),
+                inset 0 0 30px rgba(255,249,237,0.4) !important;
+            border-color: rgba(212,175,55,0.5) !important;
+        }
+        .document-item:hover::before { opacity: 1 !important; }
+        .document-item:hover::after { left: 100% !important; }
+
+        /* تأخير ظهور البطاقات */
+        .document-item:nth-child(1) { animation-delay: 0.05s; }
+        .document-item:nth-child(2) { animation-delay: 0.1s; }
+        .document-item:nth-child(3) { animation-delay: 0.15s; }
+        .document-item:nth-child(4) { animation-delay: 0.2s; }
+        .document-item:nth-child(5) { animation-delay: 0.25s; }
+        .document-item:nth-child(6) { animation-delay: 0.3s; }
+        .document-item:nth-child(7) { animation-delay: 0.35s; }
+        .document-item:nth-child(8) { animation-delay: 0.4s; }
+
+        /* أيقونة البطاقة - وميض */
+        .document-icon {
+            box-shadow: 0 4px 15px rgba(184,134,11,0.3), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+            position: relative;
             overflow: hidden;
         }
-
-        th {
-            background: linear-gradient(180deg, 
-                rgba(212,175,55,0.95) 0%, 
-                var(--royal-gold) 30%,
-                var(--deep-gold) 100%);
-            color: white;
-            padding: 8px 10px;
-            border: 1px solid var(--deep-gold);
-            font-family: 'Reem Kufi', sans-serif;
-            font-weight: 700;
-            font-size: 11.5pt;
-        }
-
-        td {
-            padding: 8px 10px;
-            border: 1px solid #e8e4dc;
-            text-align: center;
-            font-size: 11pt;
-        }
-
-        tr:nth-child(even) {
-            background: #fdfcf9;
-        }
-
-        .highlight-box {
-            border: 2px solid rgba(212, 175, 55, 0.65);
-            background: linear-gradient(135deg, 
-                rgba(255,254,249,0.98) 0%, 
-                rgba(255,249,237,0.65) 50%,
-                rgba(250,248,243,0.95) 100%);
-            padding: 18px 22px;
-            border-radius: 6px;
-            margin: 14px 0;
-            position: relative;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.1), inset 0 1px 0 rgba(255,255,255,0.8);
-        }
-
-        .highlight-box::before {
+        .document-icon::after {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, 
-                var(--royal-gold), 
-                rgba(212,175,55,0.5), 
-                var(--deep-gold));
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+            animation: goldShimmer 4s ease-in-out infinite;
         }
 
-        .section-title {
-            display: inline-block;
-            border-bottom: 2px solid var(--royal-gold);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            font-size: 14pt;
-            color: var(--deep-gold);
-            width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,249,237,0.4), transparent);
-            padding-right: 8px;
-            padding-left: 8px;
+        /* زر الإضافة - تحديث عصري */
+        .add-btn {
+            animation: none !important;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+            position: relative !important;
+            overflow: hidden !important;
         }
 
-        .logo-placeholder {
-            max-width: 120px;
-            margin: 0 auto 20px;
+        /* رابط العرض - وميض */
+        .document-link {
+            position: relative !important;
+            overflow: hidden !important;
+            box-shadow: 0 3px 12px rgba(184,134,11,0.25) !important;
+            transition: all 0.3s ease !important;
+        }
+        .document-link:hover {
+            transform: scale(1.06) !important;
+            box-shadow: 0 6px 20px rgba(184,134,11,0.35) !important;
+        }
+        .document-link::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+            transition: left 0.45s ease;
+        }
+        .document-link:hover::before { left: 100%; }
+
+        /* شريط الأدوات - خط زخرفي */
+        .toolbar {
+            position: relative;
+            padding-bottom: 14px !important;
+        }
+        .toolbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 8%;
+            right: 8%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), rgba(212,175,55,0.7), rgba(212,175,55,0.4), transparent);
+            border-radius: 1px;
+        }
+
+        /* الفاصل الزخرفي */
+        .ornamental-divider {
+            text-align: center;
+            color: #b8860b;
+            font-size: 1.3rem;
+            margin: 14px 0 18px;
+            letter-spacing: 0.7em;
+            opacity: 0.55;
+            text-shadow: 0 0 14px rgba(212,175,55,0.35);
+            position: relative;
+            user-select: none;
+        }
+        .ornamental-divider::before,
+        .ornamental-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 28%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.35), transparent);
+        }
+        .ornamental-divider::before { right: 0; }
+        .ornamental-divider::after { left: 0; }
+
+        /* زخارف الأركان */
+        .page-corner-ornament {
+            position: fixed;
+            font-size: 36px;
+            color: #b8860b;
+            pointer-events: none;
+            z-index: 0;
+            animation: cornerPulse 5s ease-in-out infinite;
+        }
+        .page-corner-ornament.top-right { top: 18px; right: 18px; }
+        .page-corner-ornament.top-left { top: 18px; left: 18px; transform: scaleX(-1); }
+        .page-corner-ornament.bottom-right { bottom: 18px; right: 18px; transform: scaleY(-1); }
+        .page-corner-ornament.bottom-left { bottom: 18px; left: 18px; transform: scale(-1); }
+        .page-corner-ornament.top-left,
+        .page-corner-ornament.bottom-right { animation-delay: 1.2s; }
+
+        /* النجمة الدوارة */
+        .spinning-star {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            color: rgba(212,175,55,0.03);
+            pointer-events: none;
+            z-index: 0;
+            animation: ornamentSpin 60s linear infinite;
+        }
+
+        /* التذييل الزخرفي */
+        .footer {
+            position: relative;
+            padding-top: 22px !important;
+        }
+        .footer::before {
+            content: '❖';
             display: block;
-            border: 2px solid var(--antique-gold);
-            padding: 6px;
-            border-radius: 6px;
+            text-align: center;
+            color: #b8860b;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            opacity: 0.45;
+            text-shadow: 0 0 12px rgba(212,175,55,0.35);
+            letter-spacing: 0.5em;
         }
 
-        .cover-subtitle {
-            font-size: 14pt;
-            color: var(--deep-gold);
-            margin-top: 10px;
+        /* قائمة الوثائق - توهج علوي */
+        .documents-list {
+            position: relative;
+        }
+        .documents-list::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            width: 60%;
+            height: 32px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse, rgba(212,175,55,0.07) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .owners-box {
-            margin-top: 2rem;
-            padding: 24px 28px;
-            border: 2px solid rgba(212, 175, 55, 0.55);
-            background: linear-gradient(135deg, 
-                rgba(255,255,255,0.97) 0%, 
-                rgba(255,249,237,0.5) 50%,
-                rgba(250,248,243,0.9) 100%);
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+        /* شريط التمرير المخصص */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(241,241,241,0.3); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, rgba(212,175,55,0.45), rgba(184,134,11,0.35));
+            border-radius: 4px;
         }
-
-        .section {
-            margin-bottom: 20px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, rgba(212,175,55,0.65), rgba(184,134,11,0.55));
         }
-
     </style>
 </head>
 <body>
+    <!-- زخارف الأركان -->
+    <div class="page-corner-ornament top-right">❧</div>
+    <div class="page-corner-ornament top-left">❧</div>
+    <div class="page-corner-ornament bottom-right">❧</div>
+    <div class="page-corner-ornament bottom-left">❧</div>
+    <!-- نجمة خلفية دوارة -->
+    <div class="spinning-star">❂</div>
+    <div class="container">
+        <div class="header">
+            <div class="header-logo">
+                <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- تدرجات ذهبية متعددة الطبقات -->
+                        <radialGradient id="goldRadial1" cx="50%" cy="50%">
+                            <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
+                            <stop offset="30%" style="stop-color:#ffe066;stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:#d4af37;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#8b6914;stop-opacity:1" />
+                        </radialGradient>
+                        
+                        <radialGradient id="goldRadial2" cx="50%" cy="50%">
+                            <stop offset="0%" style="stop-color:#8b6914;stop-opacity:1" />
+                            <stop offset="30%" style="stop-color:#d4af37;stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:#ffe066;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#fff9e6;stop-opacity:1" />
+                        </radialGradient>
+                        
+                        <linearGradient id="goldShimmer" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f9e79f;stop-opacity:0.3">
+                                <animate attributeName="stop-opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+                            </stop>
+                            <stop offset="50%" style="stop-color:#fff;stop-opacity:0.6">
+                                <animate attributeName="stop-opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+                            </stop>
+                            <stop offset="100%" style="stop-color:#f9e79f;stop-opacity:0.3">
+                                <animate attributeName="stop-opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+                            </stop>
+                        </linearGradient>
+                        
+                        <!-- فلاتر متقدمة -->
+                        <filter id="innerGlow">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                            <feOffset dx="0" dy="0" result="offsetblur"/>
+                            <feFlood flood-color="#ffe066" flood-opacity="0.8"/>
+                            <feComposite in2="offsetblur" operator="in"/>
+                            <feMerge>
+                                <feMergeNode/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <filter id="outerGlow">
+                            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <filter id="shadow3D">
+                            <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#6b5b2e" flood-opacity="0.5"/>
+                            <feDropShadow dx="-1" dy="2" stdDeviation="2" flood-color="#d4af37" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    
+                    <!-- المربع الماسي الأول (الأيمن) مع تأثير 3D -->
+                    <g transform="translate(115, 120)">
+                        <!-- ظل خلفي للعمق -->
+                        <rect x="-38" y="-38" width="76" height="76" fill="#6b5b2e" transform="rotate(45) translate(3, 3)" opacity="0.2" rx="3"/>
+                        
+                        <!-- المربع الرئيسي -->
+                        <rect 
+                            x="-38" y="-38" 
+                            width="76" height="76" 
+                            fill="url(#goldRadial1)" 
+                            transform="rotate(45)"
+                            filter="url(#shadow3D)"
+                            stroke="url(#goldShimmer)"
+                            stroke-width="3"
+                            rx="2"
+                            opacity="0.95">
+                            <animateTransform
+                                attributeName="transform"
+                                type="rotate"
+                                from="45 0 0"
+                                to="405 0 0"
+                                dur="25s"
+                                repeatCount="indefinite"/>
+                        </rect>
+                        
+                        <!-- طبقة توهج داخلية -->
+                        <rect 
+                            x="-32" y="-32" 
+                            width="64" height="64" 
+                            fill="url(#goldShimmer)" 
+                            transform="rotate(45)"
+                            opacity="0.4"
+                            rx="1">
+                            <animateTransform
+                                attributeName="transform"
+                                type="rotate"
+                                from="45 0 0"
+                                to="-315 0 0"
+                                dur="15s"
+                                repeatCount="indefinite"/>
+                        </rect>
+                        
+                        <!-- نقوش إسلامية داخلية متحركة -->
+                        <g transform="rotate(45)" opacity="0.5">
+                            <!-- نجمة ثمانية مركزية -->
+                            <path d="M 0 -12 L 3 -3 L 12 0 L 3 3 L 0 12 L -3 3 L -12 0 L -3 -3 Z" 
+                                  fill="none" stroke="#d4af37" stroke-width="1.5">
+                                <animateTransform attributeName="transform" type="rotate" 
+                                    from="0 0 0" to="360 0 0" dur="20s" repeatCount="indefinite"/>
+                            </path>
+                            <!-- خطوط زخرفية متقاطعة -->
+                            <line x1="-18" y1="0" x2="18" y2="0" stroke="#ffe066" stroke-width="0.8" opacity="0.6">
+                                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+                            </line>
+                            <line x1="0" y1="-18" x2="0" y2="18" stroke="#ffe066" stroke-width="0.8" opacity="0.6">
+                                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+                            </line>
+                            <!-- دوائر زخرفية صغيرة -->
+                            <circle cx="0" cy="-20" r="2" fill="#fff" opacity="0.7">
+                                <animate attributeName="r" values="2;3;2" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="20" cy="0" r="2" fill="#ffe066" opacity="0.7">
+                                <animate attributeName="r" values="2;3;2" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="0" cy="20" r="2" fill="#fff" opacity="0.7">
+                                <animate attributeName="r" values="2;3;2" dur="2s" begin="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="-20" cy="0" r="2" fill="#ffe066" opacity="0.7">
+                                <animate attributeName="r" values="2;3;2" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                        
+                        <!-- زوايا متوهجة (4 زوايا) -->
+                        <g transform="rotate(45)">
+                            <rect x="-40" y="-40" width="6" height="6" fill="#fff" opacity="0.85" rx="1">
+                                <animate attributeName="opacity" values="0.85;1;0.85" dur="2s" repeatCount="indefinite"/>
+                            </rect>
+                            <rect x="34" y="-40" width="6" height="6" fill="#ffe066" opacity="0.8" rx="1">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.2s" repeatCount="indefinite"/>
+                            </rect>
+                            <rect x="34" y="34" width="6" height="6" fill="#fff" opacity="0.85" rx="1">
+                                <animate attributeName="opacity" values="0.85;1;0.85" dur="1.8s" repeatCount="indefinite"/>
+                            </rect>
+                            <rect x="-40" y="34" width="6" height="6" fill="#ffe066" opacity="0.8" rx="1">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.4s" repeatCount="indefinite"/>
+                            </rect>
+                        </g>
+                    </g>
+                    
+                    <!-- المربع الماسي الثاني (الأيسر) مع تأثير 3D -->
+                    <g transform="translate(175, 120)">
+                        <!-- ظل خلفي للعمق -->
+                        <rect x="-38" y="-38" width="76" height="76" fill="#6b5b2e" transform="rotate(45) translate(3, 3)" opacity="0.2" rx="3"/>
+                        
+                        <!-- المربع الرئيسي -->
+                        <rect 
+                            x="-38" y="-38" 
+                            width="76" height="76" 
+                            fill="url(#goldRadial2)" 
+                            transform="rotate(45)"
+                            filter="url(#shadow3D)"
+                            stroke="url(#goldShimmer)"
+                            stroke-width="3"
+                            rx="2"
+                            opacity="0.95">
+                            <animateTransform
+                                attributeName="transform"
+                                type="rotate"
+                                from="45 0 0"
+                                to="-315 0 0"
+                                dur="20s"
+                                repeatCount="indefinite"/>
+                        </rect>
+                        
+                        <!-- طبقة توهج داخلية -->
+                        <rect 
+                            x="-32" y="-32" 
+                            width="64" height="64" 
+                            fill="url(#goldShimmer)" 
+                            transform="rotate(45)"
+                            opacity="0.5"
+                            rx="1">
+                            <animateTransform
+                                attributeName="transform"
+                                type="rotate"
+                                from="45 0 0"
+                                to="405 0 0"
+                                dur="18s"
+                                repeatCount="indefinite"/>
+                        </rect>
+                        
+                        <!-- نقوش هندسية داخلية متنوعة -->
+                        <g transform="rotate(45)" opacity="0.55">
+                            <!-- مربع مركزي دوار -->
+                            <rect x="-10" y="-10" width="20" height="20" 
+                                  fill="none" stroke="#d4af37" stroke-width="1.5" rx="2">
+                                <animateTransform attributeName="transform" type="rotate" 
+                                    from="360 0 0" to="0 0 0" dur="25s" repeatCount="indefinite"/>
+                            </rect>
+                            <!-- معينات زخرفية -->
+                            <path d="M 0 -15 L 4 -4 L 15 0 L 4 4 L 0 15 L -4 4 L -15 0 L -4 -4 Z" 
+                                  fill="none" stroke="#ffe066" stroke-width="1">
+                                <animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite"/>
+                            </path>
+                            <!-- خطوط قطرية متقاطعة -->
+                            <line x1="-16" y1="-16" x2="16" y2="16" stroke="#d4af37" stroke-width="0.8" opacity="0.5" stroke-dasharray="2,2">
+                                <animate attributeName="stroke-dashoffset" from="0" to="4" dur="2s" repeatCount="indefinite"/>
+                            </line>
+                            <line x1="16" y1="-16" x2="-16" y2="16" stroke="#d4af37" stroke-width="0.8" opacity="0.5" stroke-dasharray="2,2">
+                                <animate attributeName="stroke-dashoffset" from="0" to="-4" dur="2s" repeatCount="indefinite"/>
+                            </line>
+                            <!-- نقاط زخرفية في المحاور -->
+                            <circle cx="0" cy="-22" r="2.5" fill="#ffe066" opacity="0.8">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="22" cy="0" r="2.5" fill="#fff" opacity="0.8">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" begin="0.6s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="0" cy="22" r="2.5" fill="#ffe066" opacity="0.8">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" begin="1.2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="-22" cy="0" r="2.5" fill="#fff" opacity="0.8">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" begin="1.8s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                        
+                        <!-- زوايا متوهجة (4 زوايا) -->
+                        <g transform="rotate(45)">
+                            <rect x="-40" y="-40" width="6" height="6" fill="#ffe066" opacity="0.85" rx="1">
+                                <animate attributeName="opacity" values="0.85;1;0.85" dur="2.1s" repeatCount="indefinite"/>
+                            </rect>
+                            <rect x="34" y="-40" width="6" height="6" fill="#fff" opacity="0.8" rx="1">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="1.9s" repeatCount="indefinite"/>
+                            </rect>
+                            <rect x="34" y="34" width="6" height="6" fill="#ffe066" opacity="0.85" rx="1">
+                                <animate attributeName="opacity" values="0.85;1;0.85" dur="2.3s" repeatCount="indefinite"/>
+                            </rect>
+                            <rect x="-40" y="34" width="6" height="6" fill="#fff" opacity="0.8" rx="1">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.0s" repeatCount="indefinite"/>
+                            </rect>
+                        </g>
+                    </g>
+                    
+                    <!-- جزيئات ذهبية متحركة -->
+                    <g opacity="0.6">
+                        <rect x="78" y="78" width="4" height="4" fill="#d4af37" rx="1">
+                            <animate attributeName="y" values="78;73;78" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+                        </rect>
+                        <rect x="238" y="78" width="4" height="4" fill="#d4af37" rx="1">
+                            <animate attributeName="y" values="78;73;78" dur="3.5s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.6;1;0.6" dur="3.5s" repeatCount="indefinite"/>
+                        </rect>
+                        <rect x="78" y="158" width="4" height="4" fill="#d4af37" rx="1">
+                            <animate attributeName="y" values="158;163;158" dur="4s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
+                        </rect>
+                        <rect x="238" y="158" width="4" height="4" fill="#d4af37" rx="1">
+                            <animate attributeName="y" values="158;163;158" dur="3.2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.6;1;0.6" dur="3.2s" repeatCount="indefinite"/>
+                        </rect>
+                    </g>
+                    
+                    <!-- زخارف عربية في الزوايا -->
+                    <g opacity="0.3" fill="#d4af37">
+                        <path d="M 60 60 L 62 58 L 64 60 L 62 62 Z">
+                            <animateTransform attributeName="transform" type="rotate" from="0 62 60" to="360 62 60" dur="10s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M 256 60 L 258 58 L 260 60 L 258 62 Z">
+                            <animateTransform attributeName="transform" type="rotate" from="0 258 60" to="-360 258 60" dur="12s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M 60 180 L 62 178 L 64 180 L 62 182 Z">
+                            <animateTransform attributeName="transform" type="rotate" from="0 62 180" to="360 62 180" dur="11s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M 256 180 L 258 178 L 260 180 L 258 182 Z">
+                            <animateTransform attributeName="transform" type="rotate" from="0 258 180" to="-360 258 180" dur="13s" repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <h1>مجموعة صرح الإتقان وشركة فضاء المحركات</h1>
+            <p>الوثائق الرسمية والأنظمة الإدارية</p>
+        </div>
 
-    <div class="page-container cover-page">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">مسودة النظام الداخلي</span>
-                <img src="logo.png" alt="شعار" style="height: 32px;">
+        <div class="ornamental-divider">✦ ❖ ✦</div>
+
+        <!-- شريط البحث -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="ابحث في الوثائق..." onkeyup="filterDocuments()">
+        </div>
+
+        <!-- الإحصائيات -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-value" id="statTotal">0</div>
+                <div class="stat-label">إجمالي الوثائق</div>
             </div>
-            <div class="content-area">
-                <div class="text-center pt-6">
-                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-placeholder" onerror="this.style.display='none'">
-                    <div class="ornament">◆ ◆ ◆</div>
-                    <h1 class="text-4xl font-bold tracking-wide" style="color: var(--deep-gold);">مسودة النظام الداخلي</h1>
-                    <h2 class="text-2xl mt-3 cover-subtitle">لمجموعة صرح الإتقان المحدودة وشركة فضاء المحركات</h2>
-                    <div class="gold-divider"></div>
-                    <p class="text-xl italic" style="color: var(--deep-gold);">"الإطار الفلسفي والقانوني لمنظومة الحوكمة الإدارية"</p>
-                    <div class="owners-box mt-16">
-                        <p class="text-lg mb-2" style="color: var(--deep-gold);">تحت إشراف الملاك الموقرين:</p>
-                        <p class="font-bold text-2xl mt-2" style="color: var(--text-dark);">الأستاذ عبدالحكيم المذهول & الأستاذ متعب الهاجري</p>
-                    </div>
-                    <div class="mt-32 opacity-80" style="font-size: 0.95rem; color: var(--deep-gold);">
-                        <p>إصدار عام 1446هـ - 2025م</p>
-                    </div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statCustom">0</div>
+                <div class="stat-label">وثائق مخصصة</div>
             </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 1</div>
+            <div class="stat-card">
+                <div class="stat-value" id="statBase">8</div>
+                <div class="stat-label">وثائق أساسية</div>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <h2 class="toolbar-title">قائمة الوثائق (الأحدث في الأعلى)</h2>
+            <a href="document-creator.html" class="add-btn" aria-label="إنشاء وثيقة جديدة" style="text-decoration:none;display:flex;align-items:center;justify-content:center;">+</a>
+        </div>
+
+        <div class="documents-list" id="documentsList"></div>
+
+        <div class="footer">
+            <p><strong>مجموعة صرح الإتقان المحدودة وشركة فضاء المحركات</strong></p>
+            <p style="color: #999; font-size: 0.8rem;">تحت إشراف الأستاذ عبدالحكيم المذهول والأستاذ متعب الهاجري</p>
         </div>
     </div>
 
-    <!-- صفحة 2: الإطار الفلسفي والمقدمة -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">الإطار الفلسفي والقانوني</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">الإطار الفلسفي والقانوني لمنظومة الحوكمة الإدارية</span>
-                    <p>تعد صياغة هذا الدستور الإداري لمجموعة شركات صرح الإتقان المحدودة وشركة فضاء المحركات بمثابة حجر الأساس لتحويل العمل من النمط التقليدي الفردي إلى النمط المؤسسي المنضبط، بما يتوافق مع رؤية المملكة 2030 وتحديثات نظام العمل السعودي لعام 1446هـ. إن الهدف الأسمى لهذا الدستور هو إيجاد لغة تنظيمية موحدة تحكم العلاقة بين الملاك، الأستاذ عبدالحكيم المذهول والأستاذ متعب الهاجري، وبين كافة المستويات الإدارية والتشغيلية في الفروع الخمسة للمجموعة. ينطلق هذا النظام من ضرورة معالجة التحديات التشغيلية الناتجة عن تنوع نماذج العمل، التي تشمل نظام الرواتب الثابتة، ونظام الشراكة بالإنتاج (50/50)، ونظام تأجير الأقسام الفرعية، مما يستدعي وجود رقابة إدارية صارمة تتجاوز مجرد المراقبة المالية التقليدية.</p>
-                    <p>يستند هذا الدستور إلى مبدأ الفصل التام بين الرقابة المالية والرقابة الإدارية والتقنية. وبينما تظل الرقابة المالية تحت الإشراف المباشر للإدارة العامة والمحاسب العام، يُمنح مكتب الانضباط والتقنية الاستقلالية الكاملة لإدارة السلوك الوظيفي والالتزام المهني والتقني. إن هذا الفصل يهدف إلى منع تداخل الصلاحيات وضمان أن تكون معايير الجودة والانضباط هي المحرك الأساسي للنمو، دون أن تقيدها الحسابات المالية اللحظية، مع الحفاظ على علاقة تعاونية أفقية بين قطب الانضباط وقطب المحاسبة لضمان تنفيذ الجزاءات والمكافآت بفعالية.</p>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 2</div>
-        </div>
-    </div>
 
-    <!-- صفحة 3: الهيكل التنظيمي -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">الهيكل التنظيمي وتوزيع مراكز القوى</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">الهيكل التنظيمي العام وتوزيع مراكز القوى</span>
-                    <p>يعكس الهيكل التنظيمي للمجموعة تعقيد العمليات وتكاملها بين الفروع الصناعية في مخرج 28 والفروع المتخصصة في فضاء المحركات. يتميز هذا الهيكل بوجود "مكتب الانضباط والتقنية" كجهة رقابية عليا تتبع الإدارة العامة مباشرة، وتتمتع بسلطة عابرة للفروع والمسميات الوظيفية.</p>
-                    <h4 class="font-bold mt-4 mb-2" style="color: var(--deep-gold);">مجلس الإدارة والقيادة العليا</h4>
-                    <p>يتصدر الهرم الإداري المالكين، الأستاذ عبدالحكيم المذهول والأستاذ متعب الهاجري، بصفتهما السلطة النهائية لاعتماد السياسات والقرارات الاستراتيجية. تتبع لهما مباشرة الإدارة التنفيذية والرقابية، حيث تُحدد العلاقة بين المحاسب العام ومكتب الانضباط والتقنية كعلاقة تكاملية تهدف إلى تحقيق الاستقرار المؤسسي.</p>
-                    <h4 class="font-bold mt-4 mb-2" style="color: var(--deep-gold);">مكتب المحاسب العام (الرقابة المالية)</h4>
-                    <p>يُدار هذا المكتب بواسطة المحاسب العام أحمد وعضو المكتب الأستاذ أبو عوض. تتركز مهامهما في الرقابة المالية الكلية، وإدارة التدفقات النقدية، وضمان الامتثال للأنظمة الضريبية والزكوية. يلتزم هذا المكتب بالتجاوب الأقصى مع قرارات مكتب الانضباط فيما يخص تفعيل الخصومات، حيث يمثل المحاسب العام الأداة المالية التي تضمن هيبة القانون الداخلي للمجموعة.</p>
-                    <h4 class="font-bold mt-4 mb-2" style="color: var(--deep-gold);">مكتب الانضباط والتقنية (الرقابة الإدارية والتقنية)</h4>
-                    <p>يُعد هذا المكتب المحرك الأساسي للتغيير داخل المجموعة، ويتولى إدارته الأستاذ عبدالله أحمد الكردي بصفته المدير والمسؤول الأول عن الرقابة وتنفيذ التعليمات. يتميز هذا المكتب بكونه "مكتباً متنقلاً" يعمل في كافة الفروع لضمان الرقابة الميدانية الحية.</p>
-                    <p>تتمثل الصلاحيات الجوهرية لمدير مكتب الانضباط في:</p>
-                    <ul class="list-disc pr-6 space-y-1 mb-3">
-                        <li><strong>الاستقلالية التامة:</strong> لا يخضع مدير المكتب إلا لمساءلة الإدارة العليا (الملاك) مباشرة، ولا يحق لأي مدير فرع أو محاسب استجوابه.</li>
-                        <li><strong>تشكيل اللجان:</strong> يمتلك صلاحية تشكيل لجان تحقيق أو تدقيق وتفويض المهام للأفراد أو المجموعات لفترات محددة.</li>
-                        <li><strong>الجزاءات التأديبية:</strong> يحق له اتخاذ إجراءات تأديبية بحق مدراء الورش بعد التشاور مع الإدارة العامة، مما يضمن توازن القوى داخل المؤسسة.</li>
-                        <li><strong>إدارة الحوافز:</strong> يمتلك المرونة في إعادة توزيع مبالغ الخصومات كمكافآت للموظفين المتميزين عبر "تطبيق صرح انضباط"، مما يعزز من ثقافة العدالة الإنتاجية.</li>
-                    </ul>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>المسؤول المباشر</th>
-                                <th>الموقع الإداري</th>
-                                <th>نطاق الصلاحيات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>عبدالحكيم المذهول / متعب الهاجري</td>
-                                <td>الإدارة العليا</td>
-                                <td>الاعتماد النهائي، مساءلة مكتب الانضباط</td>
-                            </tr>
-                            <tr>
-                                <td>عبدالله أحمد الكردي</td>
-                                <td>مكتب الانضباط والتقنية</td>
-                                <td>الرقابة الإدارية، تشكيل اللجان، الجودة التقنية</td>
-                            </tr>
-                            <tr>
-                                <td>المحاسب العام (أحمد)</td>
-                                <td>المحاسبة العامة</td>
-                                <td>الرقابة المالية، تنفيذ الخصومات، الميزانيات</td>
-                            </tr>
-                            <tr>
-                                <td>أبو عوض</td>
-                                <td>عضو مكتب المحاسبة</td>
-                                <td>التدقيق المالي، الدعم المحاسبي العام</td>
-                            </tr>
-                            <tr>
-                                <td>عبدالهادي</td>
-                                <td>مشرف تنسيق عام</td>
-                                <td>التنسيق الميداني واللوجستي بين الفروع</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 3</div>
-        </div>
-    </div>
 
-    <!-- صفحة 4: مراكز صرح الإتقان -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">النظام التشغيلي لمراكز صرح الإتقان</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">النظام التشغيلي لمراكز صرح الإتقان (مخرج 28)</span>
-                    <p>تمثل مراكز صرح الإتقان الثلاثة الكائنة في صناعية العاصمة بمخرج 28 النواة الصناعية الأساسية للمجموعة، حيث تبلغ مساحة كل مركز حوالي 1000 متر مربع، وتتسم بتداخل النماذج التشغيلية والحاجة الماسة لضبط الانضباط المهني.</p>
-                    <h4 class="font-bold mt-3 mb-1" style="color: var(--deep-gold); font-size: 1rem;">صرح الإتقان 1 (صرح الإتقان كورنر)</h4>
-                    <p>يُدار هذا المركز بواسطة الأستاذ مصعب، الذي يجمع بين الإدارة والمحاسبة. يتطلب هذا الوضع رقابة مزدوجة من مكتب الانضباط لضمان عدم تأثر القرارات الإدارية بالضغوط المحاسبية اليومية. يعمل في هذا المركز فئات متنوعة من العمالة، ويخضع كل منهم لنظام تعاقدي محدد:</p>
-                    <ul class="list-disc pr-6 space-y-1 mb-2">
-                        <li><strong>موظفو الرواتب:</strong> يخضعون لنظام الحضور والانصراف الصارم مع الالتزام بالمهام الوظيفية المحددة في عقودهم.</li>
-                        <li><strong>نظام النسبة (50/50):</strong> يعد هذا النموذج تشاركياً، حيث يتم اقتسام صافي الربح الناتج عن جهد الفني بعد خصم التكاليف المباشرة للمواد. يلتزم هؤلاء الفنيون بكافة قواعد الانضباط العام، ويخضعون للجزاءات الإدارية في حال الإخلال بجودة العمل أو مواعيد الدوام.</li>
-                        <li><strong>المستأجرون:</strong> مثل مستأجري الرافعات أو قسم السمكرة، يلتزمون بدفع الإيجار الشهري، مع خضوعهم الكامل للائحة السلامة والبيئة الخاصة بالمركز، ويحق لمكتب الانضباط التوصية بإنهاء عقودهم في حال تكرار المخالفات السلوكية أو الإضرار بسمعة المركز.</li>
-                    </ul>
-                    <h4 class="font-bold mt-3 mb-1" style="color: var(--deep-gold); font-size: 1rem;">صرح الإتقان الرئيسي وقسم الدهانات</h4>
-                    <p>يعد المركز الرئيسي المحرك الفني للمجموعة، حيث يحتوي على قسم مستقل لخلط البويه والدهانات، الذي يغذي باقي الفروع.</p>
-                    <p><strong>المحاسبة والإدارة:</strong> يتولى الأستاذ أيمن المهام المحاسبية، ويُطالب بالتنسيق المباشر مع مكتب الانضباط لضبط استهلاك المواد ومنع الهدر في قسم الدهانات.</p>
-                    <p><strong>مكتب قطع الغيار المشترك:</strong> يخدم هذا المكتب الصرح ويشرف عليه محاسب صرح 2، الأستاذ أحمد عبدالسلام. يهدف هذا المكتب لتوفير قطع الصيانة السريعة، ويخضع لرقابة صارمة لضمان دقة الفواتير وسرعة التوريد.</p>
-                    <h4 class="font-bold mt-3 mb-1" style="color: var(--deep-gold); font-size: 1rem;">صرح الإتقان 2 (مركز السيارات الأوروبية)</h4>
-                    <p>يتخصص هذا المركز في صيانة السيارات الأوروبية والفارهة، ويُدار بواسطة الأستاذ أبو سليمان ومحاسبه الأستاذ أحمد عبدالسلام. نظراً لطبيعة السيارات المتعامل معها، يرتفع سقف الانضباط التقني هنا.</p>
-                    <p><strong>قسم المخرطة:</strong> يضم قسماً مستأجراً يدفع إيجاراً شهرياً. يلتزم المستأجر بالحفاظ على نظافة الموقع والتقيد بساعات العمل الرسمية، ويخضع لعمليات التفتيش الدورية من مكتب الانضباط.</p>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 4</div>
-        </div>
-    </div>
+    <script>
+        const STORAGE_KEY = 'sarh_custom_documents_v1';
 
-    <!-- صفحة 5: شركة فضاء المحركات -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">شركة فضاء المحركات</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">النظام التشغيلي لشركة فضاء المحركات (التميز والإبداع)</span>
-                    <p>تمثل شركة فضاء المحركات الواجهة المخملية للمجموعة، حيث تركز على خدمات السمكرة والدهان والتقنيات المتقدمة للسيارات الفارهة. تتميز فروع فضاء بمستويات عالية من التنظيم، مما يجعل جهد مكتب الانضباط فيها مركزاً على استدامة الجودة والارتقاء بالتجربة العميلة.</p>
-                    <h4 class="font-bold mt-4 mb-2" style="color: var(--deep-gold);">المركز الرئيسي لفضاء المحركات</h4>
-                    <p>يضم الطابق العلوي الإدارة العامة ومكتب الانضباط والتقنية والمحاسب العام. أما الدور الأرضي فيشكل قلعة صناعية تضم:</p>
-                    <ul class="list-disc pr-6 space-y-1 mb-2">
-                        <li><strong>قسم السمكرة والدهان:</strong> يضم فرنين متطورين وقسماً للدهان بالتغطيس، مع فريق عمل تايلاندي متخصص في ألياف الكربون (Carbon Fiber). يتطلب هذا القسم معايير سلامة مهنية فائقة.</li>
-                        <li><strong>الإدارة والرقابة:</strong> يُدار بواسطة الأستاذ أبو شادي والمحاسب محمد جلال. يُلزم الطاقم الفني بالالتزام التام ببروتوكولات العمل الأوروبية والتايلاندية لضمان عدم وجود أخطاء تقنية.</li>
-                        <li><strong>مركز قطع موبار (Dodge):</strong> مركز متكامل ومختص بعلامة دوج، يضم مديراً وعمالة مستقلة. يمثل هذا المركز وحدة ربحية مستقلة تشارك في سلاسل التوريد الداخلية للمجموعة.</li>
-                        <li><strong>قسم مستقل لخلط البويه والدهانات،</strong> ويشرف عليه الأستاذ صهيب. هذا القسم ليس مجرد وحدة إنتاجية، بل هو "بنك المواد" الذي يغذي باقي الفروع.</li>
-                        <li><strong>المستودع المركزي:</strong> يقع بين القسمين، ويمثل نقطة التوزيع الرئيسية لقطع الغيار لكافة فروع المجموعة.</li>
-                    </ul>
-                    <h4 class="font-bold mt-4 mb-2" style="color: var(--deep-gold);">فرع فضاء المحركات (الميكانيكا الفارهة)</h4>
-                    <p>يقع على بعد 1 كم، وهو مركز مصمم بطريقة إبداعية للتخصص في ميكانيكا السيارات الفارهة. يُدار بواسطة الأستاذ جهاد والمحاسب أحمد شحاتة. يركز النظام هنا على الدقة الزمنية في تسليم السيارات والالتزام بالهوية البصرية للمجموعة.</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>الفرع / القسم</th>
-                                <th>المدير المسؤول</th>
-                                <th>المحاسب المسؤول</th>
-                                <th>التخصص الأساسي</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>صرح الإتقان 1</td><td>مصعب</td><td>مصعب</td><td>سيارات متنوعة، 50/50</td></tr>
-                            <tr><td>صرح الإتقان الرئيسي</td><td>أمجد</td><td>أيمن</td><td>سمكرة، دهان، خلط بويه</td></tr>
-                            <tr><td>صرح الإتقان 2</td><td>أبو سليمان</td><td>أحمد عبدالسلام</td><td>سيارات أوروبية، مخرطة</td></tr>
-                            <tr><td>فضاء المحركات (رئيسي)</td><td>أبو شادي</td><td>محمد جلال</td><td>سمكرة، ألياف كربون، دهان</td></tr>
-                            <tr><td>فضاء المحركات (فرع)</td><td>جهاد</td><td>أحمد شحاتة</td><td>ميكانيكا سيارات فارهة</td></tr>
-                            <tr><td>مركز قطع مبارك</td><td>(مدير المركز)</td><td>(محاسب القسم)</td><td>قطع غيار دوج / موبار</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 5</div>
-        </div>
-    </div>
+        const baseDocuments = [
+            { title: 'مسودة النظام الداخلي', description: 'الدستور التنظيمي واللائحة الداخلية - الإطار الفلسفي والقانوني لمنظومة الحوكمة', link: 'constitution-main.html', icon: '📋', createdAt: 1700000000000 },
+            { title: 'قرارات إدارية عاجلة', description: 'قرارات وتعليمات صادرة من مستشار التحول الرقمي لتنظيم العمل', link: 'administrative-decisions.html', icon: '⚡', createdAt: 1700000001000 },
+            { title: 'نموذج إقرار سكني', description: 'نموذج التعهد والإقرار الخاص بالسكن الجماعي للموظفين', link: 'housing-pledge.html', icon: '🏠', createdAt: 1700000002000 },
+            { title: 'تقرير ضبط الانضباط', description: 'تقرير إداري شامل بمخرجات ضبط الانضباط وهندسة الجودة', link: 'discipline-report.html', icon: '📊', createdAt: 1700000003000 },
+            { title: 'تعميم إداري (4 لغات)', description: 'تعميم شامل بالعربية والهندية والأوردو والتايلندية', link: 'announcement-multilingual.html', icon: '🌐', createdAt: 1700000004000 },
+            { title: 'منظومة مؤشر الانضباط', description: 'قرار إداري باعتماد اللائحة التنفيذية لتقييم مؤشر الانضباط', link: 'اداري.html', icon: '⭐', createdAt: 1700000005000 },
+            { title: 'محرر الكتب الرسمية', description: 'نموذج إصدار كتب رسميّة ببيانات افتراضية ومعاينة فورية بدون برمجة', link: 'official-books-editor.html', icon: '📝', createdAt: 1700000006000 },
+            { title: 'منشئ الوثائق الرسمية', description: 'صفحة إنشاء وثائق بسحب وإفلات ومعاينة مباشرة وطباعة فورية', link: 'document-creator.html', icon: '🛠️', createdAt: 1700000007000 }
+        ];
 
-    <!-- صفحة 6: لوجستيات التوريد -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">لوجستيات التوريد وساعات العمل</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">لوجستيات التوريد ومنظومة مناديب المجموعة</span>
-                    <p>يعتمد النجاح التشغيلي للمجموعة على انسيابية تدفق قطع الغيار بين الورش ومراكز البيع. يتم تنظيم حركة المناديب وفق القواعد التالية لضمان السرعة والنزاهة المالية والتقنية:</p>
-                    <p><strong>المسؤولون عن التوريد:</strong></p>
-                    <ul class="list-disc pr-6 space-y-1 mb-2">
-                        <li>الأستاذ أبو يحيى وحمادة: مسؤولون عن قطع الغيار الجديدة.</li>
-                        <li>الأستاذ هيثم أبو حسن: مسؤول عن قطع غيار موبار.</li>
-                        <li>الأستاذ أبو حازم: مسؤول عن قطع التشليح والمستعمل.</li>
-                        <li>الأستاذ صهيب: مسؤول عن توريد الدهانات والبويا.</li>
-                    </ul>
-                    <p><strong>آلية العمل:</strong> يخضع المناديب لرقابة مكتب الانضباط فيما يخص سرعة تنفيذ الطلبات، ولرقابة المحاسبة العامة فيما يخص مراجعة الأسعار وجودة الفواتير. يمنع منعاً باتاً التعامل مع موردين خارج القائمة المعتمدة إلا بإذن كتابي من الإدارة العليا أو مكتب الانضباط في الحالات الطارئة.</p>
-                    <p><strong>التنسيق اللوجستي:</strong> يتولى الأستاذ عبدالهادي (مشرف التنسيق العام) الربط بين طلبات الورش وحركة المناديب لضمان عدم تعطل السيارات داخل المراكز بسبب تأخر القطع.</p>
-                </div>
-                <div class="section mt-4">
-                    <span class="section-title">ساعات العمل والإجازات الرسمية</span>
-                    <p>تم تحديد ساعات العمل بما يتناسب مع طبيعة السوق في كل منطقة مع الالتزام بالحد الأقصى لساعات العمل المنصوص عليها في المادة 98 من نظام العمل.</p>
-                    <div class="grid grid-cols-2 gap-3 mt-3">
-                        <div class="p-3 bg-white" style="border: 1px solid #e8e4dc; border-right: 3px solid var(--royal-gold);">
-                            <h4 class="font-bold mb-1" style="color: var(--deep-gold); font-size: 0.95rem;">فروع صرح الإتقان (1، الرئيسي، 2)</h4>
-                            <p><strong>الفترة الصباحية:</strong> من الساعة 8:00 صباحاً وحتى الساعة 12:00 ظهراً.<br><strong>فترة الاستراحة:</strong> من الساعة 12:00 ظهراً وحتى الساعة 3:00 عصراً (3 ساعات).<br><strong>الفترة المسائية:</strong> من الساعة 3:00 عصراً وحتى الساعة 9:30 مساءً.<br><strong>يوم الجمعة:</strong> عطلة أسبوعية رسمية لكافة العاملين.</p>
+        const listEl = document.getElementById('documentsList');
+
+        function loadCustomDocuments() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                const parsed = raw ? JSON.parse(raw) : [];
+                return Array.isArray(parsed) ? parsed : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function saveCustomDocuments(items) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+        }
+
+        function formatDate(value) {
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) return '';
+            return date.toLocaleString('ar-SA');
+        }
+
+        function renderDocuments() {
+            const customDocuments = loadCustomDocuments();
+            const items = [...baseDocuments, ...customDocuments]
+                .sort((first, second) => Number(second.createdAt || 0) - Number(first.createdAt || 0));
+
+            listEl.innerHTML = items.map((doc) => {
+                const dateText = formatDate(doc.createdAt);
+                
+                // علامة الأمان للوثائق المخصصة
+                let securityHTML = '';
+                if (doc.securityInfo) {
+                    securityHTML = `
+                        <div class="security-badge">
+                            <span>✅</span>
+                            <span>وثيقة مُصدقة رقمياً</span>
                         </div>
-                        <div class="p-3 bg-white" style="border: 1px solid #e8e4dc;">
-                            <h4 class="font-bold mb-1" style="color: var(--deep-gold); font-size: 0.95rem;">فروع فضاء المحركات (الرئيسي والفرع)</h4>
-                            <p><strong>ساعات العمل:</strong> من الساعة 8:00 صباحاً وحتى الساعة 8:00 مساءً.<br><strong>فترة الاستراحة:</strong> من الساعة 12:00 ظهراً وحتى الساعة 1:00 ظهراً (ساعة واحدة).<br><strong>نظام العمل:</strong> يتسم بالانضباط العالي والالتزام التام بالهدوء المهني.</p>
+                        <div class="security-serial">الرقم التسلسلي: ${doc.securityInfo.serialNumber}</div>
+                    `;
+                }
+                
+                return `
+                    <div class="document-item">
+                        <div class="document-icon">${doc.icon || '📄'}</div>
+                        <div class="document-content">
+                            <h3>${doc.title}</h3>
+                            <p>${doc.description}</p>
+                            <div class="doc-meta">${dateText ? `تاريخ الإضافة: ${dateText}` : ''}</div>
+                            ${securityHTML}
                         </div>
+                        <a class="document-link" href="${doc.link}" target="_self">عرض</a>
                     </div>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 6</div>
-        </div>
-    </div>
+                `;
+            }).join('');
+        }
 
-    <!-- صفحة 7: قواعد السلوك والسكن -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">قواعد السلوك والنظام الداخلي للسكن</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">قواعد السلوك والنظام الداخلي للسكن الجماعي</span>
-                    <p>يتبع سكن العمال لمركز صرح الإتقان 1، وهو يضم خليطاً من الجنسيات، مما يستدعي نظاماً داخلياً مستقلاً تحت إشراف مكتب الانضباط والتقنية لضمان الهدوء والسلامة.</p>
-                    <p><strong>المعايير الصحية والمكانية:</strong></p>
-                    <ul class="list-disc pr-6 space-y-1 mb-2">
-                        <li>تخصيص مساحة لا تقل عن 4 متر مربع لكل عامل، مع حد أقصى 10 أفراد في الغرفة الواحدة.</li>
-                        <li>الالتزام بنظافة المرافق الصحية (حمام لكل 8 أفراد كحد أدنى) والتهوية المستمرة.</li>
-                        <li>يمنع منعاً باتاً الطبخ داخل غرف النوم أو استخدام أسطوانات الغاز خارج المطبخ المركزي.</li>
-                    </ul>
-                    <p><strong>السلوك الاجتماعي والأمن:</strong></p>
-                    <ul class="list-disc pr-6 space-y-1 mb-2">
-                        <li>يمنع رفع الأصوات أو الضجيج بما يتجاوز 25 ديسيبل بعد الساعة 10:00 مساءً.</li>
-                        <li>يمنع استقبال الزوار الغرباء داخل السكن دون إذن مسبق من مكتب الانضباط.</li>
-                        <li>في حال وقوع نزاعات بين الجنسيات، يُحال الأطراف فوراً للتحقيق الإداري، وتطبق عقوبات مغلظة تصل إلى الفصل في حالات الاعتداء الجسدي.</li>
-                    </ul>
-                    <p><strong>الأمن والسلامة:</strong> توفير طفايات حريق وأنظمة إنذار في كل طابق، والالتزام بخطة الإخلاء المعتمدة من الدفاع المدني.</p>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 7</div>
-        </div>
-    </div>
-
-    <!-- صفحة 8: لائحة المخالفات والجزاءات -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">لائحة المخالفات والجزاءات التأديبية</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">لائحة المخالفات والجزاءات التأديبية (سلاح الخصومات)</span>
-                    <p>يعد النظام التأديبي الأداة الفعالة لضمان استمرارية الانضباط. وتماشياً مع المادة 66 من نظام العمل، تم تصنيف المخالفات والجزاءات كما يلي:</p>
-                    <p><strong>مخالفات مواعيد العمل</strong></p>
-                    <ul class="list-disc pr-6 space-y-1 mb-2">
-                        <li><strong>التأخر بدون إذن:</strong> تبدأ بإنذار كتابي وتصل لخصم 50% من أجر اليوم في المرة الرابعة.</li>
-                        <li><strong>ترك العمل قبل الموعد:</strong> تدرج في الخصم من 10% إلى خصم يوم كامل مع تكرار المخالفة.</li>
-                    </ul>
-                    <p><strong>مخالفات السلوك والالتزام المهني</strong></p>
-                    <ul class="list-disc pr-6 space-y-1 mb-2">
-                        <li><strong>عدم ارتداء الزي الرسمي أو وسائل السلامة:</strong> خصم يبدأ من 10% ويصل لخصم يومين مع الإيقاف.</li>
-                        <li><strong>سوء معاملة العميل:</strong> خصم يومين في المرة الأولى، ويحق لمدير الانضباط التوصية بالفصل في الحالات الجسيمة.</li>
-                        <li><strong>تعطيل عمل الآخرين أو التحريض على عدم الانضباط:</strong> إيقاف عن العمل وحرمان من الأجر لمدة تصل لـ 5 أيام.</li>
-                    </ul>
-                    <h4 class="font-bold mt-3 mb-2" style="color: var(--deep-gold);">آلية تنفيذ الخصومات والمكافآت</h4>
-                    <p><strong>تطبيق صرح انضباط:</strong> يتم رصد كافة المخالفات عبر التطبيق وتوثيقها بالصور والتقارير الميدانية.</p>
-                    <p><strong>توزيع المكافآت:</strong> يمتلك مدير مكتب الانضباط صلاحية تحويل مبالغ الخصومات المحصلة إلى صندوق "المكافآت التشجيعية" للموظفين المنضبطين، وذلك لتحفيز بيئة العمل التنافسية الإيجابية. (وتدقق من قبل الملاك حيث يتم رفع تقارير فيها)</p>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 8</div>
-        </div>
-    </div>
-
-    <!-- صفحة 9: إجراءات التحقيق والسلامة -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">إجراءات التحقيق والسلامة والهوية</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">إجراءات التحقيق الإداري وتشكيل اللجان</span>
-                    <p>لضمان العدالة والشفافية، تخضع كافة الجزاءات لبروتوكول تحقيق صارم يشرف عليه الأستاذ عبدالله الكردي:</p>
-                    <ol class="list-decimal pr-6 space-y-2">
-                        <li><strong>رصد المخالفة:</strong> عبر التقارير المباشرة أو كاميرات المراقبة أو الشكاوى الموثقة.</li>
-                        <li><strong>الإحالة للتحقيق:</strong> صدور قرار كتابي بالاستدعاء، مع ذكر طبيعة المخالفة والوقت المحدد للجلسة.</li>
-                        <li><strong>لجنة التحقيق:</strong> يحق لمدير الانضباط تشكيل لجنة من ثلاثة أعضاء أو الانفراد بالتحقيق حسب جسامة الواقعة، مع ضرورة تدوين أقوال الموظف في محضر رسمي.</li>
-                        <li><strong>إصدار القرار:</strong> يُبلغ الموظف بالقرار كتابياً، وللموظف حق التظلم أمام الإدارة العليا خلال 15 يوماً من تاريخ التبليغ.</li>
-                    </ol>
-                </div>
-                <div class="section mt-4">
-                    <span class="section-title">متطلبات السلامة والبيئة في الورش</span>
-                    <p>تلتزم المجموعة بالاشتراطات الصحية والفنية الصادرة عن هيئة المواصفات والمقاييس (SASO) ووزارة الشؤون البلدية والقروية:</p>
-                    <ul class="list-disc pr-6 space-y-1 mb-2">
-                        <li><strong>مناطق الصيانة:</strong> الالتزام بوجود حفر أرضية مؤمنة بمخارج طوارئ، وتوفير تهوية كافية للتخلص من أبخرة الوقود والدهانات.</li>
-                        <li><strong>التعامل مع المواد الخطرة:</strong> تخزين الزيوت والمواد الكيميائية في أماكن معزولة، والتعاقد مع شركات معتمدة للتخلص من النفايات الصناعية.</li>
-                        <li><strong>معدات الحماية الشخصية (PPE):</strong> إلزام كافة الفنيين بارتداء القفازات، أحذية الأمان، وواقيات الوجه خاصة في أقسام ألياف الكربون واللحام.</li>
-                    </ul>
-                </div>
-                <div class="section mt-4">
-                    <span class="section-title">فقرة الشعار والهوية البصرية</span>
-                    <p>يمثل شعار المجموعة (الذي سيتم إدراجه لاحقاً) رمزاً للإتقان والجودة والابتكار. يلتزم كافة المنسوبين بالحفاظ على نظافة اللوحات التجارية والواجهات، والالتزام بالزي الموحد الذي يحمل الشعار، حيث يعد المساس بالهوية البصرية للمجموعة مخالفة تستوجب الجزاء الإداري. إن الشعار هو العهد المقطوع للعميل بأن كل سيارة تدخل مراكزنا ستعامل بأقصى درجات الحرفية والنزاهة المهنية.</p>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 9</div>
-        </div>
-    </div>
-
-    <!-- صفحة 10: أحكام ختامية -->
-    <div class="page-container page-break">
-        <div class="page-frame"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="frame-corner bl"></div>
-        <span class="corner-ornament corner-tr" aria-hidden="true"></span>
-        <span class="corner-ornament corner-tl" aria-hidden="true"></span>
-        <span class="corner-ornament corner-br" aria-hidden="true"></span>
-        <span class="corner-ornament corner-bl" aria-hidden="true"></span>
-        <div class="page-content">
-            <div class="print-header">
-                <span class="font-bold">أحكام عامة وختامية</span>
-                <img src="logo.png" style="height: 35px;">
-            </div>
-            <div class="content-area">
-                <div class="section">
-                    <span class="section-title">أحكام عامة وختامية</span>
-                    <p>يعد هذا الدستور المرجع الأعلى لكافة القرارات الإدارية والتشغيلية داخل المجموعة، ولا يجوز تعديله إلا بقرار كتابي من الإدارة العليا.</p>
-                    <p>يلتزم مدراء الورش بالتعاون المطلق مع مكتب الانضباط والتقنية، وأي محاولة لعرقلة مهام المكتب تُعد مخالفة جسيمة تستوجب المساءلة أمام الملاك.</p>
-                    <p>يُعمل بهذا النظام من تاريخ اعتماده من قبل الأستاذ عبدالحكيم المذهول والأستاذ متعب الهاجري، ويُلغى كل ما يتعارض معه من قرارات سابقة.</p>
-                </div>
-                <div class="highlight-box mt-6">
-                    <h3 class="text-lg font-bold">المصادقة والاعتماد</h3>
-                    <p>تُرسل هذه المسودة للإدارة العامة للمداولة والتعميد النهائي، مع التأكيد على أن الانضباط هو السبيل الوحيد للريادة والتميز في عالم صيانة السيارات الفارهة.</p>
-                    <div class="flex justify-between mt-6 text-center">
-                        <div>
-                            <p>توقيع المالك</p>
-                            <p class="font-bold mt-4">الأستاذ عبدالحكيم المذهول</p>
-                            <div class="h-10"></div>
-                        </div>
-                        <div>
-                            <p>توقيع المالك</p>
-                            <p class="font-bold mt-4">الأستاذ متعب الهاجري</p>
-                            <div class="h-10"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="print-footer">الدستور التنظيمي - مجموعة صرح الإتقان وشركة فضاء المحركات | صفحة 10 والأخيرة</div>
-        </div>
-    </div>
-
+        renderDocuments();
+        
+        // ══════════════════════════════════════════════════════
+        //  تأثير المربعات المتوهجة المتتبعة للمؤشر
+        // ══════════════════════════════════════════════════════
+        
+        // إنشاء الحاوية
+        const cursorTrail = document.createElement('div');
+        cursorTrail.id = 'cursorTrail';
+        cursorTrail.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        `;
+        document.body.appendChild(cursorTrail);
+        
+        // إعدادات التتبع
+        const squares = [];
+        const maxSquares = 12;
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        
+        // إنشاء عناصر المربعات
+        for (let i = 0; i < maxSquares; i++) {
+            const square = document.createElement('div');
+            square.style.cssText = `
+                position: absolute;
+                width: 28px;
+                height: 28px;
+                border: 2px solid rgba(212, 175, 55, ${0.5 - i * 0.035});
+                border-radius: 3px;
+                transform: rotate(45deg);
+                pointer-events: none;
+                box-shadow: 
+                    0 0 ${20 - i}px rgba(255, 224, 102, ${0.6 - i * 0.04}),
+                    inset 0 0 ${12 - i * 0.5}px rgba(255, 224, 102, ${0.35 - i * 0.025});
+                background: radial-gradient(circle at 30% 30%, 
+                    rgba(255, 249, 230, ${0.25 - i * 0.018}), 
+                    rgba(212, 175, 55, ${0.12 - i * 0.008}));
+                transition: opacity 0.15s ease;
+            `;
+            cursorTrail.appendChild(square);
+            squares.push({
+                el: square,
+                x: mouseX,
+                y: mouseY,
+                delay: i * 0.04
+            });
+        }
+        
+        // تتبع حركة الماوس
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        // تتبع حركة اللمس
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+        
+        // تحريك المربعات
+        function animateSquares() {
+            squares.forEach((square, index) => {
+                const targetX = mouseX - 14;
+                const targetY = mouseY - 14;
+                
+                // تتبع سلس مع تأخير
+                const speed = 0.12 - square.delay;
+                square.x += (targetX - square.x) * speed;
+                square.y += (targetY - square.y) * speed;
+                
+                // حساب الشفافية والحجم والدوران
+                const opacity = (1 - index / maxSquares) * 0.7;
+                const scale = 1 - (index / maxSquares) * 0.45;
+                const rotation = 45 + (index * 6);
+                
+                // تطبيق التحولات
+                square.el.style.left = square.x + 'px';
+                square.el.style.top = square.y + 'px';
+                square.el.style.opacity = opacity;
+                square.el.style.transform = `rotate(${rotation}deg) scale(${scale})`;
+                
+                // توهج متغير
+                const glowIntensity = (1 - index / maxSquares) * 22;
+                const glowOpacity = opacity * 0.8;
+                square.el.style.boxShadow = `
+                    0 0 ${glowIntensity}px rgba(255, 224, 102, ${glowOpacity}),
+                    inset 0 0 ${glowIntensity * 0.55}px rgba(255, 224, 102, ${glowOpacity * 0.6})
+                `;
+            });
+            
+            requestAnimationFrame(animateSquares);
+        }
+        
+        // بدء الرسوم المتحركة
+        animateSquares();
+    </script>
 </body>
 </html>

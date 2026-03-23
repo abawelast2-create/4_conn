@@ -1,0 +1,176 @@
+🔴 تشخيص: البريد لا يعمل على sarh.site
+==========================================
+
+✅ الموقع يعمل: https://sarh.site/1_cons/index.html
+❌ API لا يعمل: https://sarh.site/1_cons/api/health (404 خطأ)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔧 المشكلة:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+لم ترفع هذه الملفات على Hostinger:
+❌ email_server.php (أو email_server_smtp.php)
+❌ email-diagnostics.html
+❌ email-test.php
+
+أو: .htaccess لا يعمل بشكل صحيح
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ الحل السريع (افتح Hostinger الآن):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+الخطوة 1: ارفع الملفات الناقصة
+---------------------------------
+
+من جهازك، ارفع هذه الملفات إلى: public_html/1_cons/
+
+من مجلد المشروع (/home/sarh/سطح المكتب/work/proj/1_cons):
+
+✅ email_server_smtp.php
+✅ email-diagnostics.html  
+✅ email-test.php
+
+
+الخطوة 2: إعادة تسمية الملف
+-----------------------------
+
+في File Manager على Hostinger → public_html/1_cons/
+
+أعد تسمية:
+email_server_smtp.php → email_server.php
+
+
+الخطوة 3: تحديث .htaccess
+---------------------------
+
+افتح ملف: public_html/1_cons/.htaccess
+
+تأكد أنه يحتوي على هذه الأسطر:
+
+```apache
+RewriteEngine On
+RewriteBase /1_cons/
+
+# توجيه API إلى email_server.php
+RewriteCond %{REQUEST_URI} ^/1_cons/api/
+RewriteRule ^api/(.*)$ /1_cons/email_server.php [L,QSA]
+```
+
+⚠️ مهم: لاحظ /1_cons/ في المسارات!
+
+
+الخطوة 4: اختبر API
+--------------------
+
+افتح في المتصفح:
+
+🔗 https://sarh.site/1_cons/api/health
+
+يجب أن ترى:
+```json
+{
+  "status": "running",
+  "message": "✅ السيرفر يعمل بشكل صحيح"
+}
+```
+
+✅ إذا نجح → انتقل للخطوة 5
+❌ إذا فشل → انظر "حل بديل" أدناه
+
+
+الخطوة 5: افتح أداة التشخيص
+------------------------------
+
+🔗 https://sarh.site/1_cons/email-diagnostics.html
+
+اضغط الأزرار وأخبرني بالنتيجة!
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔄 حل بديل (إذا لم يعمل .htaccess):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+بعض استضافات Hostinger لا تدعم .htaccess في المجلدات الفرعية.
+
+الحل: عدّل js/document-creator.js
+
+في السطر ~677، غيّر من:
+
+```javascript
+const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000/api/send-approval-email'
+    : '/api/send-approval-email';
+```
+
+إلى:
+
+```javascript
+const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000/api/send-approval-email'
+    : '/1_cons/email_server.php';  // مباشرة بدون API
+```
+
+ثم في email_server.php:
+
+غيّر شرط POST من:
+
+```php
+if ($method === 'POST' && strpos($path, '/api/send-approval-email') !== false) {
+```
+
+إلى:
+
+```php
+if ($method === 'POST') {
+```
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 قائمة الملفات المطلوبة في public_html/1_cons/:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+الملفات الموجودة حالياً (✅):
+✅ index.html
+✅ document-creator.html
+✅ quick-action.html
+✅ approval.html
+✅ جميع ملفات HTML الأخرى
+✅ مجلد js/
+✅ مجلد SEC/
+
+الملفات الناقصة (❌):
+❌ email_server.php (أو email_server_smtp.php)
+❌ email-diagnostics.html
+❌ email-test.php
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 الخطوات بإختصار شديد:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ارفع 3 ملفات:
+   - email_server_smtp.php → أعد تسميته إلى email_server.php
+   - email-diagnostics.html
+   - email-test.php
+
+2. عدّل .htaccess (أضف /1_cons/ للمسارات)
+
+3. اختبر: https://sarh.site/1_cons/api/health
+
+4. افتح: https://sarh.site/1_cons/email-diagnostics.html
+
+5. اضغط "اختبار Gmail SMTP"
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 ملاحظة مهمة:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+أنت رفعت الملفات الأمامية (HTML/JS/CSS) فقط ✅
+لكن لم ترفع ملفات Backend (PHP) ❌
+
+البريد يحتاج Backend! ارفع email_server_smtp.php الآن.
+
+
+حظاً موفقاً! 🎉

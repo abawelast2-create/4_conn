@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../constitution-theme.css">
     <style>
         :root {
             --royal-gold: #b8860b;
@@ -63,13 +64,12 @@
                     rgba(252,248,238,0.99) 75%,
                     rgba(255,252,245,0.98) 100%);
             width: 210mm;
-            height: 297mm;
             min-height: 297mm;
             margin: 28px auto;
             padding: 0;
             box-sizing: border-box;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             box-shadow: 
                 0 1px 3px rgba(0,0,0,0.08),
                 0 4px 12px rgba(0,0,0,0.06),
@@ -90,33 +90,20 @@
 
         .page-content {
             position: relative;
-            height: calc(100% - 30mm);
-            padding: var(--content-padding) var(--content-padding) var(--content-padding) var(--content-padding);
-            overflow-y: auto;
-            overflow-x: hidden;
+            min-height: calc(297mm - 30mm);
+            padding: var(--content-padding);
             display: flex;
             flex-direction: column;
             z-index: 3;
             background: rgba(255,254,249,0.4);
+            box-sizing: border-box;
         }
 
         .content-area {
             flex: 1 1 auto;
-            overflow-y: auto;
-            overflow-x: hidden;
             padding: 0 4mm 0 0;
             margin: 0 2mm 0 2mm;
             min-height: 0;
-        }
-        .content-area::-webkit-scrollbar {
-            width: 6px;
-        }
-        .content-area::-webkit-scrollbar-track {
-            background: rgba(241, 241, 241, 0.5);
-        }
-        .content-area::-webkit-scrollbar-thumb {
-            background: rgba(212, 175, 55, 0.5);
-            border-radius: 3px;
         }
 
         .page-frame {
@@ -180,21 +167,32 @@
 
         .print-header {
             flex-shrink: 0;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            justify-content: space-between;
-            flex-direction: row-reverse;
+            gap: 16px;
             padding: 8px 0 12px 0;
             margin-bottom: 14px;
             border-bottom: 2px solid var(--royal-gold);
             background: linear-gradient(180deg, rgba(255,249,237,0.7) 0%, rgba(255,254,249,0.3) 100%);
             min-height: 44px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 11px;
+            color: var(--deep-gold);
+            font-weight: 700;
+            line-height: 1.5;
         }
-        .print-header img {
+        .header-right { text-align: right; justify-self: stretch; padding-right: 0; }
+        .header-center { text-align: center; justify-self: center; }
+        .header-left { text-align: left; justify-self: stretch; padding-left: 0; }
+        .print-header .logo-img {
+            height: 72px;
+            width: auto;
             border: 1px solid var(--antique-gold);
-            padding: 3px;
             border-radius: 6px;
-            height: 32px;
+            padding: 3px;
+            display: block;
+            margin: 0 auto;
         }
 
         .print-footer {
@@ -236,9 +234,80 @@
 
         ul { margin: 0.5rem 0 1rem 0; padding-right: 1.5rem; }
         li { margin-bottom: 0.5rem; }
+
+        .print-btn {
+            background: linear-gradient(135deg, var(--royal-gold) 0%, var(--antique-gold) 100%);
+            color: white !important;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(184, 134, 11, 0.4);
+            border: 1px solid var(--lux-gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1rem;
+            border: none;
+        }
+        .print-btn:hover { 
+            box-shadow: 0 6px 20px rgba(184, 134, 11, 0.5);
+            transform: scale(1.02);
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            * {
+                box-sizing: border-box;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            html, body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            body::before { display: none !important; }
+            .no-print { display: none !important; }
+            .page-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                max-height: 297mm !important;
+                max-width: 210mm !important;
+                page-break-after: always;
+                page-break-inside: avoid;
+                overflow: hidden !important;
+                border: none !important;
+            }
+            .page-container::after { display: none !important; }
+            .page-container:last-child { page-break-after: auto; }
+            .page-frame, .frame-corner, .corner-ornament {
+                display: block !important;
+            }
+            .page-content {
+                overflow: hidden !important;
+            }
+            .content-area {
+                overflow: hidden !important;
+            }
+            .page-break { page-break-before: always; }
+        }
     </style>
 </head>
 <body>
+
+    <div class="no-print flex justify-center p-6">
+        <button onclick="window.print()" class="print-btn cursor-pointer transition hover:opacity-95">
+            طباعة المذكرة / تحويل إلى PDF
+        </button>
+    </div>
 
     <div class="page-container">
         <div class="page-frame"></div>
@@ -252,8 +321,17 @@
         <span class="corner-ornament corner-bl" aria-hidden="true"></span>
         <div class="page-content">
             <div class="print-header">
-                <span class="font-bold">مذكرة استراتيجية</span>
-                <img src="logo.png" alt="شعار" style="height: 32px;" onerror="this.style.display='none'">
+                <div class="header-right">
+                    شركة صرح الإتقان<br>
+                    Sarah Alitqan Company<br>
+                    <span style="font-size: 9px;">الرقم الضريبي: 311697879500003</span>
+                </div>
+                <div class="header-center">
+                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-img" onerror="this.style.display='none'">
+                </div>
+                <div class="header-left">
+                    مستشار التحول الرقمي:<br>عبدالله احمد الكردي
+                </div>
             </div>
             <div class="content-area">
                 <p><strong>سعادة الأستاذ/ عبد الحكيم المذهول المحترم</strong><br>رئيس مجلس إدارة مجموعة صرح الإتقان لصيانة السيارات</p>
@@ -292,8 +370,17 @@
         <span class="corner-ornament corner-bl" aria-hidden="true"></span>
         <div class="page-content">
             <div class="print-header">
-                <span class="font-bold">مذكرة استراتيجية</span>
-                <img src="logo.png" alt="شعار" style="height: 32px;" onerror="this.style.display='none'">
+                <div class="header-right">
+                    شركة صرح الإتقان<br>
+                    Sarah Alitqan Company<br>
+                    <span style="font-size: 9px;">الرقم الضريبي: 311697879500003</span>
+                </div>
+                <div class="header-center">
+                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-img" onerror="this.style.display='none'">
+                </div>
+                <div class="header-left">
+                    مستشار التحول الرقمي:<br>عبدالله احمد الكردي
+                </div>
             </div>
             <div class="content-area">
                 <h3>ثالثاً: تفسير الإجراءات الميدانية (ضبط الجودة)</h3>
@@ -310,7 +397,7 @@
                 <p>هذا المستند يثبت أنني "خبير تطوير أعمال" أساهم في نقل المجموعة إلى عصر الرقمنة. وجودي يسهم في حماية استثماركم ويضمن أن تكون (صرح الإتقان) نموذجاً يحتذى به في الانضباط والجودة وفق أعلى المعايير الوطنية.</p>
 
                 <p style="margin-top: 2rem;">والله الموفق،،</p>
-                <p><strong>مستشار التحول الرقمي عبدالله احمد الكردي</strong></p>
+                <p><strong>مستشار التحول الرقمي: عبدالله احمد الكردي</strong></p>
             </div>
             <div class="print-footer">مذكرة استراتيجية - حوكمة الأنظمة وضبط الجودة | صفحة 2 والأخيرة</div>
         </div>

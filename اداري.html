@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قرار إداري - منظومة مؤشر الانضباط الرقمي | عبدالله الكردي</title>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3/dist/dom-to-image-more.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="constitution-theme.css">
+
+    <style>
+        :root {
+            --royal-gold: #c9a227;
+            --deep-gold: #8b6914;
+            --antique-gold: #d4af37;
+            --lux-gold: #b8860b;
+            --royal-burgundy: #8b0000;
+            --royal-navy: #1a237e;
+            --parchment: #f5f1e8;
+            --cream: #fefdf8;
+            --ivory: #fffef7;
+            --text-dark: #2c1810;
+            --royal-purple: #4a148c;
+            --frame-margin: 8mm;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background: #f5f1e8;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            font-size: 0.82rem;
+        }
+        /* Simplified background */
+
+        /* ═══ أزرار التحكم ═══ */
+        .controls {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(107,91,46,0.97) 0%, rgba(107,91,46,0.92) 100%);
+            backdrop-filter: blur(8px);
+            padding: 14px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .btn {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-print {
+            background: linear-gradient(135deg, var(--royal-gold) 0%, var(--antique-gold) 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(184, 134, 11, 0.4);
+            border: 1px solid var(--antique-gold);
+        }
+        .btn-print:hover { box-shadow: 0 6px 20px rgba(184, 134, 11, 0.5); transform: translateY(-1px); }
+        .btn-image {
+            background: linear-gradient(180deg, #27ae60 0%, #1e8449 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(39,174,96,0.4);
+            border: 1px solid #2ecc71;
+        }
+        .btn-image:hover { box-shadow: 0 6px 20px rgba(39,174,96,0.5); transform: translateY(-1px); }
+        .btn-image.loading { opacity: 0.7; pointer-events: none; }
+
+        /* ═══ الحاوية الرئيسية البسيطة ═══ */
+        #document-content {
+            width: 210mm;
+            max-width: 100%;
+            margin: 12px auto;
+            background: transparent;
+            position: relative;
+            box-sizing: border-box;
+        }
+        #document-content::after {
+            display: none;
+        }
+
+        .inner-frame {
+            border: none;
+            margin: var(--frame-margin);
+            padding: 6mm 8mm;
+            position: relative;
+            background: 
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.15'/%3E%3C/svg%3E"),
+                linear-gradient(135deg, 
+                    rgba(255,254,247,0.98) 0%, 
+                    rgba(254,253,248,0.99) 30%,
+                    rgba(255,254,247,0.98) 60%,
+                    rgba(254,250,240,0.99) 100%);
+            background-size: 200px 200px, cover;
+            background-repeat: repeat, no-repeat;
+            box-shadow: 
+                0 2px 12px rgba(139, 69, 19, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            z-index: 1;
+        }
+        /* ═══ النصوص المخفية الدفينة ═══ */
+        .hidden-text {
+            position: absolute;
+            font-size: 0.1px;
+            color: rgba(212, 175, 55, 0.003);
+            opacity: 0.002;
+            pointer-events: none;
+            user-select: none;
+            z-index: -10;
+            font-family: 'Amiri', serif;
+            letter-spacing: 0.01px;
+            line-height: 0.1px;
+            text-shadow: 0 0 0.1px rgba(139, 105, 20, 0.001);
+            transform: scale(0.01);
+            filter: opacity(0.001);
+        }
+        .hidden-1 { top: 15%; left: 23%; transform: rotate(0.5deg) scale(0.01); }
+        .hidden-2 { bottom: 35%; right: 18%; transform: rotate(-0.3deg) scale(0.01); }
+        .hidden-3 { top: 45%; left: 67%; transform: rotate(0.2deg) scale(0.01); }
+        .hidden-4 { bottom: 78%; right: 45%; transform: rotate(-0.1deg) scale(0.01); }
+        .hidden-5 { top: 67%; left: 12%; transform: rotate(0.4deg) scale(0.01); }
+        .hidden-6 { bottom: 15%; right: 78%; transform: rotate(-0.2deg) scale(0.01); }
+
+        /* ═══ تحريكات مبسطة ═══ */
+        @keyframes pulse-simple {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes shimmer-simple {
+            0% { opacity: 0.7; }
+            100% { opacity: 0.9; }
+        }
+
+        /* ═══ طبقة الزخارف الخلفية ═══ */
+        .inner-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: 
+                radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.04) 0%, transparent 30%),
+                radial-gradient(circle at 85% 85%, rgba(139, 105, 20, 0.04) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(254, 253, 248, 0.6) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: arabesque 8s ease-in-out infinite;
+        }
+        
+        /* ═══ زخارف مبسطة ═══ */
+        .inner-frame::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23d4af37' stroke-width='1' opacity='0.05'/%3E%3C/svg%3E");
+            background-size: 120px 120px;
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* ═══ زوايا الإطار - مخفية ═══ */
+        .frame-corner {
+            display: none;
+        }
+
+        /* ═══ زخارف الأركان - مخفية ═══ */
+        .corner-ornament {
+            display: none;
+        }
+
+        /* زخارف إضافيع للجانبين - مخفية */
+        .side-ornament {
+            display: none;
+        }
+
+        /* ═══ الترويسة الملكية الشفافة ═══ */
+        .doc-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 4px 0 8px 0;
+            margin-bottom: 12px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            color: var(--deep-gold);
+            line-height: 1.7;
+            background: transparent;
+            box-shadow: none;
+            position: relative;
+        }
+        .doc-header::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.4) 20%,
+                var(--antique-gold) 50%,
+                rgba(212, 175, 55, 0.4) 80%,
+                transparent 100%);
+            opacity: 0.8;
+        }
+        .doc-header::after {
+            content: '✦ ◆ ✦';
+            position: absolute; 
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: var(--antique-gold);
+            letter-spacing: 6px;
+            opacity: 0.7;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+            animation: pulse-simple 6s ease-in-out infinite;
+        }
+        .header-right { text-align: right; }
+        .header-center { text-align: center; }
+        .header-left { text-align: left; }
+        .logo-img {
+            height: 50px;
+            width: auto;
+            max-width: 50px;
+            border: 2px solid var(--antique-gold);
+            border-radius: 8px;
+            padding: 3px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 2px 8px rgba(107, 91, 46, 0.2);
+            background: white;
+        }
+        .logo-text-fallback {
+            width: 64px;
+            height: 64px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            transform: none;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: none;
+            position: relative;
+            opacity: 1;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .logo-text-fallback::before,
+        .logo-text-fallback::after {
+            content: '◇';
+            position: absolute;
+            font-size: 24px;
+            color: transparent;
+            text-shadow: 0 0 0 var(--antique-gold);
+            -webkit-text-stroke: 1.5px var(--antique-gold);
+            filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
+        }
+        .logo-text-fallback::before {
+            top: -12px;
+            right: -12px;
+            transform: rotate(15deg);
+        }
+        .logo-text-fallback::after {
+            bottom: -12px;
+            left: -12px;
+            transform: rotate(-15deg);
+        }
+        .logo-text-fallback::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50% 0 50% 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+        }
+        .logo-text-fallback span {
+            transform: rotate(-8deg) skew(-2deg);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 12px;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--deep-gold);
+            line-height: 1.1;
+            text-align: center;
+            text-shadow: 
+                0 1px 2px rgba(0,0,0,0.2),
+                0 0 8px rgba(212, 175, 55, 0.3);
+            letter-spacing: 0.5px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ═══ زخرفة علوية ═══ */
+        .ornament {
+            text-align: center;
+            font-size: 14px;
+            color: var(--royal-gold);
+            margin: 3px 0;
+            letter-spacing: 0.5em;
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+        }
+
+        /* ═══ شريط زخرفي علوي أنيق ═══ */
+        .top-ornament-bar {
+            text-align: center;
+            padding: 8px 0;
+            font-size: 18px;
+            color: transparent;
+            background: linear-gradient(90deg, 
+                var(--antique-gold) 0%, 
+                var(--royal-gold) 25%,
+                var(--deep-gold) 50%,
+                var(--royal-gold) 75%,
+                var(--antique-gold) 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            letter-spacing: 8px;
+            opacity: 0.8;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            position: relative;
+            animation: shimmer-simple 8s ease-in-out infinite;
+        }
+        .top-ornament-bar::before {
+            content: '✦';
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7em;
+            color: var(--antique-gold);
+            opacity: 0.6;
+            animation: pulse-simple 4s ease-in-out infinite;
+        }
+        .top-ornament-bar::after {
+            content: '✦';
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7em;
+            color: var(--antique-gold);
+            opacity: 0.6;
+            animation: pulse-simple 4s ease-in-out infinite 2s;
+        }
+
+        /* ═══ فاصل ذهبي فاخر شفاف ═══ */
+        .gold-divider {
+            height: 8px;
+            background: 
+                linear-gradient(90deg, 
+                    transparent 0%, 
+                    rgba(139, 0, 0, 0.08) 5%,
+                    rgba(212,175,55,0.2) 15%, 
+                    var(--royal-gold) 25%,
+                    var(--antique-gold) 50%, 
+                    var(--royal-gold) 75%,
+                    rgba(212,175,55,0.2) 85%,
+                    rgba(139, 0, 0, 0.08) 95%,
+                    transparent 100%);
+            background-size: 200% 100%;
+            margin: 12px auto;
+            max-width: 450px;
+            border-radius: 4px;
+            box-shadow: 
+                0 2px 8px rgba(212, 175, 55, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            position: relative;
+            animation: shimmer-simple 10s ease-in-out infinite;
+        }
+        .gold-divider::before {
+            content: '';
+            position: absolute;
+            top: -3px; bottom: -3px;
+            left: 5%; right: 5%;
+            background: 
+                radial-gradient(ellipse, 
+                    rgba(212, 175, 55, 0.3) 0%, 
+                    transparent 70%);
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+        .gold-divider::after {
+            content: '◦ ✦ ◆ ✦ ◦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            color: var(--antique-gold);
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+            letter-spacing: 4px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* ═══ العنوان الرئيسي الشفاف الفاخر ═══ */
+        .doc-title {
+            text-align: center;
+            margin: 0 0 15px 0;
+            padding: 12px 0;
+            background: transparent;
+            position: relative;
+            overflow: visible;
+        }
+        .doc-title::before {
+            content: '﷽';
+            display: block;
+            font-size: 28px;
+            color: transparent;
+            background: linear-gradient(45deg, 
+                var(--royal-gold) 0%, 
+                var(--antique-gold) 30%,
+                var(--royal-gold) 60%,
+                var(--deep-gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            margin-bottom: 12px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            opacity: 0.9;
+            filter: drop-shadow(0 2px 8px rgba(139, 105, 20, 0.3));
+        }
+        .doc-title h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.2rem;
+            color: transparent;
+            background: linear-gradient(135deg, 
+                var(--deep-gold) 0%, 
+                var(--royal-gold) 25%,
+                var(--antique-gold) 50%,
+                var(--deep-gold) 75%,
+                var(--royal-gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+            text-shadow: none;
+            position: relative;
+            filter: drop-shadow(0 1px 3px rgba(107, 91, 46, 0.2));
+        }
+        .doc-title h1::before,
+        .doc-title h1::after {
+            content: '❋';
+            color: var(--antique-gold);
+            font-size: 0.7em;
+            margin: 0 12px;
+            opacity: 0.7;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        .doc-title .subtitle {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.85rem;
+            color: var(--royal-gold);
+            margin: 0;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* ═══ معلومات القرار الفاخرة الشفافة ═══ */
+        .doc-meta {
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 70%),
+                radial-gradient(circle at 70% 80%, rgba(139, 105, 20, 0.06) 0%, transparent 60%),
+                linear-gradient(135deg, 
+                    rgba(255,254,247,0.4) 0%, 
+                    rgba(254,253,248,0.2) 50%,
+                    rgba(255,254,247,0.4) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            font-size: 0.78rem;
+            line-height: 1.7;
+            box-shadow: 
+                0 2px 12px rgba(212, 175, 55, 0.08), 
+                inset 0 1px 0 rgba(255,255,255,0.6),
+                inset 0 0 30px rgba(254, 253, 248, 0.5);
+            position: relative;
+            backdrop-filter: blur(1px);
+        }
+        .doc-meta::before {
+            content: '◦ ✦ ◦';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--cream) 0%, rgba(255,254,247,0.95) 100%);
+            color: var(--antique-gold);
+            font-size: 14px;
+            padding: 2px 12px;
+            letter-spacing: 3px;
+            border-radius: 20px;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+        }
+        .doc-meta strong { color: var(--deep-gold); }
+
+        /* ═══ المقدمة ═══ */
+        .doc-intro {
+            margin-bottom: 8px;
+            text-align: justify;
+            font-size: 0.76rem;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+
+        /* ═══ المواد ═══ */
+        .article {
+            margin-bottom: 6px;
+        }
+        .article-header {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--deep-gold);
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 60%),
+                radial-gradient(circle at 80% 50%, rgba(139, 105, 20, 0.08) 0%, transparent 60%),
+                linear-gradient(135deg, 
+                    rgba(255,254,247,0.3) 0%, 
+                    rgba(254,253,248,0.15) 50%,
+                    rgba(255,254,247,0.3) 100%);
+            padding: 8px 14px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 
+                0 2px 12px rgba(212, 175, 55, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: visible;
+            backdrop-filter: blur(1px);
+            text-shadow: 0 1px 3px rgba(107, 91, 46, 0.2);
+        }
+        .article-header span:first-child {
+            font-size: 1.1em;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+            animation: pulse-simple 8s ease-in-out infinite;
+        }
+        .article-header::after {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            background: 
+                linear-gradient(45deg, 
+                    transparent 0%, 
+                    rgba(212, 175, 55, 0.1) 25%,
+                    transparent 50%,
+                    rgba(212, 175, 55, 0.1) 75%,
+                    transparent 100%);
+            background-size: 200% 200%;
+            border-radius: 8px;
+            z-index: -1;
+            pointer-events: none;
+            animation: shimmer-simple 6s ease-in-out infinite;
+        }
+        .article-body {
+            padding: 0 6px;
+            font-size: 0.74rem;
+            line-height: 1.5;
+            text-align: justify;
+        }
+        .article-body p {
+            margin: 0 0 3px 0;
+        }
+
+        /* ═══ القائمة ═══ */
+        .criteria-list {
+            list-style: none;
+            padding: 0;
+            margin: 3px 0;
+        }
+        .criteria-list li {
+            padding: 3px 8px 3px 0;
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            font-size: 0.72rem;
+            line-height: 1.45;
+            background: linear-gradient(90deg, rgba(255,249,237,0.3) 0%, transparent 100%);
+        }
+        .criteria-list li:last-child { border-bottom: none; }
+        .criteria-num {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--royal-gold), var(--deep-gold));
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.68rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+            box-shadow: 0 1px 3px rgba(107, 91, 46, 0.25);
+        }
+        .criteria-title {
+            font-weight: 700;
+            color: var(--deep-gold);
+            background: transparent;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* ═══ نقاط فرعية ═══ */
+        .sub-points {
+            list-style: none;
+            padding: 0;
+            margin: 2px 0;
+        }
+        .sub-points li {
+            padding: 2px 10px;
+            font-size: 0.72rem;
+            line-height: 1.45;
+            position: relative;
+        }
+        .sub-points li::before {
+            content: '❖';
+            color: var(--royal-gold);
+            margin-left: 8px;
+            font-size: 0.55rem;
+            vertical-align: middle;
+        }
+
+        /* ═══ الاقتباس ═══ */
+        .quote-box {
+            background: linear-gradient(135deg, 
+                rgba(255,254,249,0.98) 0%, rgba(255,249,237,0.65) 50%, rgba(250,248,243,0.95) 100%);
+            border-right: 4px solid var(--royal-gold);
+            border-radius: 0 6px 6px 0;
+            padding: 8px 14px;
+            margin: 6px 0;
+            font-style: italic;
+            font-size: 0.76rem;
+            color: var(--deep-gold);
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.5;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.1);
+        }
+
+        /* ═══ التوقيع ═══ */
+        .signature {
+            text-align: left;
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(212, 175, 55, 0.4);
+        }
+        .signature .role {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.8rem;
+            color: var(--royal-gold);
+            font-weight: 700;
+        }
+        .signature .name {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.95rem;
+            color: var(--deep-gold);
+            font-weight: 700;
+        }
+
+        /* ═══ التذييل ═══ */
+        .doc-footer {
+            border-top: 2px solid var(--royal-gold);
+            padding: 4px 0 0 0;
+            margin-top: 8px;
+            text-align: center;
+            font-size: 8.5px;
+            color: var(--deep-gold);
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            line-height: 1.7;
+            letter-spacing: 0.3px;
+        }
+
+        /* ═══ الطباعة ═══ */
+        @page { size: A4; margin: 15mm; }
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-sizing: border-box; }
+            html, body { background: white !important; margin: 0 !important; padding: 0 !important; }
+            body::before { display: none !important; }
+            .controls { display: none !important; }
+            #document-content { 
+                box-shadow: none !important; 
+                margin: 0 !important; 
+                width: 100% !important; 
+                max-width: 100% !important;
+                background: white !important;
+            }
+            #document-content::after { display: none !important; }
+            .frame-corner, .corner-ornament, .side-ornament { display: none !important; }
+            .inner-frame {
+                background: white !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 10mm !important;
+            }
+            .inner-frame::before,
+            .inner-frame::after {
+                display: none !important;
+            }
+            
+            /* ضمان ظهور الشعار عند الطباعة */
+            .logo-img, .logo-text-fallback { 
+                display: block !important; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+                opacity: 1 !important;
+            }
+            .logo-text-fallback {
+                color: #6b5b2e !important;
+            }
+            .logo-text-fallback::before,
+            .logo-text-fallback::after {
+                color: transparent !important;
+                -webkit-text-stroke: 1.5px #d4af37 !important;
+            }
+            .doc-header {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ أزرار التحكم ═══ -->
+    <div class="controls">
+        <button onclick="window.print()" class="btn btn-print">🖨️ طباعة / PDF</button>
+        <button onclick="exportAsImage()" class="btn btn-image" id="exportBtn">📷 تصدير كصورة</button>
+    </div>
+
+    <!-- ═══ محتوى المستند ═══ -->
+    <div id="document-content">
+        <div class="inner-frame">
+            <!-- النصوص المخفية الدفينة -->
+            <span class="hidden-text hidden-1">عبدالحكيم المذهول حبيب القلب</span>
+            <span class="hidden-text hidden-2">عبدالحكيم المذهول حبيب القلب</span>
+            <span class="hidden-text hidden-3">عبدالحكيم المذهول حبيب القلب</span>
+            <span class="hidden-text hidden-4">عبدالحكيم المذهول حبيب القلب</span>
+            <span class="hidden-text hidden-5">عبدالحكيم المذهول حبيب القلب</span>
+            <span class="hidden-text hidden-6">عبدالحكيم المذهول حبيب القلب</span>
+
+            <!-- ═══ الترويسة ═══ -->
+            <div class="doc-header">
+                <div class="header-right">
+                    شركة صرح الإتقان<br>
+                    Sarah Alitqan Company<br>
+                    <span style="font-size: 8px;">الرقم الضريبي: 311697879500003</span>
+                </div>
+                <div class="header-center">
+                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-img" id="logo-img">
+                    <div class="logo-text-fallback" id="logo-fallback"><span>صرح<br>الإتقان</span></div>
+                </div>
+                <div class="header-left">
+                    مستشار التحول الرقمي:<br>عبدالله احمد الكردي
+                </div>
+            </div>
+
+            <!-- ═══ العنوان ═══ -->
+            <div class="top-ornament-bar">✦ ◆ ◇ ✦ ◇ ◆ ✦</div>
+            <div class="doc-title">
+                <h1>قرار إداري رقم (2026/02/07)</h1>
+                <p class="subtitle">بشأن اعتماد "منظومة مؤشر الانضباط الرقمي"</p>
+                <span class="hidden-text" style="position: absolute; top: 50%; left: 30%; font-size: 0.05px; opacity: 0.001; color: rgba(139, 105, 20, 0.002);">عبدالحكيم المذهول حبيب القلب</span>
+                <div class="gold-divider"></div>
+            </div>
+
+            <!-- ═══ معلومات القرار ═══ -->
+            <div class="doc-meta">
+                <strong>جهة الإصدار:</strong> مكتب مستشار التحول الرقمي وأتمتة النظم.<br>
+                <span class="hidden-text" style="position: absolute; top: 20%; right: 15%; font-size: 0.03px; opacity: 0.0008; transform: rotate(0.1deg);">عبدالحكيم المذهول حبيب القلب</span>
+                <strong>إلى:</strong> مديري الفروع، رؤساء الأقسام، وكافة منسوبي مراكز (صرح الإتقان - فضاء المحركات).
+            </div>
+
+            <!-- ═══ المقدمة ═══ -->
+            <div class="doc-intro">
+                بناءً على الصلاحيات المخولة لنا بموجب مشروع التحول الرقمي وضبط الجودة، وحرصاً على رفع كفاءة الأداء التشغيلي بما يتواءم مع معايير التميز المؤسسي، تقرر اعتماد اللائحة التنفيذية لتقييم <strong>"مؤشر الانضباط"</strong> لعام 2026 وفقاً للمعايير والضوابط التالية:
+                <span class="hidden-text" style="position: absolute; top: 70%; left: 80%; font-size: 0.025px; opacity: 0.0004; transform: rotate(0.3deg);">عبدالحكيم المذهول حبيب القلب</span>
+            </div>
+
+            <!-- ═══ المادة الأولى ═══ -->
+            <div class="article">
+                <div class="article-header">
+                    <span>📋</span> المادة الأولى: معايير التقييم الفني (نجوم الانضباط الخمس)
+                </div>
+                <div class="article-body">
+                    <p>يخضع كل مركز لتقييم يومي بإجمالي <strong>(50) نقطة</strong>، موزعة على خمسة محاور أساسية، حيث تُمثل كل عشر نقاط <strong>"نجمة تميز"</strong> واحدة:</p>
+                    <ol class="criteria-list">
+                        <li>
+                            <span class="criteria-num">1</span>
+                            <span><span class="criteria-title">نظافة المرفق والبيئة التشغيلية:</span> خلو الأقسام من الزيوت، المواد الحادة، ومخلفات قطع الغيار.</span>
+                        </li>
+                        <li>
+                            <span class="criteria-num">2</span>
+                            <span><span class="criteria-title">حوكمة العِدد والأدوات:</span> الالتزام بإعادة الأدوات لمواقعها المخصصة وضمان نظافة وحدات العمل المتحركة.</span>
+                        </li>
+                        <li>
+                            <span class="criteria-num">3</span>
+                            <span><span class="criteria-title">التنظيم الفني للمركبات:</span> اصطفاف المركبات بأسلوب احترافي مع تفعيل تدابير حماية المقصورة والمقود.</span>
+                        </li>
+                        <li>
+                            <span class="criteria-num">4</span>
+                            <span><span class="criteria-title">المظهر العام وتجربة العميل:</span> نظافة مناطق الاستقبال، اللوحات الإرشادية، وضمان التخلص الدوري من النفايات.</span>
+                        </li>
+                        <li>
+                            <span class="criteria-num">5</span>
+                            <span><span class="criteria-title">بروتوكولات السلامة والإغلاق:</span> التأكد من فصل مصادر الطاقة، وإغلاق المحابس وتأمين الموقع قبل الانصراف.</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- ═══ المادة الثانية ═══ -->
+            <div class="article">
+                <div class="article-header">
+                    <span>📊</span> المادة الثانية: المنهجية الحسابية والتدقيق
+                </div>
+                <div class="article-body">
+                    <p>لضمان الدقة والموضوعية في رصد النتائج، تُعتمد الآلية الحسابية التالية:</p>
+                    <ul class="sub-points">
+                        <li><strong>الرصد اليومي:</strong> يتم توثيق حالة المرفق عبر وسائط مرئية (فيديو) تُرفع آلياً إلى خوادم الشركة للتدقيق.</li>
+                        <li><strong>المتوسط الأسبوعي:</strong> يُحتسب بقسمة مجموع نجوم أيام العمل على عدد الأيام.</li>
+                        <li><strong>التقييم الشهري النهائي:</strong> يُمثل المتوسط الحسابي لنتائج الأسابيع الأربعة، وهو المعيار المعتمد لتحديد الكفاءة الشهرية.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ═══ المادة الثالثة ═══ -->
+            <div class="article">
+                <div class="article-header">
+                    <span>🔒</span> المادة الثالثة: الشفافية وحق الاعتراض
+                </div>
+                <div class="article-body">
+                    <ul class="sub-points">
+                        <li>تُحفظ كافة التقييمات في أرشيف رقمي محمي ومتاح للرقابة الإدارية.</li>
+                        <li>يُمنح الموظف حق مراجعة التقييم في حال الاعتراض عبر طلب "رمز وصول مؤقت" لمشاهدة التسجيلات الخاصة بقسمه حصراً.</li>
+                        <li>يُحظر تماماً تصوير أو تداول أي محتوى من الأرشيف الرقمي خارج إطار النظام، تحت طائلة المسؤولية القانونية.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ═══ المادة الرابعة ═══ -->
+            <div class="article">
+                <div class="article-header">
+                    <span>💼</span> المادة الرابعة: الأثر الإداري والمالي
+                </div>
+                <div class="article-body">
+                    <p>يُعتبر التقييم الشهري النهائي هو المستند الرسمي الوحيد الذي يُبنى عليه استحقاق الحوافز التشجيعية أو إيقاع الجزاءات المالية وفقاً للائحة الانضباط المعتمدة.</p>
+                </div>
+            </div>
+
+            <!-- ═══ الاقتباس ═══ -->
+            <div class="ornament">◆ ◆ ◆</div>
+            <div class="quote-box">
+                "إن الالتزام بالمعايير المهنية هو الضامن الوحيد لتحقيق العدالة الوظيفية والتميز المستدام."
+                <span class="hidden-text" style="position: absolute; bottom: 10%; left: 50%; font-size: 0.02px; opacity: 0.0005; transform: rotate(-0.2deg) translateX(-50%);">عبدالحكيم المذهول حبيب القلب</span>
+            </div>
+
+            <!-- ═══ التوقيع ═══ -->
+            <div class="signature">
+                <span class="hidden-text" style="position: absolute; top: -5px; right: 20%; font-size: 0.04px; opacity: 0.0007; color: rgba(212, 175, 55, 0.001);">عبدالحكيم المذهول حبيب القلب</span>
+                <div class="role">مستشار التحول الرقمي وأتمتة النظم</div>
+                <div class="name">عبدالله الكردي</div>
+            </div>
+
+            <!-- ═══ التذييل ═══ -->
+            <div class="ornament" style="font-size:14px; margin: 12px 0 6px 0; color: var(--antique-gold); text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); opacity: 0.8; animation: pulse-simple 10s ease-in-out infinite;">✦ ◆ ♦ ◆ ✦</div>
+            <div class="doc-footer">
+                شركة صرح الإتقان | Sarah Alitqan Company | الرقم الضريبي: 311697879500003<br>
+                <span class="hidden-text" style="position: absolute; bottom: 50%; right: 25%; font-size: 0.015px; opacity: 0.0003; transform: rotate(-0.4deg);">عبدالحكيم المذهول حبيب القلب</span>
+                مستشار التحول الرقمي: عبدالله احمد الكردي | قرار إداري - منظومة مؤشر الانضباط الرقمي | 7 فبراير 2026
+            </div>
+            
+            <!-- ═══ زخرفة ختامية فاخرة ═══ -->
+            <div style="text-align: center; margin: 16px 0 8px 0; color: var(--antique-gold); font-size: 16px; opacity: 0.7; animation: float 8s ease-in-out infinite;">
+                ◦ ✦ ◇ ◆ ♦ ◆ ◇ ✦ ◦
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        async function exportAsImage() {
+            var btn = document.getElementById('exportBtn');
+            btn.classList.add('loading');
+            btn.innerHTML = '⏳ جاري التصدير...';
+
+            var element = document.getElementById('document-content');
+            window.scrollTo(0, 0);
+
+            var origMargin = element.style.margin;
+            var origShadow = element.style.boxShadow;
+            element.style.margin = '0';
+            element.style.boxShadow = 'none';
+
+            var scale = 3;
+            
+            // Process images and handle logo properly for export
+            var logoImg = document.getElementById('logo-img');
+            var logoFallback = document.getElementById('logo-fallback');
+            
+            // For export, always show text fallback to ensure visibility
+            if (logoImg) logoImg.style.display = 'none';
+            if (logoFallback) {
+                logoFallback.style.display = 'flex';
+                logoFallback.style.opacity = '1';
+            }
+            
+            // Function to convert image to dataUrl to ensure it appears in export
+            async function toDataUrl(img) {
+                try {
+                    // Try canvas method first as it's more reliable for local files/already loaded images
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.naturalWidth;
+                    canvas.height = img.naturalHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    return canvas.toDataURL('image/png');
+                } catch (e) {
+                    try {
+                        // Fallback to fetch if canvas fails (cross-origin)
+                        const response = await fetch(img.src);
+                        const blob = await response.blob();
+                        return new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onloadend = () => resolve(reader.result);
+                            reader.onerror = reject;
+                            reader.readAsDataURL(blob);
+                        });
+                    } catch (e2) {
+                        return null;
+                    }
+                }
+            }
+
+            // Process images to ensure they show up in export
+            var imgs = element.querySelectorAll('img');
+            var originalSrcs = [];
+            
+            for (let i = 0; i < imgs.length; i++) {
+                let img = imgs[i];
+                
+                if (img.complete && img.naturalWidth > 0 && img.style.display !== 'none') {
+                    originalSrcs.push({ img: img, src: img.src });
+                    const dataUrl = await toDataUrl(img);
+                    if (dataUrl) {
+                        img.src = dataUrl;
+                    }
+                } else if (img.style.display !== 'none') {
+                    // It's visible but not ready or broken
+                    img.setAttribute('data-hidden', '1');
+                    img.style.display = 'none';
+                    var fallback = img.nextElementSibling;
+                    if (fallback && fallback.classList.contains('logo-fallback')) fallback.style.display = 'flex';
+                }
+            }
+
+            setTimeout(function() {
+                domtoimage.toPng(element, {
+                    bgcolor: '#faf8f3',
+                    width: element.scrollWidth * scale,
+                    height: element.scrollHeight * scale,
+                    quality: 1,
+                    cacheBust: true,
+                    style: {
+                        margin: '0',
+                        boxShadow: 'none',
+                        transform: 'scale(' + scale + ')',
+                        transformOrigin: 'top right'
+                    }
+                }).then(function(dataUrl) {
+                    element.style.margin = origMargin;
+                    element.style.boxShadow = origShadow;
+                    
+                    // Restore logo and clear any temporary styles
+                    if (logoImg) logoImg.style.display = 'block';
+                    if (logoFallback) {
+                        logoFallback.style.display = 'none';
+                        logoFallback.style.opacity = '';
+                    }
+                    
+                    // Restore original srcs and visibility
+                    originalSrcs.forEach(item => {
+                        item.img.src = item.src;
+                        if (item.img.getAttribute('data-hidden')) {
+                            item.img.style.display = '';
+                            item.img.removeAttribute('data-hidden');
+                        }
+                    });
+
+                    var link = document.createElement('a');
+                    link.download = 'discipline-index-system-7-feb-2026.png';
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    btn.classList.remove('loading');
+                    btn.innerHTML = '✅ تم التصدير بنجاح!';
+                    setTimeout(function() { btn.innerHTML = '📷 تصدير كصورة'; }, 3000);
+                }).catch(function(err) {
+                    element.style.margin = origMargin;
+                    element.style.boxShadow = origShadow;
+                    
+                    // Restore logo and clear any temporary styles (error case)
+                    if (logoImg) logoImg.style.display = 'block';
+                    if (logoFallback) {
+                        logoFallback.style.display = 'none';
+                        logoFallback.style.opacity = '';
+                    }
+                    
+                    originalSrcs.forEach(item => {
+                        item.img.src = item.src;
+                        if (item.img.getAttribute('data-hidden')) {
+                            item.img.style.display = '';
+                            item.img.removeAttribute('data-hidden');
+                        }
+                    });
+                    console.error('Export error:', err);
+                    btn.classList.remove('loading');
+                    btn.innerHTML = '📷 تصدير كصورة';
+                    alert('خطأ: ' + err.message);
+                });
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>

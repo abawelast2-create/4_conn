@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معالجة سريعة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        .message {
+            color: #7f8c8d;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-right: 4px solid #667eea;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        .detail-value {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .close-info {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #95a5a6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="spinner"></div>
+        <h1>جاري المعالجة...</h1>
+        <p class="message">الرجاء الانتظار</p>
+    </div>
+
+    <script>
+        (function() {
+            // الحصول على المعاملات من URL
+            const params = new URLSearchParams(window.location.search);
+            const uuid = params.get('uuid');
+            const action = params.get('action');
+
+            if (!uuid || !action) {
+                showError('رابط غير صحيح: معاملات مفقودة');
+                return;
+            }
+
+            // تنفيذ العملية
+            setTimeout(() => {
+                if (action === 'approve') {
+                    approveDocument(uuid);
+                } else if (action === 'reject') {
+                    rejectDocument(uuid);
+                } else {
+                    showError('إجراء غير معروف: ' + action);
+                }
+            }, 500);
+
+            function approveDocument(uuid) {
+                try {
+                    // تحميل الوثائق المعلقة
+                    const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+                    const docIndex = pendingDocs.findIndex(d => d.uuid === uuid);
+
+                    if (docIndex === -1) {
+                        showError('الوثيقة غير موجودة أو تمت معالجتها مسبقاً');
+                        return;
+                    }
+
+                    const doc = pendingDocs[docIndex];
+
+                    // تحديث الحالة
+                    doc.status = 'approved';
+                    doc.approvedAt = new Date().toISOString();
+                    doc.approvedBy = 'المدير';
+
+                    // نقل إلى الوثائق الموثقة
+                    const approvedDocs = JSON.parse(localStorage.getItem('sarh_custom_documents_v1') || '[]');
+                    
+                    // إنشاء dataUri إذا لم يكن موجوداً
+                    if (!doc.dataUri && doc.html) {
+                        doc.dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(doc.html);
+                    }
+                    
+                    approvedDocs.push(doc);
+                    localStorage.setItem('sarh_custom_documents_v1', JSON.stringify(approvedDocs));
+
+                    // حذف من المعلقة
+                    pendingDocs.splice(docIndex, 1);
+                    localStorage.setItem('pending_documents', JSON.stringify(pendingDocs));
+
+                    // عرض النجاح
+                    showSuccess(doc, 'approve');
+
+                } catch (error) {
+                    console.error('خطأ:', error);
+                    showError('حدث خطأ أثناء معالجة الموافقة: ' + error.message);
+                }
+            }
+
+            function rejectDocument(uuid) {
+                try {
+                    // تحميل الوثائق المعلقة
+                    const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+                    const docIndex = pendingDocs.findIndex(d => d.uuid === uuid);
+
+                    if (docIndex === -1) {
+                        showError('الوثيقة غير موجودة أو تمت معالجتها مسبقاً');
+                        return;
+                    }
+
+                    const doc = pendingDocs[docIndex];
+
+                    // تحديث الحالة
+                    doc.status = 'rejected';
+                    doc.rejectedAt = new Date().toISOString();
+                    doc.rejectedBy = 'المدير';
+                    doc.rejectionReason = 'تم الرفض من البريد الإلكتروني';
+
+                    // تحديث في المعلقة
+                    pendingDocs[docIndex] = doc;
+                    localStorage.setItem('pending_documents', JSON.stringify(pendingDocs));
+
+                    // عرض النجاح
+                    showSuccess(doc, 'reject');
+
+                } catch (error) {
+                    console.error('خطأ:', error);
+                    showError('حدث خطأ أثناء معالجة الرفض: ' + error.message);
+                }
+            }
+
+            function showSuccess(doc, action) {
+                const container = document.getElementById('container');
+                const isApprove = action === 'approve';
+                
+                container.innerHTML = `
+                    <div class="icon">${isApprove ? '✅' : '❌'}</div>
+                    <h1 style="color: ${isApprove ? '#10b981' : '#ef4444'}">
+                        ${isApprove ? 'تمت الموافقة بنجاح!' : 'تم رفض الوثيقة'}
+                    </h1>
+                    <p class="message">
+                        ${isApprove 
+                            ? 'تم توثيق الوثيقة وإضافتها إلى قائمة الوثائق المعتمدة' 
+                            : 'تم تسجيل رفض الوثيقة في النظام'}
+                    </p>
+                    <div class="details">
+                        <div class="detail-row">
+                            <span class="detail-label">📄 العنوان:</span>
+                            <span class="detail-value">${doc.title || 'غير محدد'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">🔢 الرقم:</span>
+                            <span class="detail-value">${doc.serialNumber || 'غير محدد'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">⏰ الوقت:</span>
+                            <span class="detail-value">${new Date().toLocaleString('ar-SA')}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">👤 بواسطة:</span>
+                            <span class="detail-value">المدير</span>
+                        </div>
+                    </div>
+                    <p class="close-info">
+                        يمكنك إغلاق هذه النافذة الآن<br>
+                        <small style="opacity: 0.7;">سيتم الإغلاق تلقائياً بعد 5 ثواني</small>
+                    </p>
+                `;
+
+                // إغلاق تلقائي بعد 5 ثواني
+                setTimeout(() => {
+                    window.close();
+                }, 5000);
+            }
+
+            function showError(message) {
+                const container = document.getElementById('container');
+                container.innerHTML = `
+                    <div class="icon">⚠️</div>
+                    <h1 style="color: #e74c3c">حدث خطأ</h1>
+                    <p class="message">${message}</p>
+                    <p class="close-info">
+                        يمكنك إغلاق هذه النافذة الآن
+                    </p>
+                `;
+            }
+        })();
+    </script>
+</body>
+</html>

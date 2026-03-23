@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام التوثيق الإلكتروني - صرح الإتقان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background: linear-gradient(135deg, #d8d0c0 0%, #e2dcd0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .approval-container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #d4af37;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 12px 48px rgba(107, 91, 46, 0.3);
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 42px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 24px;
+        }
+
+        .header-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: #6b5b2e;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #999;
+            font-size: 16px;
+        }
+
+        .document-info {
+            background: linear-gradient(135deg, rgba(255,254,249,0.98), rgba(255,249,237,0.95));
+            border: 2px solid #d4af37;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #6b5b2e;
+            font-family: 'Reem Kufi', sans-serif;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Reem Kufi', sans-serif;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .preview-section {
+            margin-bottom: 32px;
+        }
+
+        .preview-section h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: #6b5b2e;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-approve {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-approve:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-reject {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-reject:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+        }
+
+        .message {
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 24px;
+            text-align: center;
+            font-family: 'Reem Kufi', sans-serif;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 48px;
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(212, 175, 55, 0.2);
+            border-top-color: #d4af37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .not-found {
+            text-align: center;
+            padding: 48px;
+        }
+
+        .not-found-icon {
+            font-size: 96px;
+            margin-bottom: 24px;
+        }
+
+        .not-found h2 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: #6b5b2e;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .not-found p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="approval-container">
+        <div class="header">
+            <div class="header-icon">🔐</div>
+            <h1>نظام التوثيق الإلكتروني</h1>
+            <p>مجموعة صرح الإتقان المحدودة وشركة فضاء المحركات</p>
+        </div>
+
+        <div id="loadingSection" class="loading">
+            <div class="loading-spinner"></div>
+            <p style="color: #6b5b2e; font-size: 18px;">جاري تحميل بيانات الوثيقة...</p>
+        </div>
+
+        <div id="notFoundSection" class="not-found" style="display: none;">
+            <div class="not-found-icon">❌</div>
+            <h2>الوثيقة غير موجودة</h2>
+            <p>
+                الرابط الذي استخدمته غير صحيح أو انتهت صلاحية الوثيقة.<br>
+                يرجى التحقق من الرابط أو الاتصال بالشخص الذي أرسل الطلب.
+            </p>
+        </div>
+
+        <div id="contentSection" style="display: none;">
+            <div class="document-info">
+                <div class="info-row">
+                    <span class="info-label">عنوان الوثيقة:</span>
+                    <span class="info-value" id="docTitle">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">الوصف:</span>
+                    <span class="info-value" id="docDesc">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">الرقم التسلسلي:</span>
+                    <span class="info-value" id="docSerial">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">المعرّف الفريد:</span>
+                    <span class="info-value" id="docUUID" style="font-family: monospace; font-size: 12px;">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">تاريخ الإنشاء:</span>
+                    <span class="info-value" id="docDate">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">الحالة:</span>
+                    <span class="info-value">
+                        <span class="status-badge status-pending" id="docStatus">⏳ قيد انتظار التوثيق</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h3>📄 معاينة الوثيقة</h3>
+                <iframe id="docPreview" class="preview-frame"></iframe>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-approve" id="btnApprove">
+                    <span>✅</span>
+                    <span>الموافقة على الوثيقة</span>
+                </button>
+                <button class="btn btn-reject" id="btnReject">
+                    <span>❌</span>
+                    <span>رفض الوثيقة</span>
+                </button>
+            </div>
+
+            <div id="messageBox" class="message"></div>
+        </div>
+    </div>
+
+    <script>
+        // استخراج UUID من URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const docUUID = urlParams.get('doc');
+
+        const loadingSection = document.getElementById('loadingSection');
+        const notFoundSection = document.getElementById('notFoundSection');
+        const contentSection = document.getElementById('contentSection');
+        const messageBox = document.getElementById('messageBox');
+
+        // تحميل بيانات الوثيقة
+        async function loadDocument() {
+            if (!docUUID) {
+                showNotFound();
+                return;
+            }
+
+            // التحقق من وجود action في URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const action = urlParams.get('action');
+
+            // محاولة تحميل من localStorage
+            try {
+                const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+                const doc = pendingDocs.find(d => d.uuid === docUUID);
+
+                if (!doc) {
+                    showNotFound();
+                    return;
+                }
+
+                // التحقق من الحالة
+                if (doc.status === 'approved') {
+                    showAlreadyProcessed('✅ تم توثيق هذه الوثيقة مسبقاً');
+                    return;
+                }
+
+                if (doc.status === 'rejected') {
+                    showAlreadyProcessed('❌ تم رفض هذه الوثيقة مسبقاً');
+                    return;
+                }
+
+                // إذا كان هناك action، نفذه مباشرة
+                if (action === 'approve') {
+                    await approveDocumentDirectly(doc);
+                    return;
+                } else if (action === 'reject') {
+                    await rejectDocumentDirectly(doc);
+                    return;
+                }
+
+                // عرض البيانات للمعاينة العادية
+                displayDocument(doc);
+            } catch (error) {
+                console.error('خطأ في تحميل الوثيقة:', error);
+                showNotFound();
+            }
+        }
+
+        function displayDocument(doc) {
+            loadingSection.style.display = 'none';
+            contentSection.style.display = 'block';
+
+            document.getElementById('docTitle').textContent = doc.title;
+            document.getElementById('docDesc').textContent = doc.description || 'لا يوجد وصف';
+            document.getElementById('docSerial').textContent = doc.serialNumber;
+            document.getElementById('docUUID').textContent = doc.uuid;
+            document.getElementById('docDate').textContent = doc.createdAt;
+
+            // عرض معاينة HTML
+            const iframe = document.getElementById('docPreview');
+            iframe.srcdoc = doc.html;
+
+            // معالجات الأزرار
+            document.getElementById('btnApprove').addEventListener('click', () => approveDocument(doc));
+            document.getElementById('btnReject').addEventListener('click', () => rejectDocument(doc));
+        }
+
+        function showNotFound() {
+            loadingSection.style.display = 'none';
+            notFoundSection.style.display = 'block';
+        }
+
+        function showAlreadyProcessed(message) {
+            loadingSection.style.display = 'none';
+            contentSection.style.display = 'block';
+            
+            // تعطيل الأزرار
+            document.getElementById('btnApprove').disabled = true;
+            document.getElementById('btnReject').disabled = true;
+            
+            // عرض رسالة
+            messageBox.className = 'message success';
+            messageBox.textContent = message;
+        }
+
+        async function approveDocument(doc) {
+            if (!confirm('هل أنت متأكد من الموافقة على توثيق هذه الوثيقة؟\n\nسيتم حفظها بشكل نهائي في النظام.')) {
+                return;
+            }
+
+            try {
+                // تحديث الحالة
+                doc.status = 'approved';
+                doc.approvedAt = new Date().toISOString();
+                doc.approvedBy = 'المدير'; // يمكن تحسينه بنظام تسجيل دخول
+
+                // تحديث في pending_documents
+                const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+                const index = pendingDocs.findIndex(d => d.uuid === doc.uuid);
+                if (index !== -1) {
+                    pendingDocs[index] = doc;
+                    localStorage.setItem('pending_documents', JSON.stringify(pendingDocs));
+                }
+
+                // نقل إلى الوثائق المعتمدة
+                const approvedDocs = JSON.parse(localStorage.getItem('sarh_custom_documents_v1') || '[]');
+                
+                // تحديث HTML لإزالة "قيد الانتظار"
+                const updatedHTML = doc.html.replace(
+                    '⏳ قيد انتظار التوثيق',
+                    '✅ موثّق ومعتمد'
+                ).replace(
+                    'قيد الانتظار للتوثيق',
+                    'موثّق ومعتمد'
+                );
+
+                const dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(updatedHTML);
+                
+                approvedDocs.push({
+                    title: doc.title,
+                    description: doc.description,
+                    icon: doc.icon || '📄',
+                    link: dataUri,
+                    createdAt: doc.timestamp,
+                    securityInfo: {
+                        uuid: doc.uuid,
+                        serialNumber: doc.serialNumber,
+                        hash: doc.hash,
+                        verified: true,
+                        approved: true,
+                        approvedAt: doc.approvedAt
+                    }
+                });
+
+                localStorage.setItem('sarh_custom_documents_v1', JSON.stringify(approvedDocs));
+
+                // عرض رسالة النجاح
+                messageBox.className = 'message success';
+                messageBox.textContent = '✅ تم توثيق الوثيقة بنجاح! سيتم توجيهك إلى الصفحة الرئيسية...';
+                
+                // تعطيل الأزرار
+                document.getElementById('btnApprove').disabled = true;
+                document.getElementById('btnReject').disabled = true;
+
+                // التوجيه بعد 3 ثواني
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 3000);
+
+            } catch (error) {
+                console.error('خطأ في الموافقة:', error);
+                messageBox.className = 'message error';
+                messageBox.textContent = '❌ حدث خطأ أثناء معالجة الموافقة. يرجى المحاولة مرة أخرى.';
+            }
+        }
+
+        async function rejectDocument(doc) {
+            const reason = prompt('يرجى ذكر سبب الرفض (اختياري):');
+            
+            if (!confirm('هل أنت متأكد من رفض هذه الوثيقة؟')) {
+                return;
+            }
+
+            try {
+                // تحديث الحالة
+                doc.status = 'rejected';
+                doc.rejectedAt = new Date().toISOString();
+                doc.rejectedBy = 'المدير';
+                doc.rejectionReason = reason || 'لم يتم ذكر السبب';
+
+                // تحديث في localStorage
+                const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+                const index = pendingDocs.findIndex(d => d.uuid === doc.uuid);
+                if (index !== -1) {
+                    pendingDocs[index] = doc;
+                    localStorage.setItem('pending_documents', JSON.stringify(pendingDocs));
+                }
+
+                // عرض رسالة
+                messageBox.className = 'message error';
+                messageBox.textContent = `❌ تم رفض الوثيقة${reason ? ': ' + reason : ''}.`;
+                
+                // تعطيل الأزرار
+                document.getElementById('btnApprove').disabled = true;
+                document.getElementById('btnReject').disabled = true;
+
+            } catch (error) {
+                console.error('خطأ في الرفض:', error);
+                messageBox.className = 'message error';
+                messageBox.textContent = '❌ حدث خطأ أثناء معالجة الرفض. يرجى المحاولة مرة أخرى.';
+            }
+        }
+
+        // موافقة مباشرة من البريد الإلكتروني (بدون تأكيد)
+        async function approveDocumentDirectly(doc) {
+            try {
+                loadingSection.style.display = 'block';
+                contentSection.style.display = 'none';
+
+                // تحديث الحالة
+                doc.status = 'approved';
+                doc.approvedAt = new Date().toISOString();
+                doc.approvedBy = 'المدير';
+
+                // تحديث في pending_documents
+                const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+                const updatedPending = pendingDocs.filter(d => d.uuid !== doc.uuid);
+                localStorage.setItem('pending_documents', JSON.stringify(updatedPending));
+
+                // إضافة للوثائق الموثقة
+                const approvedDocs = JSON.parse(localStorage.getItem('sarh_custom_documents_v1') || '[]');
+                
+                // إنشاء dataUri إذا لم يكن موجوداً
+                if (!doc.dataUri && doc.content) {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 794;
+                    canvas.height = 1123;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    doc.dataUri = canvas.toDataURL('image/png');
+                }
+
+                approvedDocs.push(doc);
+                localStorage.setItem('sarh_custom_documents_v1', JSON.stringify(approvedDocs));
+
+                // عرض رسالة النجاح بدون أزرار
+                loadingSection.style.display = 'none';
+                contentSection.style.display = 'block';
+                contentSection.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 72px; margin-bottom: 20px;">✅</div>
+                        <h2 style="color: #16a34a; margin-bottom: 15px;">تم توثيق الوثيقة بنجاح</h2>
+                        <p style="color: #666; font-size: 18px;">تم الموافقة على الوثيقة وإضافتها إلى قائمة الوثائق الموثقة</p>
+                        <div style="margin-top: 30px; padding: 20px; background: #f0fdf4; border-radius: 12px; border: 2px solid #16a34a;">
+                            <p style="margin: 0; color: #15803d;"><strong>رقم الوثيقة:</strong> ${doc.number || 'غير محدد'}</p>
+                            <p style="margin: 10px 0 0 0; color: #15803d;"><strong>وقت الموافقة:</strong> ${new Date().toLocaleString('ar-SA')}</p>
+                        </div>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error('خطأ في الموافقة المباشرة:', error);
+                loadingSection.style.display = 'none';
+                contentSection.style.display = 'block';
+                contentSection.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 72px; margin-bottom: 20px;">❌</div>
+                        <h2 style="color: #dc2626;">حدث خطأ</h2>
+                        <p style="color: #666;">حدث خطأ أثناء معالجة الموافقة. يرجى المحاولة مرة أخرى.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // رفض مباشر من البريد الإلكتروني (بدون تأكيد)
+        async function rejectDocumentDirectly(doc) {
+            try {
+                loadingSection.style.display = 'block';
+                contentSection.style.display = 'none';
+
+                // تحديث الحالة
+                doc.status = 'rejected';
+                doc.rejectedAt = new Date().toISOString();
+                doc.rejectedBy = 'المدير';
+                doc.rejectionReason = 'تم الرفض بشكل مباشر من البريد الإلكتروني';
+
+                // تحديث في localStorage
+                const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+                const index = pendingDocs.findIndex(d => d.uuid === doc.uuid);
+                if (index !== -1) {
+                    pendingDocs[index] = doc;
+                    localStorage.setItem('pending_documents', JSON.stringify(pendingDocs));
+                }
+
+                // عرض رسالة الرفض بدون أزرار
+                loadingSection.style.display = 'none';
+                contentSection.style.display = 'block';
+                contentSection.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 72px; margin-bottom: 20px;">❌</div>
+                        <h2 style="color: #dc2626; margin-bottom: 15px;">تم رفض الوثيقة</h2>
+                        <p style="color: #666; font-size: 18px;">تم رفض الوثيقة وتسجيل الرفض في النظام</p>
+                        <div style="margin-top: 30px; padding: 20px; background: #fef2f2; border-radius: 12px; border: 2px solid #dc2626;">
+                            <p style="margin: 0; color: #991b1b;"><strong>رقم الوثيقة:</strong> ${doc.number || 'غير محدد'}</p>
+                            <p style="margin: 10px 0 0 0; color: #991b1b;"><strong>وقت الرفض:</strong> ${new Date().toLocaleString('ar-SA')}</p>
+                        </div>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error('خطأ في الرفض المباشر:', error);
+                loadingSection.style.display = 'none';
+                contentSection.style.display = 'block';
+                contentSection.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 72px; margin-bottom: 20px;">❌</div>
+                        <h2 style="color: #dc2626;">حدث خطأ</h2>
+                        <p style="color: #666;">حدث خطأ أثناء معالجة الرفض. يرجى المحاولة مرة أخرى.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // تحميل الوثيقة عند فتح الصفحة
+        loadDocument();
+    </script>
+</body>
+</html>

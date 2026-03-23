@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقرير إداري شامل - مخرجات ضبط الانضباط وهندسة الجودة | مستشار التحول الرقمي: عبدالله احمد الكردي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="constitution-theme.css">
+    <style>
+        :root {
+            --orange: #e67e22;
+            --orange-dark: #c0392b;
+            --orange-light: #f39c12;
+            --red: #c0392b;
+            --red-dark: #a93226;
+            --charcoal: #2d3748;
+            --slate: #4a5568;
+            --paper-bg: #f5f5f0;
+            --cream: #fafaf8;
+            --text-dark: #1a202c;
+            --frame-margin: 12mm;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background: #e8e8e4;
+            color: var(--text-dark);
+            line-height: 1.9;
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+        }
+
+        @page { size: A4; margin: 0; }
+
+        .page-container {
+            background: rgba(250,250,248,0.98);
+            width: 210mm;
+            min-height: 297mm;
+            max-width: 100%;
+            margin: 24px auto;
+            padding: 0;
+            box-sizing: border-box;
+            box-shadow: 0 4px 16px rgba(192, 57, 43, 0.08);
+            position: relative;
+            overflow: visible;
+        }
+
+        .page-content {
+            position: relative;
+            margin: var(--frame-margin);
+            padding: 14mm 14mm 0 14mm;
+            min-height: calc(297mm - 2 * var(--frame-margin));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            z-index: 3;
+            background: rgba(250,250,248,0.5);
+            box-sizing: border-box;
+        }
+
+        .page-frame {
+            position: absolute;
+            top: var(--frame-margin);
+            right: var(--frame-margin);
+            bottom: var(--frame-margin);
+            left: var(--frame-margin);
+            border: 1px solid var(--red);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .frame-corner {
+            position: absolute;
+            width: var(--frame-margin);
+            height: var(--frame-margin);
+            z-index: 2;
+            pointer-events: none;
+            border-color: var(--red);
+            border-style: solid;
+            border-width: 0;
+        }
+        .frame-corner.tr { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+        .frame-corner.tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+        .frame-corner.br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+        .frame-corner.bl { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+
+        .print-header {
+            flex-shrink: 0;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--red);
+            padding: 10px 0 14px 0;
+            margin-bottom: 16px;
+            font-size: 11px;
+            color: var(--orange-dark);
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            background: rgba(243,156,18,0.05);
+            line-height: 1.5;
+        }
+
+        .header-right { text-align: right; justify-self: stretch; padding-right: 0; }
+        .header-center { text-align: center; justify-self: center; }
+        .header-left { text-align: left; justify-self: stretch; padding-left: 0; }
+
+        .print-header .logo-img {
+            height: 72px;
+            width: auto;
+            border: 1px solid var(--orange);
+            border-radius: 6px;
+            padding: 2px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .print-footer {
+            flex-shrink: 0;
+            margin-top: auto;
+            border-top: 1px solid var(--red);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 11px;
+            color: var(--orange-dark);
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section {
+            flex: 1;
+            min-height: 0;
+            padding-bottom: 8mm;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--orange-dark);
+            margin-bottom: 1rem;
+        }
+        h1 { font-size: 2rem; text-align: center; }
+        h2 { font-size: 1.6rem; text-align: center; }
+        h3 { font-size: 1.3rem; }
+
+        .section-title {
+            display: inline-block;
+            border-bottom: 1px solid var(--orange);
+            padding-bottom: 4px;
+            margin-bottom: 12px;
+            font-weight: bold;
+            font-size: 1.35rem;
+            color: var(--orange-dark);
+        }
+
+        .highlight-box {
+            border: 1px solid var(--red);
+            background: rgba(243,156,18,0.04);
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin: 14px 0;
+            border-right-width: 3px;
+            border-right-color: var(--orange);
+        }
+
+        .names-list {
+            background: rgba(230,126,34,0.05);
+            border: 1px dashed var(--orange);
+            border-radius: 4px;
+            padding: 10px 16px;
+            margin: 8px 0 12px 0;
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .penalty-note {
+            background: rgba(192,57,43,0.06);
+            border-right: 3px solid var(--red);
+            padding: 10px 16px;
+            border-radius: 0 4px 4px 0;
+            margin: 8px 0;
+            font-weight: bold;
+            color: var(--red-dark);
+        }
+
+        p { line-height: 1.9; margin-bottom: 0.8rem; text-align: justify; }
+        ul { margin: 0.5rem 0 1rem 0; padding-right: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+
+        .meta-line { font-size: 0.95rem; color: var(--slate); margin-bottom: 4px; }
+
+        .addressed-block {
+            background: rgba(243,156,18,0.04);
+            border: 1px solid rgba(230,126,34,0.2);
+            border-radius: 6px;
+            padding: 14px 20px;
+            margin: 12px 0 16px 0;
+        }
+        .addressed-block p { margin-bottom: 4px; }
+
+        .print-btn {
+            background: linear-gradient(180deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: white !important;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(230, 126, 34, 0.4);
+            border: 1px solid var(--orange-light);
+        }
+        .print-btn:hover { box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5); }
+
+        .signature-block { margin-top: 2rem; text-align: left; }
+        .signature-block .font-bold { color: var(--orange-dark) !important; }
+
+        @media print {
+            * {
+                box-sizing: border-box;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            html, body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .no-print { display: none !important; }
+            .page-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                max-height: 297mm !important;
+                max-width: 210mm !important;
+                page-break-after: always;
+                page-break-inside: avoid;
+                overflow: hidden !important;
+            }
+            .page-container:last-child { page-break-after: auto; }
+            .page-content {
+                min-height: calc(297mm - 24mm) !important;
+                height: calc(297mm - 24mm) !important;
+                overflow: hidden !important;
+            }
+            .page-frame, .frame-corner { display: block !important; }
+            .section { overflow: hidden !important; }
+            .page-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print flex justify-center p-6">
+        <button onclick="window.print()" class="print-btn cursor-pointer transition hover:opacity-95">
+            طباعة التقرير / تحويل إلى PDF
+        </button>
+    </div>
+
+    <!-- ═══════════════ الصفحة 1 ═══════════════ -->
+    <div class="page-container">
+        <div class="page-frame"></div>
+        <div class="frame-corner tr"></div>
+        <div class="frame-corner tl"></div>
+        <div class="frame-corner br"></div>
+        <div class="frame-corner bl"></div>
+        <div class="page-content">
+            <div class="print-header">
+                <div class="header-right">
+                    شركة صرح الإتقان<br>
+                    Sarah Alitqan Company<br>
+                    <span style="font-size: 9px;">الرقم الضريبي: 311697879500003</span>
+                </div>
+                <div class="header-center">
+                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-img" onerror="this.style.display='none'">
+                </div>
+                <div class="header-left">
+                    مستشار التحول الرقمي:<br>عبدالله احمد الكردي
+                </div>
+            </div>
+
+            <div class="section">
+                <h1>تقرير إداري شامل</h1>
+                <h2 style="margin-top: -8px; font-size: 1.4rem;">مخرجات ضبط الانضباط وهندسة الجودة (سكن كورنر)</h2>
+
+                <p class="meta-line" style="text-align: center; margin-top: 16px;"><strong>التاريخ:</strong> 7 فبراير 2026</p>
+                <p class="meta-line" style="text-align: center;"><strong>جهة الإصدار:</strong> مكتب التحول الرقمي وضبط الجودة</p>
+
+                <div class="addressed-block" style="margin-top: 16px;">
+                    <p><strong>موجه إلى:</strong></p>
+                    <p><strong>الإدارة العامة:</strong> للاعتماد والمتابعة.</p>
+                    <p><strong>المكتب المالي والمحاسبة:</strong> للبدء بتنفيذ الخصومات والجزاءات الواردة أدناه.</p>
+                    <p><strong>كافة الموظفين والفنيين:</strong> للعلم والالتزام التام والنهائي.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="section-title">أولاً: حصر الحضور والغياب (المعايرة الميدانية)</span>
+                    <p>بناءً على الاجتماع المنعقد أمس، تم رصد القوائم التالية بدقة وتم بدء العمل بالأنظمة الرقمية:</p>
+
+                    <p style="margin-bottom: 4px;"><strong>قائمة الحضور (الملتزمون):</strong></p>
+                    <div class="names-list">
+                        قتيبة محمد الحسين، حسني خالد ميبر، عبدالرحمن محمد عرنوس، ابانوب، عبدالله الكردي، اخطر، ايمن ميرغني، كامل محمد عبدالقادر، عبدالفتاح شعبان ابراهيم، محمد مالك.
+                    </div>
+
+                    <p style="margin-bottom: 4px;"><strong>قائمة المتخلفين عن الحضور (تطبق عليهم عقوبة الغياب):</strong></p>
+                    <div class="names-list" style="border-color: var(--red); background: rgba(192,57,43,0.04);">
+                        حبيب الله، جهاد، نصر، وقاص، الشيخ، وداعة، وسيم، زبير، عرفان، وسيم، غالب، زاهر، اخو حسين تنظيف، جون، ابولو، سلفادور، أبو يحيى.
+                    </div>
+
+                    <div class="penalty-note">
+                        الجزاء: خصم فوري (مخالفة تعليمات إدارية) يتم جدولته بمجرد اكتمال الإجراءات التقنية.
+                    </div>
+                </div>
+            </div>
+
+            <div class="print-footer">تقرير إداري شامل - مخرجات ضبط الانضباط وهندسة الجودة | صفحة 1</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ الصفحة 2 ═══════════════ -->
+    <div class="page-container page-break">
+        <div class="page-frame"></div>
+        <div class="frame-corner tr"></div>
+        <div class="frame-corner tl"></div>
+        <div class="frame-corner br"></div>
+        <div class="frame-corner bl"></div>
+        <div class="page-content">
+            <div class="print-header">
+                <div class="header-right">
+                    شركة صرح الإتقان<br>
+                    Sarah Alitqan Company<br>
+                    <span style="font-size: 9px;">الرقم الضريبي: 311697879500003</span>
+                </div>
+                <div class="header-center">
+                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-img" onerror="this.style.display='none'">
+                </div>
+                <div class="header-left">
+                    مستشار التحول الرقمي:<br>عبدالله احمد الكردي
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="highlight-box">
+                    <span class="section-title">ثانياً: ملف "الدخلاء" والأمن المرفقي</span>
+                    <p>تم رصد أسماء أشخاص يتواجدون في السكن ولا ينتمون للشركة.</p>
+
+                    <p style="margin-bottom: 4px;"><strong>قائمة الدخلاء:</strong></p>
+                    <div class="names-list" style="border-color: var(--red); background: rgba(192,57,43,0.04);">
+                        شاشا، جان، زبير، عرفان، إبراهيم.
+                    </div>
+
+                    <div class="penalty-note">
+                        القرار: إخلاء فوري خلال 48 ساعة من تاريخ هذا الإعلان.
+                    </div>
+
+                    <p><strong>العقوبة:</strong> أي موظف يثبت تورطه في إدخال دخيل أو التستر عليه سيتم خصم يومين من مرتبه مع إنذار فصل نهائي.</p>
+
+                    <p><strong>نظام الرقابة:</strong> سيتم استخدام كاميرات المراقبة المتنقلة لتحديد المسؤول عن ترك الأبواب مفتوحة أو إدخال الغرباء، وسيتم تغريم آخر شخص استخدم الباب في حال وجود خرق أمني.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <span class="section-title">ثالثاً: بروتوكول النظافة والخدمات الجديد</span>
+
+                    <p><strong>رئاسة الغرف:</strong> تم تعيين رئيس لكل غرفة مسؤول قانونياً وتقنياً عن نظافة غرفته وانضباطها.</p>
+
+                    <p><strong>خدمة التنظيف:</strong> يُكلف (وسيم - مركز فضاء) بتنظيف الممرات والمرافق مرة كل يومين.</p>
+
+                    <p><strong>الجزاءات:</strong> في حال تجاوز مدة التنظيف (نصف ساعة) بسبب الإهمال أو الأوساخ الزائدة، يتم تطبيق عقوبة جماعية على كافة القاطنين.</p>
+
+                    <p><strong>الدعم المالي:</strong> يُلزم كل موظف بدفع (20 ريال شهرياً) تُسلم للأخ قتيبة بتاريخ 5 من كل شهر:</p>
+                    <ul>
+                        <li><strong>(10 ريالات)</strong> لمواد التنظيف.</li>
+                        <li><strong>(10 ريالات)</strong> تعويض للأخ وسيم عن وقت التنظيف الإضافي.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="print-footer">تقرير إداري شامل - مخرجات ضبط الانضباط وهندسة الجودة | صفحة 2</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ الصفحة 3 ═══════════════ -->
+    <div class="page-container page-break">
+        <div class="page-frame"></div>
+        <div class="frame-corner tr"></div>
+        <div class="frame-corner tl"></div>
+        <div class="frame-corner br"></div>
+        <div class="frame-corner bl"></div>
+        <div class="page-content">
+            <div class="print-header">
+                <div class="header-right">
+                    شركة صرح الإتقان<br>
+                    Sarah Alitqan Company<br>
+                    <span style="font-size: 9px;">الرقم الضريبي: 311697879500003</span>
+                </div>
+                <div class="header-center">
+                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-img" onerror="this.style.display='none'">
+                </div>
+                <div class="header-left">
+                    مستشار التحول الرقمي:<br>عبدالله احمد الكردي
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="highlight-box">
+                    <span class="section-title">رابعاً: كلمة المستشار التقني (حول آلية الخصم)</span>
+
+                    <p>نود التوضيح للجميع أن مسألة الخصومات والجزاءات ليست مسألة "مزاجية" أو شخصية، بل هي إجراءات تقنية ونظامية تهدف إلى:</p>
+
+                    <ul>
+                        <li><strong>مطابقة العمليات الميدانية</strong> مع قوانين العمل السعودي.</li>
+                        <li><strong>تحقيق معايير ضبط الجودة العالمية</strong> في مرافق المجموعة.</li>
+                        <li><strong>أتمتة الرقابة لضمان العدالة؛</strong> فالنظام الرقمي لا يفرق بين ملتزم ومقصر إلا بالعمل والامتثال.</li>
+                    </ul>
+
+                    <p>بناءً عليه، سيتم تنفيذ كافة الخصومات المالية عبر المحاسب العام فور اكتمال التوثيق الرقمي للمخالفات.</p>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <p style="text-align: center; font-size: 1.2rem;">والله الموفق،،</p>
+                </div>
+
+                <div class="signature-block" style="margin-top: 2rem;">
+                    <p class="font-bold" style="font-size: 1.15rem; color: var(--orange-dark);">المستشار التقني</p>
+                    <p class="font-bold" style="font-size: 1.15rem; color: var(--orange-dark);">عبدالله الكردي</p>
+                </div>
+            </div>
+
+            <div class="print-footer">تقرير إداري شامل - مخرجات ضبط الانضباط وهندسة الجودة | صفحة 3 والأخيرة</div>
+        </div>
+    </div>
+
+</body>
+</html>

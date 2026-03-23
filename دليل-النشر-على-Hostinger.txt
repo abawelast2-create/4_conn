@@ -1,0 +1,307 @@
+🚀 دليل نشر التطبيق على Hostinger
+========================================
+
+⚠️ تنبيه مهم:
+--------------
+Hostinger الاستضافة المشتركة (Shared Hosting) لا تدعم Python/Flask مباشرة!
+الحلول المتاحة:
+
+├─ الخيار 1: VPS من Hostinger (موصى به) ✅
+├─ الخيار 2: استخدام PythonAnywhere للـ Backend
+├─ الخيار 3: تحويل Backend إلى PHP
+└─ الخيار 4: استضافة منفصلة للـ Backend
+
+================================================================================
+🎯 الحل الموصى به: VPS هوستنجر + Frontend على Shared Hosting
+================================================================================
+
+الطريقة 1️⃣: VPS من Hostinger (للتطبيق الكامل)
+-----------------------------------------------
+
+📋 الخطوات:
+
+1. احصل على VPS من Hostinger:
+   - اشترك في خطة VPS (من 4-8$ شهرياً)
+   - اختر Ubuntu 22.04 LTS كنظام تشغيل
+
+2. اتصل بالـ VPS عبر SSH:
+   ```bash
+   ssh root@your-vps-ip
+   ```
+
+3. ثبت المتطلبات:
+   ```bash
+   # تحديث النظام
+   sudo apt update && sudo apt upgrade -y
+   
+   # تثبيت Python و pip
+   sudo apt install python3 python3-pip python3-venv nginx -y
+   
+   # تثبيت Supervisor لإدارة العمليات
+   sudo apt install supervisor -y
+   ```
+
+4. انقل ملفات المشروع:
+   ```bash
+   # من جهازك المحلي:
+   cd /home/sarh/سطح\ المكتب/work/proj/1_cons
+   tar -czf project.tar.gz *.html *.py js/ SEC/ .env
+   scp project.tar.gz root@your-vps-ip:/var/www/
+   
+   # على VPS:
+   cd /var/www/
+   tar -xzf project.tar.gz
+   ```
+
+5. إعداد البيئة الافتراضية:
+   ```bash
+   cd /var/www/1_cons
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install flask flask-cors python-dotenv
+   ```
+
+6. عدّل ملف .env:
+   ```bash
+   nano .env
+   ```
+   
+   غيّر SERVER_URL إلى نطاقك:
+   ```
+   SERVER_URL=https://yourdomain.com
+   # أو
+   SERVER_URL=http://your-vps-ip
+   ```
+
+7. إعداد Supervisor لتشغيل Flask:
+   ```bash
+   sudo nano /etc/supervisor/conf.d/flask-email.conf
+   ```
+   
+   أضف:
+   ```ini
+   [program:flask-email]
+   directory=/var/www/1_cons
+   command=/var/www/1_cons/venv/bin/python email_server.py
+   user=www-data
+   autostart=true
+   autorestart=true
+   stderr_logfile=/var/log/flask-email.err.log
+   stdout_logfile=/var/log/flask-email.out.log
+   ```
+
+8. إعداد Nginx:
+   ```bash
+   sudo nano /etc/nginx/sites-available/sarh-app
+   ```
+   
+   أضف:
+   ```nginx
+   server {
+       listen 80;
+       server_name yourdomain.com;  # أو your-vps-ip
+       
+       # خدمة الملفات الثابتة (HTML, CSS, JS)
+       location / {
+           root /var/www/1_cons;
+           index index.html;
+           try_files $uri $uri/ =404;
+       }
+       
+       # توجيه API إلى Flask
+       location /api/ {
+           proxy_pass http://127.0.0.1:5000;
+           proxy_set_header Host $host;
+           proxy_set_header X-Real-IP $remote_addr;
+       }
+   }
+   ```
+
+9. تفعيل الإعدادات:
+   ```bash
+   sudo ln -s /etc/nginx/sites-available/sarh-app /etc/nginx/sites-enabled/
+   sudo nginx -t
+   sudo systemctl restart nginx
+   sudo supervisorctl reread
+   sudo supervisorctl update
+   sudo supervisorctl start flask-email
+   ```
+
+10. تفعيل HTTPS (مجاناً مع Let's Encrypt):
+    ```bash
+    sudo apt install certbot python3-certbot-nginx -y
+    sudo certbot --nginx -d yourdomain.com
+    ```
+
+✅ الآن التطبيق يعمل على:
+   - Frontend: https://yourdomain.com
+   - API: https://yourdomain.com/api/
+
+================================================================================
+الطريقة 2️⃣: Shared Hosting + PythonAnywhere (مجاني/رخيص)
+================================================================================
+
+هذه الطريقة تناسبك إذا كان لديك استضافة مشتركة فقط:
+
+1. Frontend على Hostinger (Shared Hosting):
+   -----------------------------------------
+   
+   أ. ارفع الملفات عبر FTP/File Manager:
+      - index.html
+      - document-creator.html
+      - quick-action.html
+      - approval.html
+      - test-quick-action.html
+      - مجلد js/
+      - مجلد SEC/
+      - جميع الملفات الأخرى .html
+   
+   ب. اجعلهم في مجلد public_html
+   
+   ✅ Frontend يعمل على: https://yourdomain.com
+
+2. Backend على PythonAnywhere (مجاني):
+   -------------------------------------
+   
+   أ. سجل حساب مجاني على: https://www.pythonanywhere.com
+   
+   ب. افتح Bash Console وأنشئ المشروع:
+      ```bash
+      mkdir email_backend
+      cd email_backend
+      ```
+   
+   ج. ارفع email_server.py و .env
+   
+   د. ثبت المكتبات:
+      ```bash
+      pip3 install --user flask flask-cors python-dotenv
+      ```
+   
+   هـ. أنشئ Web App جديد:
+      - اختر Flask
+      - Python 3.10
+      - في WSGI configuration:
+      
+      ```python
+      import sys
+      path = '/home/yourusername/email_backend'
+      if path not in sys.path:
+          sys.path.append(path)
+      
+      from email_server import app as application
+      ```
+   
+   و. عدّل .env:
+      ```
+      SERVER_URL=https://yourdomain.com
+      ```
+   
+   ✅ Backend يعمل على: https://yourusername.pythonanywhere.com
+
+3. ربط Frontend بـ Backend:
+   -------------------------
+   
+   في ملف js/document-creator.js على Hostinger، عدّل:
+   ```javascript
+   // السطر ~661
+   fetch('https://yourusername.pythonanywhere.com/api/send-approval-email', {
+   ```
+
+================================================================================
+الطريقة 3️⃣: تحويل Backend إلى PHP (للاستضافة المشتركة فقط)
+================================================================================
+
+إذا أردت كل شيء على Hostinger Shared Hosting، سأحول Backend إلى PHP.
+
+هل تريدني أن أنشئ لك ملف PHP بديل لـ email_server.py؟
+
+================================================================================
+📁 ملفات للرفع على Hostinger
+================================================================================
+
+ملفات Frontend (ارفعها على public_html):
+-------------------------------------------
+✅ index.html
+✅ document-creator.html
+✅ quick-action.html
+✅ approval.html
+✅ test-quick-action.html
+✅ اداري.html
+✅ administrative-decisions.html
+✅ announcement-multilingual.html
+✅ constitution-main.html
+✅ discipline-report.html
+✅ housing-pledge.html
+✅ مجلد js/ (كامل)
+✅ مجلد SEC/ (كامل)
+
+❌ لا ترفع:
+❌ email_server.py (يحتاج VPS أو PythonAnywhere)
+❌ .env (احتفظ به آمناً، لا ترفعه للـ public)
+❌ __pycache__/
+
+================================================================================
+⚙️ إعداد النطاق على Hostinger
+================================================================================
+
+1. في Hostinger Panel:
+   - اذهب إلى Domains
+   - أضف/ربط نطاقك
+   - انتظر حتى يشير DNS إلى Hostinger (24-48 ساعة)
+
+2. تفعيل SSL:
+   - في hPanel → SSL
+   - اختر Free SSL
+   - فعّل Force HTTPS
+
+3. اختبر:
+   - https://yourdomain.com ← يجب أن تظهر index.html
+   - https://yourdomain.com/document-creator.html ← صفحة إنشاء الوثائق
+
+================================================================================
+🔧 الخيار الأسرع (للاختبار الآن):
+================================================================================
+
+استخدم ngrok للوصول المؤقت:
+
+1. ثبّت ngrok:
+   ```bash
+   sudo snap install ngrok
+   ```
+
+2. شغل ngrok:
+   ```bash
+   ngrok http 8765
+   ```
+
+3. ستحصل على رابط مثل: https://abc123.ngrok-free.app
+
+4. عدّل .env:
+   ```
+   SERVER_URL=https://abc123.ngrok-free.app
+   ```
+
+5. أعد تشغيل email_server.py
+
+✅ الآن يمكن الوصول للتطبيق من الإنترنت مؤقتاً!
+
+================================================================================
+💰 خيارات التكلفة:
+================================================================================
+
+1. VPS Hostinger: ~6$ شهرياً (حل كامل)
+2. Shared Hosting + PythonAnywhere Free: 0$ (محدود)
+3. Shared Hosting + PythonAnywhere Paid: ~5$ شهرياً
+4. Nginx + Heroku/Railway: مجاني (محدود) أو 5$ شهرياً
+
+================================================================================
+❓ أي خيار تفضل؟
+================================================================================
+
+قل لي أي طريقة تريد وسأساعدك بالخطوات التفصيلية:
+
+1️⃣ VPS من Hostinger (كل شيء في مكان واحد)
+2️⃣ Shared Hosting + PythonAnywhere (اقتصادي)
+3️⃣ تحويل Backend إلى PHP (للاستضافة المشتركة فقط)
+4️⃣ ngrok للاختبار السريع

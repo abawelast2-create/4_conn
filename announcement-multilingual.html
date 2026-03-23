@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعميم إداري محدث - 4 لغات | مستشار التحول الرقمي: عبدالله احمد الكردي</title>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3/dist/dom-to-image-more.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Thai:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="constitution-theme.css">
+    <style>
+        :root {
+            --orange: #1a3a5c;
+            --orange-dark: #0f2a44;
+            --orange-light: #2c5282;
+            --red: #1a3a5c;
+            --red-dark: #0f2a44;
+            --charcoal: #1a202c;
+            --slate: #2d3748;
+            --paper-bg: #f7f8fa;
+            --cream: #ffffff;
+            --text-dark: #0f172a;
+            --frame-margin: 4mm;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background: linear-gradient(135deg, #e8e8e4 0%, #d8d8d4 100%);
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin: 0;
+            padding: 0;
+            font-size: 0.58rem;
+        }
+
+        /* ═══ أزرار التحكم ═══ */
+        .controls {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(45,55,72,0.97) 0%, rgba(45,55,72,0.92) 100%);
+            backdrop-filter: blur(8px);
+            padding: 14px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-print {
+            background: linear-gradient(180deg, #1a3a5c 0%, #0f2a44 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(26, 58, 92, 0.4);
+            border: 1px solid #2c5282;
+        }
+        .btn-print:hover { box-shadow: 0 6px 20px rgba(26, 58, 92, 0.5); transform: translateY(-1px); }
+
+        .btn-image {
+            background: linear-gradient(180deg, #27ae60 0%, #1e8449 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(39, 174, 96, 0.4);
+            border: 1px solid #2ecc71;
+        }
+        .btn-image:hover { box-shadow: 0 6px 20px rgba(39, 174, 96, 0.5); transform: translateY(-1px); }
+
+        .btn-image.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* ═══ حاوية الإعلان ═══ */
+        #announcement-content {
+            width: 210mm;
+            max-width: 100%;
+            margin: 12px auto;
+            background: linear-gradient(180deg, 
+                rgba(250,250,248,0.98) 0%, 
+                rgba(245,245,240,0.95) 50%,
+                rgba(250,250,248,0.98) 100%);
+            box-shadow: 
+                0 8px 32px rgba(15, 42, 68, 0.12),
+                0 2px 8px rgba(0,0,0,0.06);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .inner-frame {
+            border: 1px solid var(--red);
+            margin: var(--frame-margin);
+            padding: 3mm 4mm;
+            position: relative;
+            background: rgba(250,250,248,0.5);
+        }
+
+        .inner-frame::before,
+        .inner-frame::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: var(--red);
+            border-style: solid;
+        }
+        .inner-frame::before { top: -5px; right: -5px; border-width: 2px 2px 0 0; }
+        .inner-frame::after { bottom: -5px; left: -5px; border-width: 0 0 2px 2px; }
+
+        /* ═══ الرأس ═══ */
+        .print-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 3px;
+            border-bottom: 1px solid var(--red);
+            padding: 1px 0 3px 0;
+            margin-bottom: 4px;
+            font-size: 8px;
+            color: var(--orange-dark);
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(180deg, rgba(26,58,92,0.06) 0%, rgba(247,248,250,0.95) 100%);
+            line-height: 1.5;
+        }
+        .header-right { text-align: right; justify-self: stretch; padding-right: 0; }
+        .header-center { text-align: center; justify-self: center; }
+        .header-left { text-align: left; justify-self: stretch; padding-left: 0; }
+        .print-header .logo-img {
+            height: 45px;
+            width: auto;
+            max-width: 45px;
+            border: 1px solid var(--orange);
+            border-radius: 6px;
+            padding: 2px;
+            display: block;
+            margin: 0 auto;
+        }
+        .logo-text-fallback {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #f9d976 0%, #d4af37 50%, #b8860b 100%);
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(-45deg);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 3px 12px rgba(107, 91, 46, 0.4);
+            border: 2px solid rgba(255,255,255,0.5);
+            position: relative;
+        }
+        .logo-text-fallback::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border-radius: 50% 0 50% 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+        }
+        .logo-text-fallback span {
+            transform: rotate(45deg);
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4), 0 0 8px rgba(255,255,255,0.3);
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ═══ العنوان الرئيسي ═══ */
+        .main-title {
+            text-align: center;
+            margin: 1px 0 0 0;
+        }
+        .main-title h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.82rem;
+            color: var(--orange-dark);
+            margin: 0 0 1px 0;
+        }
+        .main-title h2 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.62rem;
+            color: var(--red);
+            margin: 0 0 1px 0;
+            font-weight: 400;
+        }
+        .main-title .meta {
+            font-size: 0.52rem;
+            color: var(--slate);
+        }
+
+        /* ═══ فاصل اللغات ═══ */
+        .lang-divider {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin: 4px 0 2px 0;
+        }
+        .lang-divider::before,
+        .lang-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--orange), transparent);
+        }
+        .lang-tag {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            font-size: 0.62rem;
+            color: white;
+            background: linear-gradient(135deg, #1a3a5c 0%, #0f2a44 100%);
+            padding: 2px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(15, 42, 68, 0.25);
+        }
+
+        /* ═══ قسم اللغة ═══ */
+        .lang-section {
+            margin-bottom: 2px;
+        }
+        .lang-section.ltr {
+            direction: ltr;
+            text-align: left;
+        }
+        .lang-section h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.58rem;
+            color: var(--orange-dark);
+            margin: 0 0 1px 0;
+            text-align: center;
+        }
+        .lang-section.ltr h3 {
+            font-family: 'Reem Kufi', sans-serif;
+        }
+
+        /* ═══ صناديق المحتوى ═══ */
+        .info-block {
+            margin: 2px 0;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.68rem;
+            line-height: 1.35;
+        }
+        .info-block.attendance {
+            background: rgba(39, 174, 96, 0.06);
+            border: 1px solid rgba(39, 174, 96, 0.25);
+            border-right-width: 3px;
+            border-right-color: #27ae60;
+        }
+        .lang-section.ltr .info-block.attendance {
+            border-right-width: 1px;
+            border-right-color: rgba(39, 174, 96, 0.25);
+            border-left-width: 3px;
+            border-left-color: #27ae60;
+        }
+        .info-block.absence {
+            background: rgba(192, 57, 43, 0.05);
+            border: 1px solid rgba(192, 57, 43, 0.2);
+            border-right-width: 3px;
+            border-right-color: var(--red);
+        }
+        .lang-section.ltr .info-block.absence {
+            border-right-width: 1px;
+            border-right-color: rgba(192, 57, 43, 0.2);
+            border-left-width: 3px;
+            border-left-color: var(--red);
+        }
+        .info-block.intruders {
+            background: rgba(155, 89, 182, 0.05);
+            border: 1px solid rgba(155, 89, 182, 0.2);
+            border-right-width: 3px;
+            border-right-color: #8e44ad;
+        }
+        .lang-section.ltr .info-block.intruders {
+            border-right-width: 1px;
+            border-right-color: rgba(155, 89, 182, 0.2);
+            border-left-width: 3px;
+            border-left-color: #8e44ad;
+        }
+        .info-block.fees {
+            background: rgba(230, 126, 34, 0.05);
+            border: 1px solid rgba(230, 126, 34, 0.2);
+            border-right-width: 3px;
+            border-right-color: var(--orange);
+        }
+        .lang-section.ltr .info-block.fees {
+            border-right-width: 1px;
+            border-right-color: rgba(230, 126, 34, 0.2);
+            border-left-width: 3px;
+            border-left-color: var(--orange);
+        }
+        .info-block.surveillance {
+            background: rgba(41, 128, 185, 0.05);
+            border: 1px solid rgba(41, 128, 185, 0.2);
+            border-right-width: 3px;
+            border-right-color: #2980b9;
+        }
+        .lang-section.ltr .info-block.surveillance {
+            border-right-width: 1px;
+            border-right-color: rgba(41, 128, 185, 0.2);
+            border-left-width: 3px;
+            border-left-color: #2980b9;
+        }
+        .info-block.note {
+            background: rgba(243, 156, 18, 0.06);
+            border: 1px dashed var(--orange);
+            text-align: center;
+            font-weight: bold;
+            color: var(--orange-dark);
+        }
+
+        .info-block strong {
+            color: var(--orange-dark);
+        }
+
+        .names-inline {
+            display: inline;
+            font-weight: 600;
+        }
+
+        /* ═══ التذييل ═══ */
+        .print-footer {
+            border-top: 1px solid var(--red);
+            padding: 2px 0 0 0;
+            margin-top: 4px;
+            text-align: center;
+            font-size: 6px;
+            color: var(--orange-dark);
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+        }
+
+        /* ═══ Hindi font ═══ */
+        .hindi-text { font-family: 'Noto Sans Devanagari', 'Amiri', serif; }
+        .thai-text { font-family: 'Noto Sans Thai', 'Amiri', serif; }
+        .urdu-text { font-family: 'Noto Nastaliq Urdu', 'Amiri', serif; }
+
+        /* ═══ الطباعة ═══ */
+        @page { size: A4; margin: 0; }
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-sizing: border-box; }
+            html, body { background: white !important; margin: 0 !important; padding: 0 !important; }
+            .controls { display: none !important; }
+            #announcement-content {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 210mm !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ أزرار التحكم ═══ -->
+    <div class="controls no-print">
+        <button onclick="window.print()" class="btn btn-print">
+            🖨️ طباعة / PDF
+        </button>
+        <button onclick="exportAsImage()" class="btn btn-image" id="exportBtn">
+            📷 تصدير كصورة واحدة
+        </button>
+    </div>
+
+    <!-- ═══ محتوى الإعلان ═══ -->
+    <div id="announcement-content">
+        <div class="inner-frame">
+
+            <!-- ═══ الرأس ═══ -->
+            <div class="print-header">
+                <div class="header-right">
+                    شركة صرح الإتقان<br>
+                    Sarah Alitqan Company<br>
+                    <span style="font-size: 9px;">الرقم الضريبي: 311697879500003</span>
+                </div>
+                <div class="header-center">
+                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-img" id="logo-img">
+                    <div class="logo-text-fallback" id="logo-fallback"><span>صرح<br>الإتقان</span></div>
+                </div>
+                <div class="header-left">
+                    مستشار التحول الرقمي:<br>عبدالله احمد الكردي
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- 1. العربية                             -->
+            <!-- ══════════════════════════════════════ -->
+            <div class="lang-divider">
+                <span class="lang-tag">1. اللغة العربية</span>
+            </div>
+            <div class="lang-section">
+                <div class="info-block attendance">
+                    <strong>✅ كشف الحضور والالتزام:</strong> نشكر الموظفين الملتزمين الذين حضروا الاجتماع: (<span class="names-inline">قتيبة محمد الحسين، حسني خالد ميبر، عبدالرحمن محمد عرنوس، ابانوب، عبدالله الكردي، اخطر، ايمن ميرغني، كامل محمد عبدالقادر، عبدالفتاح شعبان ابراهيم، محمد مالك</span>).
+                </div>
+                <div class="info-block absence">
+                    <strong>❌ عقوبات الغياب (قائمة محدثة):</strong> تقرر تطبيق الخصم النظامي بحق المتخلفين عن الاجتماع وهم: (<span class="names-inline">ابولو، حبيب الله، جهاد، نصر، وقاص، الشيخ، وداعة، وسيم بخاري، وسيم، غالب، زاهر، اخو حسين تنظيف، جون، سلفادور، حامد، عنايات، محمد بلال</span>).
+                </div>
+                <div class="info-block intruders">
+                    <strong>🚫 ملف الدخلاء:</strong> يمنع بتاتاً تواجد الأشخاص التالية أسماؤهم بالسكن: (<span class="names-inline">شاشا، جان، زبير، عرفان، إبراهيم</span>). المهلة (48 ساعة) للإخلاء. مخالفة ذلك تعني خصم يومين وإنذار فصل نهائي لكل من ساهم بإدخالهم.
+                </div>
+                <div class="info-block fees">
+                    <strong>💰 النظافة والرسوم:</strong> يُلزم الجميع بدفع 20 ريالاً شهرياً (بتاريخ 5 من كل شهر) للأخ قتيبة، لتغطية مواد التنظيف وأعمال النظافة.
+                </div>
+                <div class="info-block note">
+                    ⚠️ ملاحظة: إجراءات الخصم هي مسألة تقنية ونظامية وفق قوانين العمل، وليست مسألة مزاجية.
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- 2. Hindi                              -->
+            <!-- ══════════════════════════════════════ -->
+            <div class="lang-divider">
+                <span class="lang-tag">2. हिंदी | الهندية</span>
+            </div>
+            <div class="lang-section ltr hindi-text" dir="ltr">
+                <h3>आधिकारिक सूचना (अपडेटेड): अनुशासन और गुणवत्ता नियंत्रण - कॉर्नर हाउसिंग</h3>
+                <div class="info-block attendance">
+                    <strong>✅ उपस्थिति:</strong> बैठक में शामिल होने वालों का धन्यवाद: (<span class="names-inline">कुतैबा, हुस्नी, अब्दुल रहमान, अबानौब, अब्दुल्ला अल-कुर्दी, अख्तर, अयमन, कामेल, अब्दुल फत्ताह, मोहम्मद मलिक</span>)‌।
+                </div>
+                <div class="info-block absence">
+                    <strong>❌ अनुपस्थिति दंड (अपडेटेड सूची):</strong> अनुपस्थित रहने वालों के वेतन से कटौती की जाएगी: (<span class="names-inline">अपोलो, हबीबुल्लाह, जिहाद, नस्र, वकास, अल-शेख, वदाआ, वसीम बुखारी, वसीम, गालिब, जाहिर, हुसैन के भाई, जॉन, सल्वाडोर, हामिद, इनायत, मोहम्मद बिलाल</span>)‌।
+                </div>
+                <div class="info-block intruders">
+                    <strong>🚫 बाहरी व्यक्ति:</strong> निम्नलिखित को 48 घंटों के भीतर निकलना होगा: (<span class="names-inline">शाशा, जान, जुबैर, इरफान, इब्राहिम</span>)‌। उल्लंघन करने पर 2 दिन का वेतन काटा जाएगा और अंतिम चेतावनी दी जाएगी‌।
+                </div>
+                <div class="info-block fees">
+                    <strong>💰 शुल्क:</strong> सफाई के लिए हर महीने की 5 तारीख तक कुतैबा को 20 रियाल देने होंगे‌।
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- 3. Urdu                               -->
+            <!-- ══════════════════════════════════════ -->
+            <div class="lang-divider">
+                <span class="lang-tag">3. اردو | الأوردو</span>
+            </div>
+            <div class="lang-section urdu-text" dir="rtl">
+                <h3>آفیشل نوٹس (اپ ڈیٹڈ): نظم و ضبط اور معیار کا کنٹرول - کارنر ہاؤسنگ</h3>
+                <div class="info-block attendance">
+                    <strong>✅ حاضری:</strong> میٹنگ میں شرکت کرنے والوں کا شکریہ: (<span class="names-inline">قتیبہ، حسنی، عبدالرحمن، ابانوب، عبداللہ الکردی، اختر، ایمن، کامل، عبدالفتاح، محمد مالک</span>)۔
+                </div>
+                <div class="info-block absence">
+                    <strong>❌ غیر حاضری پر جرمانہ (اپ ڈیٹڈ لسٹ):</strong> درج ذیل افراد کی تنخواہ سے کٹوتی کی جائے گی: (<span class="names-inline">اپولو، حبیب اللہ، جہاد، نصر، وقاص، الشیخ، وداعہ، وسیم بخاری، وسیم، غالب، زاہر، حسین کا بھائی، جان، سلفادور، حامد، عنایات، محمد بلال</span>)۔
+                </div>
+                <div class="info-block intruders">
+                    <strong>🚫 غیر متعلقہ افراد:</strong> درج ذیل افراد کو 48 گھنٹوں کے اندر نکلنا ہوگا: (<span class="names-inline">شاشا، جان، زبیر، عرفان، ابراہیم</span>)۔ خلاف ورزی پر 2 دن کی تنخواہ کٹے گی اور آخری وارننگ دی جائے گی۔
+                </div>
+                <div class="info-block fees">
+                    <strong>💰 فیس:</strong> صفائ کے لیے ہر ماہ کی 5 تاریخ تک قتیبہ کو 20 ریال ادا کرنا ہوں گے۔
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- 4. Thai                               -->
+            <!-- ══════════════════════════════════════ -->
+            <div class="lang-divider">
+                <span class="lang-tag">4. ภาษาไทย | التايلندية</span>
+            </div>
+            <div class="lang-section ltr thai-text" dir="ltr">
+                <h3>ประกาศอย่างเป็นทางการ (ฉบับปรับปรุง): การควบคุมวินัยและคุณภาพ - ที่พัก Corner</h3>
+                <div class="info-block attendance">
+                    <strong>✅ การเข้าร่วม:</strong> ขอบคุณผู้เข้าร่วมประชุม: (<span class="names-inline">Qutaiba, Husni, Abdulrahman, Abanoub, Abdullah Al-Kurdi, Akhtar, Ayman, Kamel, Abdulfattah, Mohamed Malik</span>).
+                </div>
+                <div class="info-block absence">
+                    <strong>❌ บทลงโทษการขาดประชุม (รายชื่อปรับปรุง):</strong> จะมีการหักเงินเดือนผู้ที่ขาดประชุม ได้แก่: (<span class="names-inline">Apollo, Habibullah, Jihad, Nasr, Waqas, Al-Sheikh, Wada'a, Wasim Bukhari, Wasim, Ghalib, Zaher, Brother of Hussein, John, Salvador, Hamid, Inayat, Mohamed Bilal</span>).
+                </div>
+                <div class="info-block intruders">
+                    <strong>🚫 บุคคลภายนอก:</strong> บุคคลต่อไปนี้ต้องออกจากที่พักภายใน 48 ชั่วโมง: (<span class="names-inline">Shasha, Jan, Zubair, Irfan, Ibrahim</span>). หากฝ่าฝืนจะถูกหักเงินเดือน 2 วันและได้รับคำเตือนไล่ออก.
+                </div>
+                <div class="info-block fees">
+                    <strong>💰 ค่าธรรมเนียม:</strong> ต้องจ่ายเงิน 20 SAR ให้กับ Qutaiba ภายในวันที่ 5 ของทุกเดือนสำหรับค่าทำความสะอาด.
+                </div>
+            </div>
+
+            <!-- ═══ التذييل ═══ -->
+            <div class="print-footer">
+                مستشار التحول الرقمي: عبدالله احمد الكردي | تعميم إداري محدث - سكن كورنر | 7 فبراير 2026
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function exportAsImage() {
+            var btn = document.getElementById('exportBtn');
+            btn.classList.add('loading');
+            btn.innerHTML = '⏳ جاري التصدير...';
+
+            var element = document.getElementById('announcement-content');
+            window.scrollTo(0, 0);
+
+            // Save original styles
+            var origMargin = element.style.margin;
+            var origShadow = element.style.boxShadow;
+            element.style.margin = '0';
+            element.style.boxShadow = 'none';
+
+            var scale = 5;
+
+            // Hide logo image and show text fallback for export
+            var logoImg = document.getElementById('logo-img');
+            var logoFallback = document.getElementById('logo-fallback');
+            if (logoImg) logoImg.style.display = 'none';
+            if (logoFallback) logoFallback.style.display = 'flex';
+
+            // Function to convert image to dataUrl to ensure it appears in export
+            async function toDataUrl(img) {
+                try {
+                    const response = await fetch(img.src);
+                    const blob = await response.blob();
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
+                } catch (e) {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.naturalWidth;
+                        canvas.height = img.naturalHeight;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+                        return canvas.toDataURL('image/png');
+                    } catch (e2) {
+                        return null;
+                    }
+                }
+            }
+
+            // Process images to ensure they show up in export
+            var imgs = element.querySelectorAll('img');
+            var originalSrcs = [];
+            
+            for (let i = 0; i < imgs.length; i++) {
+                let img = imgs[i];
+                originalSrcs.push({ img: img, src: img.src });
+                
+                if (img.complete && img.naturalWidth > 0) {
+                    const dataUrl = await toDataUrl(img);
+                    if (dataUrl) img.src = dataUrl;
+                }
+            }
+
+            setTimeout(function() {
+                domtoimage.toPng(element, {
+                    bgcolor: '#f5f5f0',
+                    width: element.scrollWidth * scale,
+                    height: element.scrollHeight * scale,
+                    quality: 1,
+                    cacheBust: true,
+                    style: {
+                        margin: '0',
+                        boxShadow: 'none',
+                        transform: 'scale(' + scale + ')',
+                        transformOrigin: 'top right'
+                    }
+                }).then(function(dataUrl) {
+                    // Restore styles
+                    element.style.margin = origMargin;
+                    element.style.boxShadow = origShadow;
+                    
+                    // Restore logo
+                    if (logoImg) logoImg.style.display = 'block';
+                    if (logoFallback) logoFallback.style.display = 'none';
+                    
+                    originalSrcs.forEach(item => { item.img.src = item.src; });
+
+                    var link = document.createElement('a');
+                    link.download = 'announcement-corner-housing-7-feb-2026.png';
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    btn.classList.remove('loading');
+                    btn.innerHTML = '✅ تم التصدير بنجاح!';
+                    setTimeout(function() {
+                        btn.innerHTML = '📷 تصدير كصورة واحدة';
+                    }, 3000);
+                }).catch(function(err) {
+                    // Restore styles
+                    element.style.margin = origMargin;
+                    element.style.boxShadow = origShadow;
+                    
+                    // Restore logo
+                    if (logoImg) logoImg.style.display = 'block';
+                    if (logoFallback) logoFallback.style.display = 'none';
+                    
+                    originalSrcs.forEach(item => { item.img.src = item.src; });
+                    console.error('Export error:', err);
+                    btn.classList.remove('loading');
+                    btn.innerHTML = '📷 تصدير كصورة واحدة';
+                    alert('خطأ: ' + err.message);
+                });
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+

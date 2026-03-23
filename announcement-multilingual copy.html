@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قرار إداري رقم (2026/02/07/H) - نظام الرقابة والوصول الرقمي للسكن | مستشار التحول الرقمي: عبدالله احمد الكردي</title>
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Thai:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="constitution-theme.css">
+    <style>
+        :root {
+            --royal-gold: #c9a227;
+            --deep-gold: #8b6914;
+            --antique-gold: #d4af37;
+            --lux-gold: #b8860b;
+            --royal-burgundy: #8b0000;
+            --royal-navy: #1a237e;
+            --parchment: #f5f1e8;
+            --cream: #fefdf8;
+            --ivory: #fffef7;
+            --text-dark: #2c1810;
+            --royal-purple: #4a148c;
+            --frame-margin: 4mm;
+        }
+
+        /* ═══ تحريكات ملكية ═══ */
+        @keyframes pulse-simple {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes shimmer-simple {
+            0% { opacity: 0.7; }
+            100% { opacity: 0.9; }
+        }
+        
+        @keyframes glow-gold {
+            0%, 100% { 
+                text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+                filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.3));
+            }
+            50% { 
+                text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+                filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+            }
+        }
+        
+        @keyframes border-glow {
+            0%, 100% { box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background: #f5f1e8;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin: 0;
+            padding: 0;
+            font-size: 0.58rem;
+        }
+
+        /* ═══ أزرار التحكم ═══ */
+        .controls {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(107,91,46,0.97) 0%, rgba(107,91,46,0.92) 100%);
+            backdrop-filter: blur(8px);
+            padding: 14px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, var(--royal-gold) 0%, var(--antique-gold) 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(184, 134, 11, 0.4);
+            border: 1px solid var(--antique-gold);
+        }
+        .btn-print:hover { box-shadow: 0 6px 20px rgba(184, 134, 11, 0.5); transform: translateY(-1px); }
+
+        .btn-image {
+            background: linear-gradient(180deg, #27ae60 0%, #1e8449 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(39,174,96,0.4);
+            border: 1px solid #2ecc71;
+        }
+        .btn-image:hover { box-shadow: 0 6px 20px rgba(39,174,96,0.5); transform: translateY(-1px); }
+        .btn-image.loading { opacity: 0.7; pointer-events: none; }
+
+        /* ═══ حاوية الإعلان ═══ */
+        #announcement-content {
+            width: 210mm;
+            max-width: 100%;
+            margin: 12px auto;
+            background: transparent;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .inner-frame {
+            border: 3px solid transparent;
+            border-image: linear-gradient(135deg, var(--antique-gold), var(--royal-gold), var(--deep-gold), var(--royal-gold), var(--antique-gold)) 1;
+            margin: var(--frame-margin);
+            padding: 5mm 6mm;
+            position: relative;
+            background: 
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.1'/%3E%3C/svg%3E"),
+                linear-gradient(135deg, 
+                    rgba(255,254,247,0.98) 0%, 
+                    rgba(254,253,248,0.99) 30%,
+                    rgba(255,254,247,0.98) 60%,
+                    rgba(254,250,240,0.99) 100%);
+            background-size: 200px 200px, cover;
+            background-repeat: repeat, no-repeat;
+            box-shadow: 
+                0 4px 20px rgba(212, 175, 55, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                inset 0 0 40px rgba(254, 253, 248, 0.5);
+            z-index: 1;
+        }
+
+        /* ═══ زخرفة ملكية فاخرة ═══ */
+        .inner-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: 
+                radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.06) 0%, transparent 30%),
+                radial-gradient(circle at 85% 15%, rgba(139, 105, 20, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 15% 85%, rgba(139, 105, 20, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.06) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(254, 253, 248, 0.6) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: pulse-simple 8s ease-in-out infinite;
+        }
+        .inner-frame::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 5 L55 45 L95 50 L55 55 L50 95 L45 55 L5 50 L45 45 Z' fill='none' stroke='%23d4af37' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23c9a227' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E");
+            background-size: 80px 80px;
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* ═══ زوايا الإطار الذهبية ═══ */
+        .corner-ornament {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            z-index: 5;
+            opacity: 0.9;
+        }
+        .corner-ornament::before {
+            content: '❖';
+            position: absolute;
+            font-size: 18px;
+            color: var(--antique-gold);
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+            animation: glow-gold 4s ease-in-out infinite;
+        }
+        .corner-top-right { top: 8px; right: 8px; }
+        .corner-top-left { top: 8px; left: 8px; }
+        .corner-bottom-right { bottom: 8px; right: 8px; }
+        .corner-bottom-left { bottom: 8px; left: 8px; }
+
+        /* ═══ شريط الزخرفة العلوي ═══ */
+        .top-ornament-bar {
+            text-align: center;
+            padding: 6px 0;
+            font-size: 16px;
+            color: transparent;
+            background: linear-gradient(90deg, 
+                var(--antique-gold) 0%, 
+                var(--royal-gold) 25%,
+                var(--deep-gold) 50%,
+                var(--royal-gold) 75%,
+                var(--antique-gold) 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            letter-spacing: 8px;
+            opacity: 0.9;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            position: relative;
+            animation: shimmer-simple 8s ease-in-out infinite;
+            margin-bottom: 8px;
+        }
+        .top-ornament-bar::before {
+            content: '✦';
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7em;
+            color: var(--antique-gold);
+            opacity: 0.7;
+            animation: pulse-simple 4s ease-in-out infinite;
+        }
+        .top-ornament-bar::after {
+            content: '✦';
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7em;
+            color: var(--antique-gold);
+            opacity: 0.7;
+            animation: pulse-simple 4s ease-in-out infinite 2s;
+        }
+
+        /* ═══ الرأس ═══ */
+        .print-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+            padding: 4px 0 8px 0;
+            margin-bottom: 10px;
+            font-size: 9px;
+            color: var(--deep-gold);
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            background: transparent;
+            line-height: 1.6;
+            position: relative;
+        }
+        .print-header::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.4) 20%,
+                var(--antique-gold) 50%,
+                rgba(212, 175, 55, 0.4) 80%,
+                transparent 100%);
+            opacity: 0.8;
+        }
+        .print-header::after {
+            content: '✦ ◆ ✦';
+            position: absolute; 
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: var(--antique-gold);
+            letter-spacing: 6px;
+            opacity: 0.7;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+            animation: pulse-simple 6s ease-in-out infinite;
+        }
+        .print-header::after {
+            content: '✦ ◆ ✦';
+            position: absolute; 
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            color: var(--antique-gold);
+            letter-spacing: 5px;
+            opacity: 0.8;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+            animation: pulse-simple 6s ease-in-out infinite;
+        }
+        .header-right { text-align: right; justify-self: stretch; padding-right: 0; }
+        .header-center { text-align: center; justify-self: center; }
+        .header-left { text-align: left; justify-self: stretch; padding-left: 0; }
+        
+        /* ═══ الشعار بحجمه الأصلي ═══ */
+        .print-header .logo-img {
+            height: auto;
+            width: auto;
+            max-height: 70px;
+            max-width: 70px;
+            border: 3px solid var(--antique-gold);
+            border-radius: 10px;
+            padding: 4px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 
+                0 4px 15px rgba(212, 175, 55, 0.3),
+                0 0 20px rgba(212, 175, 55, 0.15),
+                inset 0 0 10px rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, #fffef7 0%, #fefdf8 100%);
+            animation: border-glow 4s ease-in-out infinite;
+        }
+        
+        /* ═══ Logo Fallback للطباعة ═══ */
+        .logo-text-fallback {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--antique-gold) 0%, var(--royal-gold) 50%, var(--deep-gold) 100%);
+            border: 3px solid var(--antique-gold);
+            border-radius: 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .logo-text-fallback::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, transparent 100%);
+        }
+        .logo-text-fallback span {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ═══ العنوان الرئيسي ═══ */
+        .main-title {
+            text-align: center;
+            margin: 1px 0 0 0;
+        }
+        .main-title h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.82rem;
+            color: var(--orange-dark);
+            margin: 0 0 1px 0;
+        }
+        .main-title h2 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.62rem;
+            color: var(--red);
+            font-weight: 400;
+            margin: 0 0 2px 0;
+        }
+
+        /* ═══ مقسمات اللغات ═══ */
+        .lang-divider {
+            display: flex;
+            align-items: center;
+            margin: 4px 0;
+            font-size: 0.7rem;
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+        }
+        .lang-divider::before,
+        .lang-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--antique-gold) 30%, var(--antique-gold) 70%, transparent 100%);
+        }
+        .lang-tag {
+            padding: 0 12px;
+            background: rgba(212, 175, 55, 0.08);
+            border-radius: 12px;
+            color: var(--deep-gold);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        /* ═══ أقسام اللغات ═══ */
+        .lang-section {
+            margin: 2px 0 4px 0;
+            direction: rtl;
+            font-size: 0.62rem;
+            line-height: 1.4;
+        }
+        .lang-section.ltr {
+            direction: ltr;
+            text-align: left;
+        }
+        .lang-section h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.72rem;
+            color: var(--deep-gold);
+            margin: 0 0 3px 0;
+            font-weight: 700;
+        }
+
+        /* ═══ صناديق المعلومات ═══ */
+        .info-block {
+            margin: 2px 0;
+            padding: 3px 5px;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            line-height: 1.4;
+        }
+        .info-block.attendance {
+            background: rgba(46, 204, 113, 0.05);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            border-right-width: 3px;
+            border-right-color: var(--antique-gold);
+        }
+        .lang-section.ltr .info-block.attendance {
+            border-right-width: 1px;
+            border-right-color: rgba(46, 204, 113, 0.2);
+            border-left-width: 3px;
+            border-left-color: var(--antique-gold);
+        }
+        .info-block.absence {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-right-width: 3px;
+            border-right-color: var(--royal-gold);
+        }
+        .lang-section.ltr .info-block.absence {
+            border-right-width: 1px;
+            border-right-color: rgba(212, 175, 55, 0.2);
+            border-left-width: 3px;
+            border-left-color: var(--royal-gold);
+        }
+        .info-block.intruders {
+            background: rgba(139, 105, 20, 0.05);
+            border: 1px solid rgba(139, 105, 20, 0.2);
+            border-right-width: 3px;
+            border-right-color: var(--deep-gold);
+        }
+        .lang-section.ltr .info-block.intruders {
+            border-right-width: 1px;
+            border-right-color: rgba(139, 105, 20, 0.2);
+            border-left-width: 3px;
+            border-left-color: var(--deep-gold);
+        }
+        .info-block.fees {
+            background: rgba(201, 162, 39, 0.05);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            border-right-width: 3px;
+            border-right-color: var(--royal-gold);
+        }
+        .lang-section.ltr .info-block.fees {
+            border-right-width: 1px;
+            border-right-color: rgba(201, 162, 39, 0.2);
+            border-left-width: 3px;
+            border-left-color: var(--royal-gold);
+        }
+        .info-block.surveillance {
+            background: rgba(41, 128, 185, 0.05);
+            border: 1px solid rgba(41, 128, 185, 0.2);
+            border-right-width: 3px;
+            border-right-color: #2980b9;
+        }
+        .lang-section.ltr .info-block.surveillance {
+            border-right-width: 1px;
+            border-right-color: rgba(41, 128, 185, 0.2);
+            border-left-width: 3px;
+            border-left-color: #2980b9;
+        }
+        .info-block.note {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px dashed var(--antique-gold);
+            text-align: center;
+            font-weight: bold;
+            color: var(--deep-gold);
+        }
+
+        .info-block strong {
+            color: var(--deep-gold);
+        }
+
+        .names-inline {
+            display: inline;
+            font-weight: 600;
+        }
+
+        /* ═══ التذييل ═══ */
+        .print-footer {
+            border-top: 3px solid var(--royal-gold);
+            padding: 6px 0 0 0;
+            margin-top: 8px;
+            text-align: center;
+            font-size: 7px;
+            color: var(--deep-gold);
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            line-height: 1.6;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.05) 20%,
+                rgba(212, 175, 55, 0.1) 50%,
+                rgba(212, 175, 55, 0.05) 80%,
+                transparent 100%);
+        }
+
+        /* ═══ الفاصل الذهبي الفاخر ═══ */
+        .gold-divider {
+            height: 6px;
+            background: 
+                linear-gradient(90deg, 
+                    transparent 0%, 
+                    rgba(139, 0, 0, 0.08) 5%,
+                    rgba(212,175,55,0.3) 15%, 
+                    var(--royal-gold) 30%,
+                    var(--antique-gold) 50%, 
+                    var(--royal-gold) 70%,
+                    rgba(212,175,55,0.3) 85%,
+                    rgba(139, 0, 0, 0.08) 95%,
+                    transparent 100%);
+            background-size: 200% 100%;
+            margin: 8px auto;
+            max-width: 80%;
+            border-radius: 3px;
+            box-shadow: 
+                0 2px 8px rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            position: relative;
+            animation: shimmer-simple 10s ease-in-out infinite;
+        }
+        .gold-divider::after {
+            content: '◦ ✦ ◆ ✦ ◦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8px;
+            color: var(--antique-gold);
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+            letter-spacing: 4px;
+            animation: pulse-simple 3s ease-in-out infinite;
+            background: var(--parchment);
+            padding: 0 10px;
+        }
+
+        /* ═══ زخرفة سفلية ═══ */
+        .ornament {
+            text-align: center;
+            font-size: 12px;
+            color: var(--royal-gold);
+            margin: 6px 0;
+            letter-spacing: 0.5em;
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+            opacity: 0.9;
+        }
+
+        /* ═══ Hindi font ═══ */
+        .hindi-text { font-family: 'Noto Sans Devanagari', 'Amiri', serif; }
+        .thai-text { font-family: 'Noto Sans Thai', 'Amiri', serif; }
+        .urdu-text { font-family: 'Noto Nastaliq Urdu', 'Amiri', serif; }
+
+        /* ═══ الطباعة ═══ */
+        @page { size: A4; margin: 12mm; }
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-sizing: border-box; }
+            html, body { background: white !important; margin: 0 !important; padding: 0 !important; }
+            .controls { display: none !important; }
+            #announcement-content {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                background: white !important;
+            }
+            .inner-frame {
+                background: white !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 8mm !important;
+                border: 2px solid var(--antique-gold) !important;
+            }
+            .inner-frame::before,
+            .inner-frame::after {
+                display: none !important;
+            }
+            
+            /* ضمان ظهور الشعار عند الطباعة */
+            .logo-img {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                max-height: 70px !important;
+                max-width: 70px !important;
+            }
+            .logo-text-fallback {
+                display: none !important;
+            }
+            .print-header {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .corner-ornament {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .top-ornament-bar {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .gold-divider {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ أزرار التحكم ═══ -->
+    <div class="controls no-print">
+        <button onclick="window.print()" class="btn btn-print">
+            🖨️ طباعة / PDF
+        </button>
+        <button onclick="exportAsImage()" class="btn btn-image" id="exportBtn">
+            📷 تصدير كصورة واحدة
+        </button>
+    </div>
+
+    <!-- ═══ محتوى الإعلان ═══ -->
+    <div id="announcement-content">
+        <div class="inner-frame">
+            
+            <!-- ═══ زخارف الأركان ═══ -->
+            <div class="corner-ornament corner-top-right"></div>
+            <div class="corner-ornament corner-top-left"></div>
+            <div class="corner-ornament corner-bottom-right"></div>
+            <div class="corner-ornament corner-bottom-left"></div>
+
+            <!-- ═══ الرأس ═══ -->
+            <div class="print-header">
+                <div class="header-right">
+                    شركة صرح الإتقان<br>
+                    Sarah Alitqan Company<br>
+                    <span style="font-size: 9px;">الرقم الضريبي: 311697879500003</span>
+                </div>
+                <div class="header-center">
+                    <img src="logo.png" alt="شعار صرح الإتقان" class="logo-img" id="logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
+                    <div class="logo-text-fallback" id="logo-fallback"><span>صرح<br>الإتقان</span></div>
+                </div>
+                <div class="header-left">
+                    مستشار التحول الرقمي:<br>عبدالله احمد الكردي
+                </div>
+            </div>
+
+            <!-- ═══ شريط الزخرفة ═══ -->
+            <div class="top-ornament-bar">✦ ◆ ◇ ✦ ◇ ◆ ✦</div>
+            <div class="gold-divider"></div>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- 1. العربية                             -->
+            <!-- ══════════════════════════════════════ -->
+            <div class="lang-divider">
+                <span class="lang-tag">1. اللغة العربية</span>
+            </div>
+            <div class="lang-section">
+              
+                <div style="text-align: center; font-size: 0.95rem; font-weight: bold; color: var(--royal-gold); margin-bottom: 6px;">تحديث تقني: نظام الرقابة والوصول  للسكن</div>
+                <div style="text-align: center; font-size: 0.75rem; color: var(--deep-gold); margin-bottom: 8px;">IT & Surveillance Dept | إدارة تقنية المعلومات والرقابة</div>
+                
+                <div class="info-block note">
+                    <strong>بناءً على مقتضيات المصلحة العامة وضمان أمن مرافق المجموعة، تقرر اعتماد البروتوكول التالي:</strong>
+                </div>
+                
+                <div class="info-block fees">
+                    <strong>1. عهدة الوصول (Key Access Control)</strong><br>
+                    <strong>العهدة الأساسية:</strong> تظل النسخ الرئيسية للمفاتيح (Master Keys) بعهدة المسؤولين المباشرين: (<span class="names-inline">عبدالله الكردي، أيمن المحاسب، الشيخ، حسني، قتيبة</span>).<br><br>
+                    <strong>حق النسخ الفردي:</strong> يُسمح لجميع الموظفين القاطنين بالحصول على نسخة مفتاح خاصة بهم على حسابهم الشخصي، وتُعتبر هذه النسخة عهدة شخصية تقع مسؤولية استخدامها على عاتق حاملها نظاماً.
+                </div>
+                
+                <div class="info-block attendance">
+                    <strong>2. بروتوكول التشغيل والأمان</strong><br>
+                    <strong>إغلاق البوابة:</strong> البوابة "مغلقة" تقنياً بصفة دائمة.<br><br>
+                    <strong>الاستخدام المصرح:</strong> يُسمح باستخدام المفاتيح للدخول والخروج في أوقات (الاستراحات، خارج ساعات الدوام الرسمية، الحالات الطارئة).
+                </div>
+                
+                <div class="info-block intruders">
+                    <strong>3. المخالفات والجزاءات المباشرة (Penalties)</strong><br>
+                    يتم الرصد عبر نظام مكون من (3) كاميرات مراقبة حرارية متصلة بمركز البيانات. سيتم إيقاع الخصم من الراتب مباشرة في الحالات التالية:<br><br>
+                    <strong>إدخال الغرباء:</strong> إدخال أي شخص غير مسجل في "نظام السكن" دون إذن مسبق من الإدارة.<br><br>
+                    <strong>الثغرات الأمنية:</strong> ترك باب السكن مفتوحاً (عن عمد أو إهمال).<br><br>
+                    <strong>الجزاء المقرر:</strong> خصم يومين من الراتب + إنذار نهائي بالفصل.
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- 2. Hindi                              -->
+            <!-- ══════════════════════════════════════ -->
+            <div class="lang-divider">
+                <span class="lang-tag">2. हिंदी | الهندية</span>
+            </div>
+            <div class="lang-section ltr hindi-text" dir="ltr">
+                <h3>Hindi (हिंदी):</h3>
+                <div class="info-block fees">
+                    <strong>चाबियाँ केवल निर्दिष्ट अधिकारियों के पास हैं, लेकिन सभी निवासियों को अपने खर्च पर अपनी निजी चाबी लेने का अधिकार है।</strong>
+                </div>
+                <div class="info-block intruders">
+                    <strong>किसी भी बाहरी व्यक्ति को अंदर लाना या दरवाजा खुला छोड़ना सख्त मना है।</strong>
+                </div>
+                <div class="info-block absence">
+                    <strong>दंड: 2 दिन की कटौती और अंतिम चेतावनी। 3 थर्मल कैमरे गेट की निगरानी कर रहे हैं‌।</strong>
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- 3. Urdu                               -->
+            <!-- ══════════════════════════════════════ -->
+            <div class="lang-divider">
+                <span class="lang-tag">3. اردو | الأوردو</span>
+            </div>
+            <div class="lang-section urdu-text" dir="rtl">
+                <h3>Urdu (اردو):</h3>
+                <div class="info-block fees">
+                    <strong>چابیاں صرف مخصوص حکام کے پاس ہیں، لیکن تمام رہائشیوں کو اپنے خرچے پر اپنی نجی چابی حاصل کرنے کا حق ہے۔</strong>
+                </div>
+                <div class="info-block intruders">
+                    <strong>کسی غیر شخص کو اندر لانا یا دروازہ کھلا چھوڑنا سخت منع ہے۔</strong>
+                </div>
+                <div class="info-block absence">
+                    <strong>جرمانہ: 2 دن کی کٹوتی اور فائنل وارننگ۔ گیٹ کی 3 تھرمل کیمروں سے نگرانی کی جا رہی ہے۔</strong>
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- 4. Tagalog/Filipino                   -->
+            <!-- ══════════════════════════════════════ -->
+            <div class="lang-divider">
+                <span class="lang-tag">4. Tagalog (Filipino)</span>
+            </div>
+            <div class="lang-section ltr" dir="ltr">
+                <h3>Tagalog (Filipino):</h3>
+                <div class="info-block fees">
+                    <strong>Ang mga pangunahing susi ay nasa mga opisyal, ngunit ang lahat ng mga residente ay may karapatang kumuha ng kanilang sariling kopya ng susi sa sarili nilang gastos.</strong>
+                </div>
+                <div class="info-block intruders">
+                    <strong>Bawal magpapasok ng kahit sino o iwanang bukas ang pinto.</strong>
+                </div>
+                <div class="info-block absence">
+                    <strong>Parusa: 2 araw na kaltas sa sahod at final warning. May 3 thermal CCTV camera na nakabantay.</strong>
+                </div>
+            </div>
+
+            <!-- ═══ التذييل ═══ -->
+            <div class="ornament" style="font-size: 14px; margin: 10px 0 6px 0; color: var(--antique-gold); animation: pulse-simple 10s ease-in-out infinite;">✦ ◆ ♦ ◆ ✦</div>
+            <div class="print-footer">
+                شركة صرح الإتقان | Sarah Alitqan Company | الرقم الضريبي: 311697879500003<br>
+                مستشار التحول الرقمي: عبدالله احمد الكردي | قرار إداري رقم (2026/02/07/H) - نظام الرقابة والوصول الرقمي للسكن | 7 فبراير 2026
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function exportAsImage() {
+            const btn = document.getElementById('exportBtn');
+            const element = document.getElementById('announcement-content');
+            
+            btn.classList.add('loading');
+            btn.innerHTML = '⏳ جاري التصدير...';
+            
+            // انتظر تحميل الشعار
+            const logoImg = document.getElementById('logo-img');
+            if (logoImg && !logoImg.complete) {
+                await new Promise(resolve => {
+                    logoImg.onload = resolve;
+                    logoImg.onerror = resolve;
+                    setTimeout(resolve, 2000);
+                });
+            }
+            
+            try {
+                const dataUrl = await htmlToImage.toPng(element, {
+                    quality: 1.0,
+                    pixelRatio: 3,
+                    backgroundColor: '#f5f1e8',
+                    cacheBust: true,
+                    skipAutoScale: false,
+                    fetchRequestInit: {
+                        mode: 'cors',
+                        cache: 'no-cache'
+                    },
+                    filter: function(node) {
+                        // تأكد من عدم استبعاد الشعار
+                        return true;
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = 'قرار-إداري-نظام-الرقابة-والوصول-الرقمي-للسكن-7-فبراير-2026.png';
+                link.href = dataUrl;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                btn.classList.remove('loading');
+                btn.innerHTML = '✅ تم التصدير بنجاح!';
+                setTimeout(function() {
+                    btn.innerHTML = '📷 تصدير كصورة واحدة';
+                }, 3000);
+                
+            } catch(err) {
+                console.error('Export error:', err);
+                btn.classList.remove('loading');
+                btn.innerHTML = '📷 تصدير كصورة واحدة';
+                alert('خطأ: ' + err.message);
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ الوثائق الرسمية - صرح الإتقان</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --deep-gold: #6b5b2e;
+            --antique: #b8860b;
+            --bg: #f7f4ed;
+            --card: rgba(255, 255, 255, 0.7);
+            --border: rgba(212,175,55,0.2);
+            --frame: 15mm;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --shadow-soft: 0 8px 32px rgba(107, 91, 46, 0.12);
+        }
+        * { 
+            box-sizing: border-box; 
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background: linear-gradient(135deg, #f7f4ed 0%, #ffffff 50%, #f7f4ed 100%);
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ══════ شريط علوي عصري ══════ */
+        .topbar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, rgba(107,91,46,0.97) 0%, rgba(107,91,46,0.92) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            font-family: 'Reem Kufi', sans-serif;
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(212,175,55,0.2);
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+        }
+        .topbar a {
+            color: #f4e4b8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+        }
+        .topbar a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+        .topbar h1 { 
+            font-size: 1.2rem; 
+            flex: 1;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .topbar-btn {
+            border: 0;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, var(--antique) 0%, var(--gold) 100%);
+            box-shadow: 0 4px 12px rgba(184,134,11,0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .topbar-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .topbar-btn:hover::before {
+            left: 100%;
+        }
+        
+        .topbar-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(184,134,11,0.35);
+        }
+        
+        .topbar-btn.danger { background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%); }
+        .topbar-btn.green  { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+
+        /* ══════ التخطيط الرئيسي ══════ */
+        .workspace {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 280px 1fr 280px;
+            gap: 0;
+            min-height: 0;
+        }
+
+        /* ══════ اللوحة الجانبية - المكونات ══════ */
+        .sidebar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-left: 1px solid var(--border);
+            padding: 20px 16px;
+            overflow-y: auto;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 60px;
+            box-shadow: inset 1px 0 0 rgba(255,255,255,0.5);
+        }
+        .sidebar h2 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--deep-gold);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gold);
+            letter-spacing: -0.01em;
+        }
+        .sidebar h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--deep-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 18px 0 8px;
+            opacity: 0.85;
+        }
+
+        .component-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            cursor: grab;
+            background: rgba(255,255,255,0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.9rem;
+            color: var(--deep-gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .component-item:active { 
+            cursor: grabbing; 
+            transform: scale(0.98) translateX(-2px); 
+        }
+        .component-item:hover { 
+            background: rgba(255,255,255,0.85);
+            border-color: var(--gold);
+            transform: translateX(-4px);
+            box-shadow: 
+                0 4px 12px rgba(212,175,55,0.15),
+                -3px 0 0 var(--gold);
+        }
+        .component-item .ci-icon { font-size: 20px; }
+
+        /* ══════ منطقة المعاينة المركزية ══════ */
+        .preview-area {
+            overflow-y: auto;
+            padding: 32px;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(212,175,55,0.04) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(184,134,11,0.03) 0%, transparent 50%);
+        }
+
+        /* ورقة A4 */
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            background: 
+                linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(252,252,252,0.99) 50%, rgba(255,255,255,0.98) 100%);
+            position: relative;
+            box-shadow: 
+                0 8px 40px rgba(0,0,0,0.12),
+                0 2px 12px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255,255,255,1);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 8px;
+            flex-shrink: 0;
+            margin-bottom: 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .a4-page:hover {
+            box-shadow: 
+                0 12px 50px rgba(0,0,0,0.15),
+                0 4px 16px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,1);
+        }
+
+        /* ═══ ثيمات إضافية ═══ */
+        body.theme-blue { --gold: #2980b9; --deep-gold: #2c3e50; --antique: #3498db; }
+        body.theme-maroon { --gold: #800000; --deep-gold: #4a0000; --antique: #a52a2a; }
+        body.theme-silver { --gold: #7f8c8d; --deep-gold: #2c3e50; --antique: #95a5a6; }
+
+        .theme-swatch {
+            width: 100%; 
+            height: 36px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            border: 2px solid transparent; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            margin-bottom: 8px; 
+            font-family: 'Reem Kufi', sans-serif; 
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .theme-swatch:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .ts-gold { background: linear-gradient(90deg, #b8860b, #d4af37); border-color: #fff; }
+        .ts-blue { background: linear-gradient(90deg, #2980b9, #3498db); }
+        .ts-maroon { background: linear-gradient(90deg, #800000, #a52a2a); }
+        .ts-silver { background: linear-gradient(90deg, #7f8c8d, #95a5a6); }
+        .theme-swatch.active { border-color: #000; box-shadow: 0 0 0 2px var(--gold); }
+
+        .page-frame {
+            position: absolute;
+            top: var(--frame);
+            right: var(--frame);
+            bottom: var(--frame);
+            left: var(--frame);
+            border: 3px double var(--gold);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .page-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px; right: 8px; bottom: 8px; left: 8px;
+            border: 1px solid rgba(212,175,55,0.25);
+        }
+        .frame-corner { position: absolute; z-index: 2; border-color: rgba(184,134,11,0.9); border-style: solid; border-width: 0; pointer-events: none; }
+        .frame-corner { width: calc(var(--frame) - 5mm); height: calc(var(--frame) - 5mm); }
+        .frame-corner.tr { top: 5mm; right: 5mm; border-top-width: 3px; border-right-width: 3px; }
+        .frame-corner.tl { top: 5mm; left: 5mm; border-top-width: 3px; border-left-width: 3px; }
+        .frame-corner.br { bottom: 5mm; right: 5mm; border-bottom-width: 3px; border-right-width: 3px; }
+        .frame-corner.bl { bottom: 5mm; left: 5mm; border-bottom-width: 3px; border-left-width: 3px; }
+
+        .corner-ornament { position: absolute; font-size: 24px; color: var(--gold); opacity: 0.9; pointer-events: none; z-index: 4; }
+        .corner-ornament::before { content: '❧'; }
+        .co-tr { top: 10mm; right: 10mm; }
+        .co-tl { top: 10mm; left: 10mm; transform: scaleX(-1); }
+        .co-br { bottom: 10mm; right: 10mm; transform: scaleY(-1); }
+        .co-bl { bottom: 10mm; left: 10mm; transform: scale(-1); }
+
+        .page-inner {
+            position: relative;
+            z-index: 3;
+            padding: 22mm;
+            min-height: calc(297mm - 0mm);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ══════ ترويسة ثابتة ══════ */
+        .doc-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 11px;
+            color: var(--deep-gold);
+            font-weight: 700;
+            line-height: 1.5;
+        }
+        .doc-header .h-right { text-align: right; }
+        .doc-header .h-center { text-align: center; }
+        .doc-header .h-left { text-align: left; }
+        .doc-header .logo-img {
+            height: 60px;
+            width: 80px;
+            display: inline-block;
+        }
+        .doc-header .logo-img svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ══════ منطقة الإسقاط ══════ */
+        .drop-zone {
+            flex: 1;
+            min-height: 120px;
+            position: relative;
+        }
+        .drop-zone.drag-over::before {
+            content: 'أفلت هنا';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212,175,55,0.08);
+            border: 2px dashed var(--antique);
+            border-radius: 8px;
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .drop-zone:empty::after {
+            content: 'اسحب المكونات وأفلتها هنا لبناء الوثيقة';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            color: rgba(107,91,46,0.35);
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* ══════ مكون مضاف ══════ */
+        .block {
+            position: relative;
+            padding: 8px 0;
+            margin-bottom: 6px;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            transition: border-color 0.2s;
+        }
+        .block:hover, .block.selected {
+            border-color: var(--antique);
+            background: rgba(255,249,237,0.35);
+        }
+        .block .block-handle {
+            position: absolute;
+            top: 2px;
+            left: -28px;
+            width: 22px;
+            height: 22px;
+            cursor: grab;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--gold);
+            border-radius: 4px;
+            background: rgba(255,249,237,0.8);
+            border: 1px solid var(--border);
+        }
+        .block:hover .block-handle, .block.selected .block-handle { display: flex; }
+        .block .block-delete {
+            position: absolute;
+            top: 2px;
+            left: -54px;
+            width: 22px; height: 22px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: #c0392b;
+            border-radius: 4px;
+            background: rgba(255,240,240,0.9);
+            border: 1px solid rgba(192,57,43,0.3);
+        }
+        .block:hover .block-delete, .block.selected .block-delete { display: flex; }
+
+        /* أنماط المكونات */
+        .block [contenteditable] { outline: none; }
+        .block [contenteditable]:focus { background: rgba(255,249,237,0.3); border-radius: 4px; }
+
+        .blk-title { text-align: center; font-family: 'Reem Kufi', sans-serif; font-size: 18pt; font-weight: bold; color: var(--deep-gold); padding: 4px 8px; }
+        .blk-subtitle { text-align: center; font-family: 'Reem Kufi', sans-serif; font-size: 14pt; font-weight: bold; color: var(--deep-gold); padding: 4px 8px; }
+        .blk-paragraph { font-size: 12pt; line-height: 1.9; text-align: justify; padding: 4px 8px; }
+        .blk-divider { height: 4px; background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.2) 10%, var(--antique) 50%, rgba(212,175,55,0.2) 90%, transparent 100%); margin: 12px auto; max-width: 350px; border-radius: 2px; }
+        .blk-box {
+            border: 2px solid rgba(212,175,55,0.65);
+            background: linear-gradient(135deg, rgba(255,254,249,0.98) 0%, rgba(255,249,237,0.65) 50%, rgba(250,248,243,0.95) 100%);
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-size: 12pt;
+            line-height: 1.8;
+            position: relative;
+        }
+        .blk-box::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(180deg, var(--gold), rgba(212,175,55,0.5), var(--deep-gold));
+        }
+        .blk-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 14px;
+            font-size: 11pt;
+            line-height: 1.7;
+        }
+        .blk-sig {
+            text-align: left;
+            margin-top: 16px;
+            line-height: 1.8;
+            font-size: 12pt;
+        }
+        .blk-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid var(--antique);
+            font-size: 11pt;
+        }
+        .blk-table th {
+            background: linear-gradient(180deg, rgba(212,175,55,0.95) 0%, var(--gold) 30%, var(--deep-gold) 100%);
+            color: #fff;
+            padding: 6px 8px;
+            border: 1px solid var(--deep-gold);
+            font-family: 'Reem Kufi', sans-serif;
+        }
+        .blk-table td {
+            padding: 6px 8px;
+            border: 1px solid #e8e4dc;
+            text-align: center;
+        }
+        .blk-table tr:nth-child(even) { background: #fdfcf9; }
+        .blk-list { font-size: 12pt; line-height: 1.9; padding-right: 1.5rem; }
+        .blk-list li { margin-bottom: 6px; }
+
+        /* ══════ عناصر احترافية جديدة ══════ */
+        .blk-image {
+            text-align: center;
+            padding: 12px;
+            background: rgba(255,249,237,0.3);
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            position: relative;
+        }
+        .blk-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+        .blk-image input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .blk-quote {
+            border-right: 5px solid var(--gold);
+            background: linear-gradient(90deg, rgba(212,175,55,0.08) 0%, transparent 100%);
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-style: italic;
+            font-size: 13pt;
+            line-height: 1.8;
+            position: relative;
+        }
+        .blk-quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 60px;
+            color: var(--antique);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .blk-alert {
+            border: 2px solid #e74c3c;
+            background: linear-gradient(135deg, rgba(231,76,60,0.08) 0%, rgba(231,76,60,0.02) 100%);
+            padding: 16px;
+            border-radius: 8px;
+            border-right-width: 6px;
+            position: relative;
+            padding-right: 50px;
+        }
+        .blk-alert::before {
+            content: '⚠️';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 24px;
+        }
+
+        .blk-note {
+            border: 2px solid #3498db;
+            background: linear-gradient(135deg, rgba(52,152,219,0.08) 0%, rgba(52,152,219,0.02) 100%);
+            padding: 16px;
+            border-radius: 8px;
+            border-right-width: 6px;
+            position: relative;
+            padding-right: 50px;
+        }
+        .blk-note::before {
+            content: '📌';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 24px;
+        }
+
+        .blk-timeline {
+            position: relative;
+            padding-right: 30px;
+            border-right: 3px solid var(--gold);
+        }
+        .blk-timeline-item {
+            position: relative;
+            padding: 12px 18px 12px 0;
+            margin-bottom: 16px;
+        }
+        .blk-timeline-item::before {
+            content: '●';
+            position: absolute;
+            right: -9px;
+            top: 12px;
+            color: var(--gold);
+            font-size: 18px;
+            background: #fff;
+        }
+        .blk-timeline-item strong {
+            display: block;
+            color: var(--deep-gold);
+            font-family: 'Reem Kufi', sans-serif;
+            margin-bottom: 4px;
+        }
+
+        .blk-card {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255,254,249,0.95) 0%, rgba(255,249,237,0.8) 100%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .blk-card-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 16pt;
+            font-weight: bold;
+            color: var(--deep-gold);
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--antique);
+        }
+
+        .blk-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 10px 0;
+        }
+        .blk-column {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: rgba(255,249,237,0.2);
+        }
+
+        /* ══════ العلامات الأمنية ══════ */
+        .security-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 72px;
+            font-family: 'Reem Kufi', sans-serif;
+            color: rgba(212,175,55,0.05);
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+            white-space: nowrap;
+        }
+        .security-seal {
+            border: 3px double var(--gold);
+            background: linear-gradient(135deg, rgba(255,254,249,0.98) 0%, rgba(255,249,237,0.95) 100%);
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-top: 16px;
+            font-size: 8pt;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(184,134,11,0.2);
+        }
+        .security-seal-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: bold;
+            color: var(--deep-gold);
+            margin-bottom: 8px;
+            text-align: center;
+            font-size: 9pt;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 4px;
+        }
+        .security-info {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 8px;
+            font-size: 7pt;
+            color: var(--deep-gold);
+        }
+        .security-info span:nth-child(odd) {
+            font-weight: bold;
+        }
+        .security-hash {
+            font-family: 'Courier New', monospace;
+            font-size: 6pt;
+            word-break: break-all;
+            background: rgba(212,175,55,0.08);
+            padding: 4px 6px;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .qr-code-container {
+            text-align: center;
+            margin-top: 10px;
+            padding: 8px;
+            background: #fff;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* ══════ تذييل ثابت ══════ */
+        .doc-footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(212,175,55,0.4);
+            padding-top: 6px;
+            text-align: center;
+            font-size: 9pt;
+            color: var(--deep-gold);
+        }
+
+        /* ══════ لوحة الخصائص ══════ */
+        .props-panel {
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            padding: 14px;
+            overflow-y: auto;
+            height: calc(100vh - 52px);
+            position: sticky;
+            top: 52px;
+        }
+        .props-panel h2 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--deep-gold);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--antique);
+        }
+        .prop-row { margin-bottom: 10px; }
+        .prop-row label {
+            display: block;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.82rem;
+            color: var(--deep-gold);
+            margin-bottom: 4px;
+        }
+        .prop-field {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-family: 'Amiri', serif;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+        .prop-field:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(184,134,11,0.1); }
+
+        .props-panel .prop-section {
+            margin-top: 18px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+        .prop-hint {
+            font-size: 0.78rem;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        /* ══════ الطباعة ══════ */
+        @media print {
+            body { background: #fff; }
+            .topbar, .sidebar, .props-panel { display: none !important; }
+            .workspace { display: block; }
+            .preview-area { padding: 0; height: auto; overflow: visible; }
+            .a4-page { width: 210mm; min-height: 297mm; margin: 0; box-shadow: none; border: none; }
+        }
+
+        /* ══════ Responsive ══════ */
+        @media (max-width: 1100px) {
+            .workspace { grid-template-columns: 1fr; }
+            .sidebar, .props-panel { position: static; height: auto; max-height: 300px; }
+            .preview-area { height: auto; min-height: 600px; }
+        }
+
+        /* ════════════════════════════════════════════════════════ */
+        /*               ✦ الطابع الملكي — زخارف وشفافيات وسحر ✦               */
+        /* ════════════════════════════════════════════════════════ */
+
+        /* نسيج ورق عتيق */
+        body {
+            background:
+                radial-gradient(ellipse at 15% 15%, rgba(212,175,55,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 85%, rgba(184,134,11,0.04) 0%, transparent 50%),
+                linear-gradient(180deg, #d8d0c0 0%, #e2dcd0 50%, #d5cdc0 100%) !important;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* حركات */
+        @keyframes goldShimmer {
+            0% { background-position: -300% center; }
+            100% { background-position: 300% center; }
+        }
+        @keyframes pulseAura {
+            0%, 100% { box-shadow: 0 2px 8px rgba(184,134,11,0.3); }
+            50% { box-shadow: 0 2px 8px rgba(184,134,11,0.3), 0 0 25px rgba(212,175,55,0.2); }
+        }
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes glowBorder {
+            0%, 100% { border-color: rgba(212,175,55,0.3); }
+            50% { border-color: rgba(212,175,55,0.6); }
+        }
+        @keyframes cornerPulse {
+            0%, 100% { opacity: 0.85; text-shadow: 0 0 10px rgba(212,175,55,0.3); }
+            50% { opacity: 1; text-shadow: 0 0 20px rgba(212,175,55,0.5), 0 0 40px rgba(212,175,55,0.2); }
+        }
+
+        /* الشريط العلوي - ملكي */
+        .topbar {
+            background: linear-gradient(180deg,
+                rgba(70,60,30,0.98) 0%,
+                rgba(90,77,40,0.97) 40%,
+                rgba(107,91,46,0.96) 100%) !important;
+            border-bottom: 2px solid rgba(212,175,55,0.5) !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+        .topbar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; right: -100%; bottom: 0;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(212,175,55,0.04) 30%,
+                rgba(255,249,237,0.1) 50%,
+                rgba(212,175,55,0.04) 70%,
+                transparent 100%);
+            background-size: 200% 100%;
+            animation: goldShimmer 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .topbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 5%; right: 5%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.7), transparent);
+        }
+        .topbar > * { position: relative; z-index: 1; }
+
+        /* اللوحات الجانبية - زجاج بلوري */
+        .sidebar, .props-panel {
+            backdrop-filter: blur(16px) saturate(1.3) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+            background: linear-gradient(180deg,
+                rgba(255,254,249,0.90) 0%,
+                rgba(250,248,243,0.86) 50%,
+                rgba(255,254,249,0.90) 100%) !important;
+        }
+        /* ضمان z-index صحيح لمنطقة العمل */
+        .workspace { position: relative; z-index: 1; }
+        .topbar { z-index: 500 !important; }
+        .sidebar::before, .props-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+            z-index: 10;
+        }
+        /* نقش هندسي خلفي خفيف */
+        .sidebar::after, .props-panel::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(212,175,55,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(184,134,11,0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* عناوين اللوحات */
+        .sidebar h2, .props-panel h2 {
+            position: relative !important;
+            padding-bottom: 10px !important;
+        }
+        .sidebar h2::after, .props-panel h2::after {
+            content: '✦';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-size: 10px;
+            opacity: 0.5;
+        }
+
+        /* المكونات القابلة للسحب */
+        .component-item {
+            background: linear-gradient(135deg,
+                rgba(255,250,240,0.85) 0%,
+                rgba(255,254,249,0.7) 100%) !important;
+            border: 1px dashed rgba(212,175,55,0.25) !important;
+            transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94) !important;
+            position: relative !important;
+            overflow: visible !important;
+            animation: fadeSlideIn 0.4s ease-out backwards;
+        }
+        .component-item > * { position: relative; z-index: 1; }
+        .component-item:nth-child(1) { animation-delay: 0.03s; }
+        .component-item:nth-child(2) { animation-delay: 0.06s; }
+        .component-item:nth-child(3) { animation-delay: 0.09s; }
+        .component-item:nth-child(4) { animation-delay: 0.12s; }
+        .component-item:nth-child(5) { animation-delay: 0.15s; }
+        .component-item:nth-child(6) { animation-delay: 0.18s; }
+        .component-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,249,237,0.35), transparent);
+            transition: left 0.5s ease;
+            pointer-events: none;
+        }
+        .component-item:hover {
+            background: linear-gradient(135deg,
+                rgba(255,249,237,0.95) 0%,
+                rgba(255,254,249,0.9) 100%) !important;
+            border-style: solid !important;
+            border-color: rgba(212,175,55,0.5) !important;
+            box-shadow: 0 4px 18px rgba(184,134,11,0.18), inset 0 0 20px rgba(255,249,237,0.5) !important;
+        }
+        .component-item:hover::after { left: 100%; }
+
+        /* أزرار الشريط العلوي */
+        .topbar-btn {
+            position: relative !important;
+            overflow: hidden !important;
+            transition: all 0.3s ease !important;
+        }
+        .topbar-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s ease;
+            pointer-events: none;
+        }
+        .topbar-btn:hover::before { left: 100%; }
+        .topbar-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important; }
+
+        /* الورقة A4 - توهج وعمق */
+        .a4-page {
+            box-shadow:
+                0 4px 20px rgba(0,0,0,0.08),
+                0 12px 44px rgba(0,0,0,0.06),
+                0 0 60px rgba(212,175,55,0.07),
+                inset 0 0 0 1px rgba(255,255,255,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.9) !important;
+            margin-bottom: 40px !important;
+        }
+        
+        /* ═══ ثيمات احترافية متعددة ═══ */
+        body.theme-blue { --gold: #2980b9; --deep-gold: #1a5276; --antique: #3498db; }
+        body.theme-maroon { --gold: #800000; --deep-gold: #4a0000; --antique: #a52a2a; }
+        body.theme-silver { --gold: #7f8c8d; --deep-gold: #2c3e50; --antique: #95a5a6; }
+        body.theme-green { --gold: #27ae60; --deep-gold: #145a32; --antique: #52be80; }
+        body.theme-orange { --gold: #e67e22; --deep-gold: #935116; --antique: #f39c12; }
+        body.theme-navy { --gold: #2c3e50; --deep-gold: #17202a; --antique: #34495e; }
+        body.theme-royal { --gold: #8e44ad; --deep-gold: #4a235a; --antique: #9b59b6; }
+
+        .theme-swatch {
+            width: 100%; height: 36px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; 
+            display: flex; align-items: center; justify-content: center; padding: 0 10px; margin-bottom: 8px; 
+            font-family: 'Reem Kufi', sans-serif; font-size: 0.82rem; color: #fff; font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .ts-gold { background: linear-gradient(135deg, #b8860b, #d4af37, #b8860b); }
+        .ts-blue { background: linear-gradient(135deg, #2980b9, #3498db, #2980b9); }
+        .ts-maroon { background: linear-gradient(135deg, #800000, #a52a2a, #800000); }
+        .ts-silver { background: linear-gradient(135deg, #7f8c8d, #95a5a6, #7f8c8d); }
+        .ts-green { background: linear-gradient(135deg, #27ae60, #52be80, #27ae60); }
+        .ts-orange { background: linear-gradient(135deg, #e67e22, #f39c12, #e67e22); }
+        .ts-navy { background: linear-gradient(135deg, #2c3e50, #34495e, #2c3e50); }
+        .ts-royal { background: linear-gradient(135deg, #8e44ad, #9b59b6, #8e44ad); }
+        .theme-swatch:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+        .theme-swatch.active { border-color: #000; outline: 3px solid rgba(255,255,255,0.8); transform: scale(1.05); }
+
+        .a4-page::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* زخارف الأركان - نبض */
+        .corner-ornament {
+            animation: cornerPulse 4s ease-in-out infinite;
+            text-shadow: 0 0 12px rgba(212,175,55,0.4) !important;
+        }
+        .co-tl, .co-br { animation-delay: 1s; }
+
+        /* الإطار - توهج */
+        .page-frame {
+            box-shadow:
+                inset 0 0 35px rgba(212,175,55,0.1),
+                inset 0 0 0 1px rgba(212,175,55,0.15),
+                0 0 2px rgba(184,134,11,0.2) !important;
+        }
+
+        /* حقول الخصائص */
+        .prop-field {
+            transition: all 0.3s ease !important;
+        }
+        .prop-field:focus {
+            border-color: #d4af37 !important;
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.1), 0 0 20px rgba(212,175,55,0.06) !important;
+        }
+
+        /* منطقة المعاينة */
+        .preview-area {
+            background:
+                radial-gradient(ellipse at center, rgba(212,175,55,0.03) 0%, transparent 65%),
+                linear-gradient(180deg, rgba(216,208,192,0.25) 0%, rgba(226,220,208,0.15) 100%) !important;
+        }
+
+        /* المكونات المضافة */
+        .block {
+            transition: all 0.3s ease !important;
+        }
+        .block:hover, .block.selected {
+            box-shadow: 0 2px 14px rgba(212,175,55,0.12) !important;
+        }
+
+        /* منطقة الإسقاط */
+        .drop-zone:empty::after {
+            text-shadow: 0 0 20px rgba(212,175,55,0.12);
+        }
+        .drop-zone.drag-over::before {
+            background: rgba(212,175,55,0.05) !important;
+            box-shadow: inset 0 0 40px rgba(212,175,55,0.08);
+        }
+
+        /* شريط التمرير */
+        .sidebar::-webkit-scrollbar, .props-panel::-webkit-scrollbar, .preview-area::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-track, .props-panel::-webkit-scrollbar-track, .preview-area::-webkit-scrollbar-track { background: rgba(241,241,241,0.25); }
+        .sidebar::-webkit-scrollbar-thumb, .props-panel::-webkit-scrollbar-thumb, .preview-area::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, rgba(212,175,55,0.4), rgba(184,134,11,0.25));
+            border-radius: 3px;
+        }
+        .sidebar::-webkit-scrollbar-thumb:hover, .props-panel::-webkit-scrollbar-thumb:hover, .preview-area::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, rgba(212,175,55,0.6), rgba(184,134,11,0.45));
+        }
+
+        /* زخرفة الرأسية في الشريط العلوي */
+        .topbar-ornament {
+            color: rgba(212,175,55,0.4);
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            user-select: none;
+        }
+
+        /* فاصل زخرفي في السايدبار */
+        .sidebar-ornament {
+            text-align: center;
+            color: #b8860b;
+            font-size: 0.85rem;
+            opacity: 0.35;
+            letter-spacing: 0.5em;
+            margin: 10px 0;
+            user-select: none;
+            text-shadow: 0 0 10px rgba(212,175,55,0.3);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ الشريط العلوي ═══ -->
+<div class="topbar">
+    <a href="index.html">← الرئيسية</a>
+    <span class="topbar-ornament">❧</span>
+    <h1>منشئ الوثائق المتقدم</h1>
+    <span class="topbar-ornament">❧</span>
+    <button class="topbar-btn" id="btnPrint" type="button">🖨️ طباعة</button>
+    <button class="topbar-btn green" id="btnSave" type="button">💾 حفظ</button>
+    <button class="topbar-btn" id="btnExportWord" type="button">📄 DOCX</button>
+    <button class="topbar-btn" id="btnAddPage" type="button">📄 صفحة</button>
+    <button class="topbar-btn danger" id="btnClear" type="button">🗑️ مسح</button>
+</div>
+
+<div class="workspace">
+
+    <!-- ═══ لوحة المكونات ═══ -->
+    <div class="sidebar" id="componentsSidebar">
+        <h2>المكونات</h2>
+        <p style="font-size:0.78rem;color:#888;margin-bottom:10px;">اسحب وأفلت في المعاينة</p>
+
+        <h3>النصوص</h3>
+        <div class="component-item" draggable="true" data-type="title">
+            <span class="ci-icon">🏷️</span> عنوان رئيسي
+        </div>
+        <div class="component-item" draggable="true" data-type="subtitle">
+            <span class="ci-icon">📌</span> عنوان فرعي
+        </div>
+        <div class="component-item" draggable="true" data-type="paragraph">
+            <span class="ci-icon">📄</span> فقرة نصية
+        </div>
+
+        <div class="sidebar-ornament">✦ ❖ ✦</div>
+
+        <h3>التنسيق</h3>
+        <div class="component-item" draggable="true" data-type="divider">
+            <span class="ci-icon">➖</span> فاصل ذهبي
+        </div>
+        <div class="component-item" draggable="true" data-type="highlight">
+            <span class="ci-icon">📦</span> صندوق مميز
+        </div>
+        <div class="component-item" draggable="true" data-type="meta">
+            <span class="ci-icon">📋</span> بيانات وصفية
+        </div>
+
+        <div class="sidebar-ornament">✦ ❖ ✦</div>
+
+        <h3>العناصر الأساسية</h3>
+        <div class="component-item" draggable="true" data-type="list">
+            <span class="ci-icon">📝</span> قائمة نقطية
+        </div>
+        <div class="component-item" draggable="true" data-type="table">
+            <span class="ci-icon">📊</span> جدول بيانات
+        </div>
+        <div class="component-item" draggable="true" data-type="signature">
+            <span class="ci-icon">✍️</span> توقيع / ختم
+        </div>
+        <div class="component-item" draggable="true" data-type="spacer">
+            <span class="ci-icon">↕️</span> مسافة فارغة
+        </div>
+
+        <div class="sidebar-ornament">✦ ❖ ✦</div>
+
+        <h3>عناصر احترافية</h3>
+        <div class="component-item" draggable="true" data-type="image">
+            <span class="ci-icon">🖼️</span> صورة / شعار
+        </div>
+        <div class="component-item" draggable="true" data-type="quote">
+            <span class="ci-icon">💬</span> اقتباس مميز
+        </div>
+        <div class="component-item" draggable="true" data-type="alert">
+            <span class="ci-icon">⚠️</span> تنبيه هام
+        </div>
+        <div class="component-item" draggable="true" data-type="note">
+            <span class="ci-icon">📌</span> ملاحظة جانبية
+        </div>
+        <div class="component-item" draggable="true" data-type="timeline">
+            <span class="ci-icon">⏱️</span> خط زمني
+        </div>
+        <div class="component-item" draggable="true" data-type="card">
+            <span class="ci-icon">🎴</span> بطاقة معلومات
+        </div>
+        <div class="component-item" draggable="true" data-type="columns">
+            <span class="ci-icon">⬜</span> أعمدة متعددة
+        </div>
+
+        <h2 style="margin-top:20px;">🎨 ثيمات احترافية</h2>
+        <div class="sidebar-ornament">✦ ✦ ✦</div>
+        <div class="theme-swatch ts-gold active" data-theme="">👑 الملكي الذهبي</div>
+        <div class="theme-swatch ts-blue" data-theme="theme-blue">🌊 السماوي الرسمي</div>
+        <div class="theme-swatch ts-green" data-theme="theme-green">🌿 الأخضر الطبيعي</div>
+        <div class="theme-swatch ts-maroon" data-theme="theme-maroon">🔴 العقيق الإداري</div>
+        <div class="theme-swatch ts-orange" data-theme="theme-orange">🔶 البرتقالي الدافئ</div>
+        <div class="theme-swatch ts-navy" data-theme="theme-navy">⚫ الأسود الرسمي</div>
+        <div class="theme-swatch ts-royal" data-theme="theme-royal">💜 الملكي البنفسجي</div>
+        <div class="theme-swatch ts-silver" data-theme="theme-silver">⚪ الفضي العملي</div>
+    </div>
+
+    <!-- ═══ المعاينة المباشرة ═══ -->
+    <div class="preview-area">
+        <div id="pagesContainer" style="display:flex; flex-direction:column; align-items:center; width:100%;">
+            <div class="a4-page" id="a4Page">
+                <div class="page-frame"></div>
+                <div class="frame-corner tr"></div>
+                <div class="frame-corner tl"></div>
+                <div class="frame-corner br"></div>
+                <div class="frame-corner bl"></div>
+                <span class="corner-ornament co-tr"></span>
+                <span class="corner-ornament co-tl"></span>
+                <span class="corner-ornament co-br"></span>
+                <span class="corner-ornament co-bl"></span>
+
+                <div class="page-inner">
+                    <div class="doc-header">
+                        <div class="h-right">
+                            <span id="hCompany">شركة صرح الإتقان</span><br>
+                            <span id="hCompanyEn">Sarah Alitqan Company</span><br>
+                            <span style="font-size:9px;" id="hTax">الرقم الضريبي: 311697879500003</span>
+                        </div>
+                        <div class="h-center">
+                            <div class="logo-img">
+                                <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <radialGradient id="docGoldR1" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
+                                            <stop offset="50%" style="stop-color:#d4af37;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#8b6914;stop-opacity:1" />
+                                        </radialGradient>
+                                        <radialGradient id="docGoldR2" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#8b6914;stop-opacity:1" />
+                                            <stop offset="50%" style="stop-color:#d4af37;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#fff9e6;stop-opacity:1" />
+                                        </radialGradient>
+                                        <linearGradient id="docShimmer" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f9e79f;stop-opacity:0.4" />
+                                            <stop offset="50%" style="stop-color:#fff;stop-opacity:0.7" />
+                                            <stop offset="100%" style="stop-color:#f9e79f;stop-opacity:0.4" />
+                                        </linearGradient>
+                                    </defs>
+                                    <g transform="translate(115, 120)">
+                                        <rect x="-36" y="-36" width="72" height="72" fill="#6b5b2e" transform="rotate(45) translate(2, 2)" opacity="0.15" rx="2"/>
+                                        <rect x="-36" y="-36" width="72" height="72" fill="url(#docGoldR1)" transform="rotate(45)" stroke="url(#docShimmer)" stroke-width="2.5" rx="1.5" opacity="0.95"/>
+                                        <rect x="-30" y="-30" width="60" height="60" fill="url(#docShimmer)" transform="rotate(45)" opacity="0.3" rx="1"/>
+                                        <g transform="rotate(45)">
+                                            <rect x="-38" y="-38" width="5" height="5" fill="#fff" opacity="0.8" rx="1"/>
+                                            <rect x="33" y="-38" width="5" height="5" fill="#ffe066" opacity="0.75" rx="1"/>
+                                            <rect x="33" y="33" width="5" height="5" fill="#fff" opacity="0.8" rx="1"/>
+                                            <rect x="-38" y="33" width="5" height="5" fill="#ffe066" opacity="0.75" rx="1"/>
+                                        </g>
+                                    </g>
+                                    <g transform="translate(175, 120)">
+                                        <rect x="-36" y="-36" width="72" height="72" fill="#6b5b2e" transform="rotate(45) translate(2, 2)" opacity="0.15" rx="2"/>
+                                        <rect x="-36" y="-36" width="72" height="72" fill="url(#docGoldR2)" transform="rotate(45)" stroke="url(#docShimmer)" stroke-width="2.5" rx="1.5" opacity="0.95"/>
+                                        <rect x="-30" y="-30" width="60" height="60" fill="url(#docShimmer)" transform="rotate(45)" opacity="0.4" rx="1"/>
+                                        <g transform="rotate(45)">
+                                            <rect x="-38" y="-38" width="5" height="5" fill="#ffe066" opacity="0.8" rx="1"/>
+                                            <rect x="33" y="-38" width="5" height="5" fill="#fff" opacity="0.75" rx="1"/>
+                                            <rect x="33" y="33" width="5" height="5" fill="#ffe066" opacity="0.8" rx="1"/>
+                                            <rect x="-38" y="33" width="5" height="5" fill="#fff" opacity="0.75" rx="1"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="h-left">
+                            <span id="hRole">مستشار التحول الرقمي:</span><br>
+                            <span id="hName">عبدالله احمد الكردي</span>
+                        </div>
+                    </div>
+
+                    <div class="drop-zone" id="dropZone"></div>
+
+                    <div class="doc-footer" id="docFooter">مجموعة صرح الإتقان المحدودة وشركة فضاء المحركات</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ لوحة الخصائص ═══ -->
+    <div class="props-panel" id="propsPanel">
+        <h2>خصائص الوثيقة</h2>
+
+        <div class="prop-row">
+            <label for="propDocTitle">عنوان الوثيقة (للحفظ)</label>
+            <input id="propDocTitle" class="prop-field" value="كتاب رسمي جديد">
+        </div>
+        <div class="prop-row">
+            <label for="propDocDesc">الوصف</label>
+            <textarea id="propDocDesc" class="prop-field" rows="2">وثيقة صادرة من منشئ الوثائق الرسمية</textarea>
+        </div>
+        <div class="prop-row">
+            <label for="propDocIcon">الأيقونة</label>
+            <input id="propDocIcon" class="prop-field" value="📄" maxlength="2">
+        </div>
+
+        <div class="prop-section">
+            <h2>بيانات الترويسة</h2>
+            <div class="prop-row">
+                <label for="propCompany">اسم الشركة (عربي)</label>
+                <input id="propCompany" class="prop-field" value="شركة صرح الإتقان">
+            </div>
+            <div class="prop-row">
+                <label for="propCompanyEn">اسم الشركة (إنجليزي)</label>
+                <input id="propCompanyEn" class="prop-field" value="Sarah Alitqan Company">
+            </div>
+            <div class="prop-row">
+                <label for="propTax">الرقم الضريبي</label>
+                <input id="propTax" class="prop-field" value="الرقم الضريبي: 311697879500003">
+            </div>
+            <div class="prop-row">
+                <label for="propRole">الصفة الوظيفية</label>
+                <input id="propRole" class="prop-field" value="مستشار التحول الرقمي:">
+            </div>
+            <div class="prop-row">
+                <label for="propName">الاسم</label>
+                <input id="propName" class="prop-field" value="عبدالله احمد الكردي">
+            </div>
+        </div>
+
+        <div class="prop-section">
+            <h2>التذييل</h2>
+            <div class="prop-row">
+                <label for="propFooter">نص التذييل</label>
+                <input id="propFooter" class="prop-field" value="مجموعة صرح الإتقان المحدودة وشركة فضاء المحركات">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/document-creator.js"></script>
+
+</body>
+</html>
+    /* ═══ تعريفات ═══ */
+    const pagesContainer = document.getElementById('pagesContainer');
+    const STORAGE_KEY = 'sarh_custom_documents_v1';
+    let dragSrcBlock = null;
+
+    /* ═══ دوال الأمان والتحقق ═══ */
+    // توليد UUID فريد
+    function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    // توليد SHA-256 Hash
+    async function generateHash(text) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(text);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // توليد رقم تسلسلي
+    function generateSerialNumber() {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const timestamp = Date.now().toString(36).toUpperCase();
+        return `SARH-${year}${month}-${timestamp}`;
+    }
+
+    // تنسيق التاريخ والوقت
+    function formatDateTime() {
+        return new Date().toLocaleString('ar-SA', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        });
+    }
+
+    // توليد QR Code باستخدام API خارجي
+    function generateQRCodeURL(data) {
+        const encoded = encodeURIComponent(data);
+        return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encoded}`;
+    }
+
+    /* ═══ ربط خصائص الترويسة بالمعاينة (الصفحة الأولى افتراضياً) ═══ */
+    const headerBindings = [
+        ['propCompany',   'hCompany'],
+        ['propCompanyEn', 'hCompanyEn'],
+        ['propTax',       'hTax'],
+        ['propRole',      'hRole'],
+        ['propName',      'hName'],
+        ['propFooter',    'docFooter'],
+    ];
+    headerBindings.forEach(([inputId, targetId]) => {
+        const inp = document.getElementById(inputId);
+        const tgt = document.getElementById(targetId);
+        if (!inp || !tgt) return;
+        inp.addEventListener('input', () => { 
+            // تحديث الترويسة في جميع الصفحات
+            document.querySelectorAll(`[id="${targetId}"]`).forEach(el => el.textContent = inp.value);
+        });
+    });
+
+    /* ═══ تهيئة أحداث الصفحة (للسحب والإفلات) ═══ */
+    function initPageEvents(page) {
+        const dz = page.querySelector('.drop-zone');
+        dz.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = dragSrcBlock ? 'move' : 'copy';
+            if (!dragSrcBlock) dz.classList.add('drag-over');
+        });
+        dz.addEventListener('dragleave', (e) => {
+            if (!dz.contains(e.relatedTarget)) dz.classList.remove('drag-over');
+        });
+        dz.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dz.classList.remove('drag-over');
+            const compType = e.dataTransfer.getData('component-type');
+            if (compType && !dragSrcBlock) {
+                const block = createBlock(compType, dz);
+                const children = [...dz.querySelectorAll('.block')];
+                let inserted = false;
+                for (const child of children) {
+                    const rect = child.getBoundingClientRect();
+                    if (e.clientY < rect.top + rect.height / 2) {
+                        dz.insertBefore(block, child);
+                        inserted = true;
+                        break;
+                    }
+                }
+                if (!inserted) dz.appendChild(block);
+            }
+        });
+    }
+
+    // تهيئة الصفحة الأولى
+    initPageEvents(document.getElementById('a4Page'));
+
+    /* ═══ إضافة صفحة جديدة ═══ */
+    document.getElementById('btnAddPage').addEventListener('click', () => {
+        const firstPage = document.getElementById('a4Page');
+        const newPage = firstPage.cloneNode(true);
+        newPage.id = 'page-' + Date.now();
+        const dz = newPage.querySelector('.drop-zone');
+        dz.innerHTML = ''; // تفريغ المحتويات
+        dz.classList.remove('drag-over');
+        
+        // زر حذف الصفحة
+        const delPageBtn = document.createElement('button');
+        delPageBtn.className = 'no-print';
+        delPageBtn.innerHTML = '🗑️ حذف هذه الصفحة';
+        delPageBtn.style = 'position:absolute; left:-140px; top:0; background:#c0392b; color:#fff; border:0; padding:8px 12px; border-radius:6px; cursor:pointer; font-family:sans-serif; font-size:12px;';
+        delPageBtn.onclick = () => { if(confirm('حذف الصفحة؟')) newPage.remove(); };
+        newPage.appendChild(delPageBtn);
+
+        pagesContainer.appendChild(newPage);
+        initPageEvents(newPage);
+        newPage.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /* ═══ تبديل الثيمات ═══ */
+    document.querySelectorAll('.theme-swatch').forEach(sw => {
+        sw.addEventListener('click', () => {
+            document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
+            sw.classList.add('active');
+            document.body.className = sw.dataset.theme;
+        });
+    });
+
+    /* ═══ إنشاء عنصر مكون ═══ */
+    function createBlock(type, currentDropZone) {
+        const wrap = document.createElement('div');
+        wrap.className = 'block';
+        wrap.draggable = true;
+        wrap.dataset.blockType = type;
+
+        const handle = document.createElement('span');
+        handle.className = 'block-handle';
+        handle.textContent = '⠿';
+        wrap.appendChild(handle);
+
+        const del = document.createElement('span');
+        del.className = 'block-delete';
+        del.textContent = '✕';
+        del.addEventListener('click', () => { wrap.remove(); });
+        wrap.appendChild(del);
+
+        let inner;
+        switch (type) {
+            case 'title':
+                inner = document.createElement('div'); inner.className = 'blk-title'; inner.contentEditable = 'true'; inner.textContent = 'عنوان الوثيقة';
+                break;
+            case 'subtitle':
+                inner = document.createElement('div'); inner.className = 'blk-subtitle'; inner.contentEditable = 'true'; inner.textContent = 'عنوان فرعي';
+                break;
+            case 'paragraph':
+                inner = document.createElement('div'); inner.className = 'blk-paragraph'; inner.contentEditable = 'true'; inner.textContent = 'اكتب نص الفقرة هنا...';
+                break;
+            case 'divider':
+                inner = document.createElement('div'); inner.className = 'blk-divider';
+                break;
+            case 'highlight':
+                inner = document.createElement('div'); inner.className = 'blk-box'; inner.contentEditable = 'true'; inner.innerHTML = '<strong>تنبيه:</strong> محتوى تمييزي.';
+                break;
+            case 'meta':
+                inner = document.createElement('div'); inner.className = 'blk-meta-grid'; inner.innerHTML = '<div contenteditable="true"><strong>الرقم:</strong> ...</div><div contenteditable="true"><strong>التاريخ:</strong> ...</div>';
+                break;
+            case 'list':
+                inner = document.createElement('ul'); inner.className = 'blk-list'; inner.contentEditable = 'true'; inner.innerHTML = '<li>بند جديد</li>';
+                break;
+            case 'table':
+                inner = document.createElement('table'); inner.className = 'blk-table'; inner.innerHTML = '<thead><tr><th>م</th><th>البيان</th></tr></thead><tbody><tr><td>1</td><td>...</td></tr></tbody>';
+                inner.contentEditable = 'true';
+                break;
+            case 'signature':
+                inner = document.createElement('div'); inner.className = 'blk-sig'; inner.innerHTML = '<div contenteditable="true">الاعتماد</div><br><div contenteditable="true">..........</div>';
+                break;
+            case 'spacer':
+                inner = document.createElement('div'); inner.style.height = '40px';
+                break;
+            
+            // العناصر الاحترافية الجديدة
+            case 'image':
+                inner = document.createElement('div');
+                inner.className = 'blk-image';
+                inner.innerHTML = '<img src="https://via.placeholder.com/400x200/d4af37/ffffff?text=صورة+أو+شعار" alt="صورة" style="max-width:100%;"><input type="text" placeholder="أدخل رابط الصورة (URL)" onchange="this.previousElementSibling.src=this.value" style="width:100%;padding:8px;margin-top:8px;border:1px solid #ddd;border-radius:4px;">';
+                break;
+            case 'quote':
+                inner = document.createElement('div');
+                inner.className = 'blk-quote';
+                inner.contentEditable = 'true';
+                inner.innerHTML = 'اكتب الاقتباس المميز هنا... يمكن أن يكون قولاً مأثوراً أو نصاً تريد تمييزه';
+                break;
+            case 'alert':
+                inner = document.createElement('div');
+                inner.className = 'blk-alert';
+                inner.contentEditable = 'true';
+                inner.innerHTML = '<strong>تنبيه هام:</strong> هذا تنبيه مهم يتطلب الانتباه والمتابعة';
+                break;
+            case 'note':
+                inner = document.createElement('div');
+                inner.className = 'blk-note';
+                inner.contentEditable = 'true';
+                inner.innerHTML = '<strong>ملاحظة:</strong> معلومة إضافية أو ملاحظة جانبية مفيدة للقارئ';
+                break;
+            case 'timeline':
+                inner = document.createElement('div');
+                inner.className = 'blk-timeline';
+                inner.innerHTML = '<div class="blk-timeline-item"><strong contenteditable="true">يناير 2026</strong><div contenteditable="true">وصف الحدث الأول</div></div><div class="blk-timeline-item"><strong contenteditable="true">مارس 2026</strong><div contenteditable="true">وصف الحدث الثاني</div></div><div class="blk-timeline-item"><strong contenteditable="true">يونيو 2026</strong><div contenteditable="true">وصف الحدث الثالث</div></div>';
+                break;
+            case 'card':
+                inner = document.createElement('div');
+                inner.className = 'blk-card';
+                inner.innerHTML = '<div class="blk-card-title" contenteditable="true">عنوان البطاقة</div><div contenteditable="true">محتوى البطاقة المعلوماتية. يمكن استخدامها لتسليط الضوء على معلومات مهمة أو تقديم ملخص.</div>';
+                break;
+            case 'columns':
+                inner = document.createElement('div');
+                inner.className = 'blk-columns';
+                inner.innerHTML = '<div class="blk-column" contenteditable="true">محتوى العمود الأول</div><div class="blk-column" contenteditable="true">محتوى العمود الثاني</div>';
+                break;
+            default:
+                inner = document.createElement('div'); inner.textContent = type;
+        }
+
+        wrap.appendChild(inner);
+
+        wrap.addEventListener('dragstart', (e) => {
+            dragSrcBlock = wrap;
+            wrap.style.opacity = '0.4';
+            e.dataTransfer.setData('text/plain', 'reorder');
+        });
+        wrap.addEventListener('dragend', () => {
+            wrap.style.opacity = '1';
+            dragSrcBlock = null;
+        });
+        wrap.addEventListener('dragover', (e) => {
+            if (!dragSrcBlock || dragSrcBlock === wrap) return;
+            e.preventDefault();
+            const rect = wrap.getBoundingClientRect();
+            const midY = rect.top + rect.height / 2;
+            wrap.style.borderTop = e.clientY < midY ? '2px solid var(--gold)' : '';
+            wrap.style.borderBottom = e.clientY >= midY ? '2px solid var(--gold)' : '';
+        });
+        wrap.addEventListener('dragleave', () => {
+            wrap.style.borderTop = ''; wrap.style.borderBottom = '';
+        });
+        wrap.addEventListener('drop', (e) => {
+            e.preventDefault();
+            wrap.style.borderTop = ''; wrap.style.borderBottom = '';
+            if (!dragSrcBlock || dragSrcBlock === wrap) return;
+            const dz = wrap.closest('.drop-zone');
+            const rect = wrap.getBoundingClientRect();
+            if (e.clientY < rect.top + rect.height / 2) dz.insertBefore(dragSrcBlock, wrap);
+            else dz.insertBefore(dragSrcBlock, wrap.nextSibling);
+        });
+
+        return wrap;
+    }
+
+    /* ═══ شريط المكونات ═══ */
+    document.querySelectorAll('.component-item[draggable]').forEach((item) => {
+        item.addEventListener('dragstart', (e) => {
+            dragSrcBlock = null;
+            e.dataTransfer.setData('component-type', item.dataset.type);
+        });
+    });
+
+    /* ═══ الأزرار ═══ */
+    document.getElementById('btnPrint').addEventListener('click', () => window.print());
+    
+    // تصدير كـ DOCX (محاكي)
+    document.getElementById('btnExportWord').addEventListener('click', () => {
+        const title = document.getElementById('propDocTitle').value.trim() || 'وثيقة';
+        const pagesClone = pagesContainer.cloneNode(true);
+        pagesClone.querySelectorAll('.no-print, .block-handle, .block-delete').forEach(el => el.remove());
+        pagesClone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        
+        const docContent = `
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'><title>${title}</title>
+<style>
+body{font-family:'Arial',sans-serif;direction:rtl;text-align:right;}
+.a4-page{page-break-after:always;padding:20mm;}
+table{border-collapse:collapse;width:100%;}
+th,td{border:1px solid #000;padding:8px;}
+</style>
+</head>
+<body>${pagesClone.innerHTML}</body>
+</html>`;
+        
+        const blob = new Blob(['\ufeff', docContent], {type: 'application/msword'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = title.replace(/\s+/g, '-') + '.doc';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+    
+    document.getElementById('btnClear').addEventListener('click', () => {
+        if (confirm('تنبيه: سيتم مسح جميع المحتويات والصفحات الإضافية!')) location.reload();
+    });
+
+    document.getElementById('btnSave').addEventListener('click', async () => {
+        const title = document.getElementById('propDocTitle').value.trim() || 'وثيقة جديدة';
+        const desc  = document.getElementById('propDocDesc').value.trim() || '';
+        const icon  = document.getElementById('propDocIcon').value.trim() || '📄';
+
+        // طلب التوثيق من المدير
+        const confirmAuth = confirm(
+            '📧 نظام التوثيق الإلكتروني\n\n' +
+            'سيتم فتح Gmail لإرسال طلب التوثيق إلى:\n' +
+            '• alkurdiabdullah444@gmail.com\n' +
+            '• carsspace88@gmail.com\n\n' +
+            'البريد سيكون جاهزاً - فقط اضغط "إرسال"\n\n' +
+            'هل تريد المتابعة؟'
+        );
+
+        if (!confirmAuth) {
+            // خيار الحفظ المباشر
+            if (confirm('هل تريد الحفظ بدون توثيق إلكتروني؟')) {
+                await saveDocumentDirectly(title, desc, icon);
+            }
+            return;
+        }
+
+        // توليد معلومات الأمان
+        const docUUID = generateUUID();
+        const serialNumber = generateSerialNumber();
+        const createdAt = formatDateTime();
+        const timestamp = Date.now();
+
+        // تحضير المحتوى للتوثيق
+        const documentData = await prepareDocumentForApproval(title, desc, icon, docUUID, serialNumber, createdAt, timestamp);
+        
+        // حفظ البيانات مؤقتاً للموافقة
+        const pendingDoc = {
+            title,
+            description: desc,
+            icon,
+            timestamp,
+            uuid: docUUID,
+            serialNumber,
+            createdAt,
+            html: documentData.html,
+            hash: documentData.hash,
+            status: 'pending_approval'
+        };
+        
+        // حفظ في localStorage المؤقت
+        const pendingDocs = JSON.parse(localStorage.getItem('pending_documents') || '[]');
+        pendingDocs.push(pendingDoc);
+        localStorage.setItem('pending_documents', JSON.stringify(pendingDocs));
+
+        // إرسال البريد عبر Gmail
+        await sendApprovalEmailsViaGmail(pendingDoc);
+
+        // رسالة التأكيد
+        alert(
+            '📧 تم فتح Gmail!\n\n' +
+            'تحقق من نافذة البريد الجديدة.\n' +
+            'البريد جاهز - فقط اضغط "إرسال"\n\n' +
+            'الرقم التسلسلي: ' + serialNumber + '\n' +
+            'المعرّف: ' + docUUID.substring(0, 8) + '...'
+        );
+
+        // العودة للصفحة الرئيسية
+        window.location.href = 'index.html';
+    });
+
+    // دالة الحفظ المباشر (بدون توثيق)
+    async function saveDocumentDirectly(title, desc, icon) {
+        // توليد معلومات الأمان
+        const docUUID = generateUUID();
+        const serialNumber = generateSerialNumber();
+        const createdAt = formatDateTime();
+        const timestamp = Date.now();
+
+        // تنظيف الصفحات للحفظ
+        const pagesClone = pagesContainer.cloneNode(true);
+        pagesClone.querySelectorAll('.no-print, .block-handle, .block-delete').forEach(el => el.remove());
+        pagesClone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        pagesClone.querySelectorAll('.block').forEach(el => el.style.border = 'none');
+
+        const activeThemeClass = document.body.className;
+        
+        // استخراج المحتوى للـ Hash
+        const contentForHash = pagesClone.textContent.trim();
+        const documentHash = await generateHash(contentForHash + docUUID + timestamp);
+        
+        // إنشاء معلومات التحقق للـ QR Code
+        const verificationData = `SARH-DOC\nID:${docUUID}\nSN:${serialNumber}\nHash:${documentHash.substring(0,16)}...\nDate:${createdAt}`;
+        const qrCodeURL = generateQRCodeURL(verificationData);
+        
+        // إضافة العلامة المائية والختم الأمني لكل صفحة
+        pagesClone.querySelectorAll('.a4-page').forEach((page, index) => {
+            // علامة مائية
+            const watermark = document.createElement('div');
+            watermark.className = 'security-watermark no-print';
+            watermark.textContent = `صرح الإتقان • ${serialNumber}`;
+            page.insertBefore(watermark, page.firstChild);
+            
+            // الختم الأمني (في الصفحة الأخيرة فقط)
+            if (index === pagesClone.querySelectorAll('.a4-page').length - 1) {
+                const seal = document.createElement('div');
+                seal.className = 'security-seal';
+                seal.innerHTML = `
+                    <div class="security-seal-title">🔒 ختم التحقق الرقمي</div>
+                    <div class="security-info">
+                        <span>الرقم التسلسلي:</span><span>${serialNumber}</span>
+                        <span>المعرّف الفريد:</span><span style="font-size:6pt;">${docUUID}</span>
+                        <span>تاريخ الإصدار:</span><span>${createdAt}</span>
+                        <span>الجهة المُصدرة:</span><span>مجموعة صرح الإتقان المحدودة</span>
+                        <span>نظام الإصدار:</span><span>منشئ الوثائق v2.0</span>
+                    </div>
+                    <div class="security-hash">
+                        <strong>البصمة الرقمية (SHA-256):</strong><br>${documentHash}
+                    </div>
+                    <div class="qr-code-container">
+                        <img src="${qrCodeURL}" alt="QR Code" style="width:120px;height:120px;">
+                        <div style="font-size:7pt;margin-top:4px;color:#666;">امسح للتحقق من الأصالة</div>
+                    </div>
+                `;
+                const footer = page.querySelector('.doc-footer');
+                if (footer) {
+                    footer.parentNode.insertBefore(seal, footer);
+                }
+            }
+        });
+
+        const fullHTML = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8860b;--deep-gold:#6b5b2e;--antique:#d4af37;--frame:15mm}
+.theme-blue{--gold:#2980b9;--deep-gold:#2c3e50;--antique:#3498db}
+.theme-maroon{--gold:#800000;--deep-gold:#4a0000;--antique:#a52a2a}
+.theme-silver{--gold:#7f8c8d;--deep-gold:#2c3e50;--antique:#95a5a6}
+body{font-family:'Amiri',serif;background:#d8d0c0;padding:20px;margin:0}
+.no-print-btn{display:block;margin:0 auto 20px;padding:12px 24px;background:var(--gold);color:#fff;border:0;border-radius:6px;cursor:pointer;font-family:'Reem Kufi'}
+.a4-page{width:210mm;min-height:297mm;margin:0 auto 30px;background:#fffef9;position:relative;box-shadow:0 0 20px rgba(0,0,0,0.1);page-break-after:always}
+.page-frame{position:absolute;top:var(--frame);right:var(--frame);bottom:var(--frame);left:var(--frame);border:3px double var(--gold);pointer-events:none}
+.frame-corner{position:absolute;width:10mm;height:10mm;border:3px solid var(--gold);pointer-events:none}
+.tr{top:5mm;right:5mm;border-bottom:0;border-left:0}.tl{top:5mm;left:5mm;border-bottom:0;border-right:0}
+.br{bottom:5mm;right:5mm;border-top:0;border-left:0}.bl{bottom:5mm;left:5mm;border-top:0;border-right:0}
+.page-inner{padding:25mm;display:flex;flex-direction:column;min-height:247mm}
+.doc-header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:20px}
+.logo-img{height:50px;width:70px;display:inline-block}.h-center{text-align:center}.h-left{text-align:left;font-size:12px}.h-right{text-align:right;font-size:12px}
+.blk-title{text-align:center;font-size:24pt;color:var(--deep-gold);margin-bottom:10px;font-family:'Reem Kufi'}
+.blk-subtitle{text-align:center;font-size:18pt;color:var(--deep-gold);margin-bottom:8px;font-family:'Reem Kufi'}
+.blk-paragraph{line-height:1.8;text-align:justify;margin-bottom:10px}
+.blk-divider{height:2px;background:var(--gold);width:60%;margin:15px auto}
+.blk-box{border:2px solid var(--gold);padding:15px;background:rgba(212,175,55,0.05);border-radius:8px}
+.blk-table{width:100%;border-collapse:collapse;margin:10px 0}.blk-table th{background:var(--gold);color:#fff;padding:8px}.blk-table td{border:1px solid #ddd;padding:8px;text-align:center}
+.doc-footer{margin-top:auto;border-top:1px solid var(--gold);padding-top:10px;text-align:center;font-size:10px;color:var(--deep-gold)}
+.security-watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:48px;font-family:'Reem Kufi';color:rgba(212,175,55,0.04);font-weight:bold;pointer-events:none;z-index:0;user-select:none;white-space:nowrap}
+.security-seal{border:2px double var(--gold);background:linear-gradient(135deg,rgba(255,254,249,0.98),rgba(255,249,237,0.95));padding:10px;border-radius:8px;margin:12px 0;font-size:8pt;line-height:1.5;box-shadow:0 2px 6px rgba(184,134,11,0.15)}
+.security-seal-title{font-family:'Reem Kufi';font-weight:bold;color:var(--deep-gold);margin-bottom:6px;text-align:center;font-size:9pt;border-bottom:1px solid var(--gold);padding-bottom:3px}
+.security-info{display:grid;grid-template-columns:auto 1fr;gap:3px 6px;font-size:7pt;color:var(--deep-gold)}
+.security-info span:nth-child(odd){font-weight:bold}
+.security-hash{font-family:'Courier New',monospace;font-size:5.5pt;word-break:break-all;background:rgba(212,175,55,0.06);padding:4px;border-radius:3px;margin-top:4px}
+.qr-code-container{text-align:center;margin-top:8px;padding:6px;background:#fff;border-radius:6px;display:inline-block}
+@media print{.no-print-btn,.no-print{display:none}body{background:#fff;padding:0}.a4-page{box-shadow:none;margin:0}.security-watermark{font-size:64px;color:rgba(212,175,55,0.03)}}
+</style>
+</head>
+<body class="${activeThemeClass}">
+<button class="no-print-btn" onclick="window.print()">🖨️ طباعة النسخة</button>
+${pagesClone.innerHTML}
+</body></html>`;
+
+        const dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(fullHTML);
+        const docs = loadCustomDocs();
+        docs.push({ 
+            title, 
+            description: desc, 
+            icon, 
+            link: dataUri, 
+            createdAt: timestamp,
+            securityInfo: {
+                uuid: docUUID,
+                serialNumber: serialNumber,
+                hash: documentHash.substring(0, 32) + '...',
+                verified: true
+            }
+        });
+        
+        try {
+            saveCustomDocs(docs);
+            alert('تم حفظ الوثيقة بجميع صفحاتها وتفعيل الثيم المختار!');
+            window.location.href = 'index.html';
+        } catch(e) { alert('خطأ في الحفظ المحلي (ربما الحجم كبير جداً)'); }
+    }
+
+    function loadCustomDocs() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { return []; } }
+    function saveCustomDocs(items) { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); }
+
+    // ═══════════════════════════════════════════════════════════
+    //  دوال التوثيق عبر البريد الإلكتروني
+    // ═══════════════════════════════════════════════════════════
+
+    /**
+     * تحضير الوثيقة للموافقة
+     */
+    async function prepareDocumentForApproval(title, desc, icon, docUUID, serialNumber, createdAt, timestamp) {
+        const pagesClone = pagesContainer.cloneNode(true);
+        pagesClone.querySelectorAll('.no-print, .block-handle, .block-delete').forEach(el => el.remove());
+        pagesClone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        pagesClone.querySelectorAll('.block').forEach(el => el.style.border = 'none');
+
+        const activeThemeClass = document.body.className;
+        const contentForHash = pagesClone.textContent.trim();
+        const documentHash = await generateHash(contentForHash + docUUID + timestamp);
+        
+        const verificationData = `SARH-DOC\nID:${docUUID}\nSN:${serialNumber}\nHash:${documentHash.substring(0,16)}...\nDate:${createdAt}`;
+        const qrCodeURL = generateQRCodeURL(verificationData);
+        
+        // إضافة العلامة المائية والختم الأمني
+        pagesClone.querySelectorAll('.a4-page').forEach((page, index) => {
+            const watermark = document.createElement('div');
+            watermark.className = 'security-watermark no-print';
+            watermark.textContent = `صرح الإتقان • ${serialNumber}`;
+            page.insertBefore(watermark, page.firstChild);
+            
+            if (index === pagesClone.querySelectorAll('.a4-page').length - 1) {
+                const seal = document.createElement('div');
+                seal.className = 'security-seal';
+                seal.innerHTML = `
+                    <div class="security-seal-title">🔒 ختم التحقق الرقمي - قيد الانتظار للتوثيق</div>
+                    <div class="security-info">
+                        <span>الرقم التسلسلي:</span><span>${serialNumber}</span>
+                        <span>المعرّف الفريد:</span><span style="font-size:6pt;">${docUUID}</span>
+                        <span>تاريخ الإصدار:</span><span>${createdAt}</span>
+                        <span>الجهة المُصدرة:</span><span>مجموعة صرح الإتقان المحدودة</span>
+                        <span>الحالة:</span><span style="color:#ff9800;font-weight:bold;">⏳ قيد انتظار التوثيق</span>
+                    </div>
+                    <div class="security-hash">
+                        <strong>البصمة الرقمية (SHA-256):</strong><br>${documentHash}
+                    </div>
+                    <div class="qr-code-container">
+                        <img src="${qrCodeURL}" alt="QR Code" style="width:120px;height:120px;">
+                        <div style="font-size:7pt;margin-top:4px;color:#666;">امسح للتحقق من الأصالة</div>
+                    </div>
+                `;
+                const footer = page.querySelector('.doc-footer');
+                if (footer) {
+                    footer.parentNode.insertBefore(seal, footer);
+                }
+            }
+        });
+
+        const fullHTML = createFullHTML(title, activeThemeClass, pagesClone.innerHTML);
+        
+        return {
+            html: fullHTML,
+            hash: documentHash,
+            uuid: docUUID,
+            serialNumber: serialNumber
+        };
+    }
+
+    /**
+     * إنشاء HTML كامل للوثيقة
+     */
+    function createFullHTML(title, themeClass, content) {
+        return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8860b;--deep-gold:#6b5b2e;--antique:#d4af37;--frame:15mm}
+.theme-blue{--gold:#2980b9;--deep-gold:#2c3e50;--antique:#3498db}
+.theme-maroon{--gold:#800000;--deep-gold:#4a0000;--antique:#a52a2a}
+.theme-silver{--gold:#7f8c8d;--deep-gold:#2c3e50;--antique:#95a5a6}
+body{font-family:'Amiri',serif;background:#d8d0c0;padding:20px;margin:0}
+.no-print-btn{display:block;margin:0 auto 20px;padding:12px 24px;background:var(--gold);color:#fff;border:0;border-radius:6px;cursor:pointer;font-family:'Reem Kufi'}
+.a4-page{width:210mm;min-height:297mm;margin:0 auto 30px;background:#fffef9;position:relative;box-shadow:0 0 20px rgba(0,0,0,0.1);page-break-after:always}
+.page-frame{position:absolute;top:var(--frame);right:var(--frame);bottom:var(--frame);left:var(--frame);border:3px double var(--gold);pointer-events:none}
+.frame-corner{position:absolute;width:10mm;height:10mm;border:3px solid var(--gold);pointer-events:none}
+.tr{top:5mm;right:5mm;border-bottom:0;border-left:0}.tl{top:5mm;left:5mm;border-bottom:0;border-right:0}
+.br{bottom:5mm;right:5mm;border-top:0;border-left:0}.bl{bottom:5mm;left:5mm;border-top:0;border-right:0}
+.page-inner{padding:25mm;display:flex;flex-direction:column;min-height:247mm}
+.doc-header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:20px}
+.logo-img{height:50px;width:70px;display:inline-block}.h-center{text-align:center}.h-left{text-align:left;font-size:12px}.h-right{text-align:right;font-size:12px}
+.blk-title{text-align:center;font-size:24pt;color:var(--deep-gold);margin-bottom:10px;font-family:'Reem Kufi'}
+.blk-subtitle{text-align:center;font-size:18pt;color:var(--deep-gold);margin-bottom:8px;font-family:'Reem Kufi'}
+.blk-paragraph{line-height:1.8;text-align:justify;margin-bottom:10px}
+.blk-divider{height:2px;background:var(--gold);width:60%;margin:15px auto}
+.blk-box{border:2px solid var(--gold);padding:15px;background:rgba(212,175,55,0.05);border-radius:8px}
+.blk-table{width:100%;border-collapse:collapse;margin:10px 0}.blk-table th{background:var(--gold);color:#fff;padding:8px}.blk-table td{border:1px solid #ddd;padding:8px;text-align:center}
+.doc-footer{margin-top:auto;border-top:1px solid var(--gold);padding-top:10px;text-align:center;font-size:10px;color:var(--deep-gold)}
+.security-watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:48px;font-family:'Reem Kufi';color:rgba(212,175,55,0.04);font-weight:bold;pointer-events:none;z-index:0;user-select:none;white-space:nowrap}
+.security-seal{border:2px double var(--gold);background:linear-gradient(135deg,rgba(255,254,249,0.98),rgba(255,249,237,0.95));padding:10px;border-radius:8px;margin:12px 0;font-size:8pt;line-height:1.5;box-shadow:0 2px 6px rgba(184,134,11,0.15)}
+.security-seal-title{font-family:'Reem Kufi';font-weight:bold;color:var(--deep-gold);margin-bottom:6px;text-align:center;font-size:9pt;border-bottom:1px solid var(--gold);padding-bottom:3px}
+.security-info{display:grid;grid-template-columns:auto 1fr;gap:3px 6px;font-size:7pt;color:var(--deep-gold)}
+.security-info span:nth-child(odd){font-weight:bold}
+.security-hash{font-family:'Courier New',monospace;font-size:5.5pt;word-break:break-all;background:rgba(212,175,55,0.06);padding:4px;border-radius:3px;margin-top:4px}
+.qr-code-container{text-align:center;margin-top:8px;padding:6px;background:#fff;border-radius:6px;display:inline-block}
+@media print{.no-print-btn,.no-print{display:none}body{background:#fff;padding:0}.a4-page{box-shadow:none;margin:0}.security-watermark{font-size:64px;color:rgba(212,175,55,0.03)}}
+</style>
+</head>
+<body class="${themeClass}">
+<button class="no-print-btn" onclick="window.print()">🖨️ طباعة النسخة</button>
+${content}
+</body></html>`;
+    }
+
+    /**
+     * إرسال بريد الموافقة عبر Gmail مباشرة
+     */
+    async function sendApprovalEmailsViaGmail(documentData) {
+        // رابط الموافقة
+        const approvalLink = `${window.location.origin}/approval.html?doc=${documentData.uuid}`;
+        
+        // استخراج محتوى نصي
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = documentData.html;
+        const textContent = tempDiv.textContent.trim().substring(0, 500);
+
+        // عرض رسالة انتظار احترافية
+        const loadingMessage = document.createElement('div');
+        loadingMessage.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            z-index: 10000;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+        `;
+        loadingMessage.innerHTML = `
+            <div style="margin-bottom: 15px;">
+                <div style="width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.3); 
+                     border-top-color: white; border-radius: 50%; 
+                     animation: spin 1s linear infinite; margin: 0 auto;"></div>
+            </div>
+            📧 جاري إرسال البريد الإلكتروني للمديرين...
+            <style>
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            </style>
+        `;
+        document.body.appendChild(loadingMessage);
+
+        try {
+            // إرسال الطلب إلى API
+            const response = await fetch('http://localhost:5000/api/send-approval-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: documentData.title,
+                    description: documentData.description || 'لا يوجد وصف',
+                    serialNumber: documentData.serialNumber,
+                    uuid: documentData.uuid,
+                    date: documentData.createdAt,
+                    contentExcerpt: textContent,
+                    approvalLink: approvalLink
+                })
+            });
+
+            const result = await response.json();
+            
+            // إزالة رسالة الانتظار
+            document.body.removeChild(loadingMessage);
+
+            if (result.success) {
+                // عرض رسالة نجاح احترافية
+                const successMessage = document.createElement('div');
+                successMessage.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    color: white;
+                    padding: 30px 50px;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+                    z-index: 10000;
+                    text-align: center;
+                    font-size: 18px;
+                    font-weight: 600;
+                    animation: slideIn 0.3s ease-out;
+                `;
+                successMessage.innerHTML = `
+                    ✅ ${result.message}
+                    <div style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                        تم إرسال طلب التوثيق للمديرين بنجاح
+                    </div>
+                    <style>
+                        @keyframes slideIn {
+                            from { transform: translate(-50%, -60%); opacity: 0; }
+                            to { transform: translate(-50%, -50%); opacity: 1; }
+                        }
+                    </style>
+                `;
+                document.body.appendChild(successMessage);
+                
+                // إخفاء الرسالة بعد 3 ثواني
+                setTimeout(() => {
+                    successMessage.style.animation = 'slideOut 0.3s ease-in forwards';
+                    successMessage.style.cssText += `
+                        @keyframes slideOut {
+                            to { transform: translate(-50%, -40%); opacity: 0; }
+                        }
+                    `;
+                    setTimeout(() => document.body.removeChild(successMessage), 300);
+                }, 3000);
+            } else {
+                throw new Error(result.message);
+            }
+
+        } catch (error) {
+            // إزالة رسالة الانتظار إذا كانت موجودة
+            if (loadingMessage.parentNode) {
+                document.body.removeChild(loadingMessage);
+            }
+
+            // عرض رسالة خطأ احترافية
+            const errorMessage = document.createElement('div');
+            errorMessage.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+                color: white;
+                padding: 30px 50px;
+                border-radius: 15px;
+                box-shadow: 0 10px 40px rgba(239, 68, 68, 0.4);
+                z-index: 10000;
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                max-width: 500px;
+            `;
+            errorMessage.innerHTML = `
+                ❌ فشل إرسال البريد الإلكتروني
+                <div style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                    ${error.message}
+                </div>
+                <div style="margin-top: 20px; font-size: 13px; opacity: 0.8;">
+                    تأكد من أن السيرفر يعمل على المنفذ 5000
+                </div>
+                <button onclick="this.parentElement.remove()" style="
+                    margin-top: 20px;
+                    background: rgba(255,255,255,0.2);
+                    border: 2px solid white;
+                    color: white;
+                    padding: 10px 30px;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: 600;
+                ">إغلاق</button>
+            `;
+            document.body.appendChild(errorMessage);
+
+            console.error('خطأ في إرسال البريد:', error);
+        }
+    }
+})();
+</script>
+
+<!-- ✅ نسخة محدثة: استخدام ملف JavaScript خارجي -->
+<script src="js/document-creator.js"></script>
+
+</body>
+</html>
