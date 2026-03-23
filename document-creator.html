@@ -737,6 +737,88 @@
             .preview-area { height: auto; min-height: 600px; }
         }
 
+        /* ══════ موبايل — تكبير شامل ══════ */
+        @media (max-width: 768px) {
+            /* الصفحة A4 تمتد بالكامل */
+            .a4-page {
+                width: 100% !important;
+                min-width: unset !important;
+                border-radius: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            .preview-area {
+                padding: 0 !important;
+                gap: 0 !important;
+            }
+            /* تكبير الخطوط */
+            .page-inner {
+                padding: 20px 16px !important;
+            }
+            .doc-header {
+                font-size: 1rem !important;
+            }
+            .doc-header .logo-img {
+                width: 70px !important;
+                height: 70px !important;
+            }
+            .drop-zone {
+                font-size: 15pt !important;
+                line-height: 2 !important;
+            }
+            .drop-zone [contenteditable] {
+                font-size: 15pt !important;
+                line-height: 2 !important;
+                padding: 6px 0 !important;
+            }
+            /* تكبير الشريط العلوي */
+            .topbar {
+                padding: 10px 14px !important;
+            }
+            .topbar h1 {
+                font-size: 1rem !important;
+            }
+            .topbar-btn {
+                padding: 8px 12px !important;
+                font-size: 0.82rem !important;
+            }
+            /* إخفاء الألواح جانبياً وإظهارها أسفل الصفحة */
+            .workspace {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .sidebar {
+                order: 2;
+                max-height: 260px;
+                overflow-y: auto;
+            }
+            .preview-area {
+                order: 1;
+                min-height: 70vh;
+            }
+            .props-panel {
+                order: 3;
+                max-height: 280px;
+                overflow-y: auto;
+            }
+            /* تكبير عناصر الألواح */
+            .component-item {
+                padding: 14px 16px !important;
+                font-size: 1rem !important;
+            }
+            .prop-field {
+                font-size: 1rem !important;
+                padding: 10px 12px !important;
+            }
+            /* قسم الذكاء الاصطناعي */
+            .ai-prompt-area, .ai-result-area {
+                font-size: 1rem !important;
+            }
+            .ai-generate-btn, .ai-insert-btn {
+                padding: 14px !important;
+                font-size: 1rem !important;
+            }
+        }
+
         /* ════════════════════════════════════════════════════════ */
         /*               ✦ الطابع الملكي — زخارف وشفافيات وسحر ✦               */
         /* ════════════════════════════════════════════════════════ */
@@ -1562,11 +1644,19 @@ async function generateWithAI() {
         other:           'وثيقة رسمية'
     };
 
-    const systemMsg = `أنت كاتب وثائق رسمية محترف باللغة العربية. مهمتك كتابة محتوى ${typeLabels[docType]} رسمي واحترافي وكامل. 
-اكتب النص مباشرةً دون مقدمات أو تفسيرات. 
-الأسلوب: رسمي وواضح ومنظم. 
-استخدم العناوين والفقرات المناسبة. 
-لا تضف تعليقات أو ملاحظات خارج نص الوثيقة.`;
+    const systemMsg = `أنت مدير تصميم وثائق رسمية احترافي. مهمتك إنتاج ${typeLabels[docType]} منظم يراعي بنية العناصر وأبعادها بشكل كامل.
+
+قواعد التنسيق المطلوب:
+- العناوين الرئيسية: ابدأها بـ ## على سطر منفرد
+- العناوين الفرعية: ابدأها بـ ### على سطر منفرد
+- الفقرات: سطر واحد أو أكثر، محاذية لليمين
+- فاصل بين كل قسم بسطر فارغ
+- التواريخ بالصيغة: يوم شهر سنة هـ
+- التوقيعات: كتلة منفصلة في الأسفل
+- احترم أبعاد صفحة A4: جمل واضحة متوسطة الطول
+- اللغة: عربي فصيح رسمي
+
+اكتب المحتوى مباشرةً دون أي مقدمات أو تعليقات خارج نص الوثيقة.`;
 
     try {
         const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -1620,52 +1710,70 @@ function insertAIContent() {
     if (!text) return;
 
     const dropZone = document.getElementById('dropZone');
-
-    // إنشاء فقرة نصية لكل سطر غير فارغ
     const lines = text.split('\n');
+
     lines.forEach(line => {
         const l = line.trim();
-        if (!l) return;
+
+        // سطر فارغ → مسافة فاصلة
+        if (!l) {
+            const spacer = document.createElement('div');
+            spacer.style.height = '8px';
+            dropZone.appendChild(spacer);
+            return;
+        }
 
         const block = document.createElement('div');
-        block.className = 'doc-block';
-        block.setAttribute('data-type', 'paragraph');
         block.setAttribute('contenteditable', 'true');
-        block.style.padding = '4px 0';
-        block.style.lineHeight = '1.8';
-        block.style.fontSize = '13pt';
-        block.style.fontFamily = "'Amiri', serif";
-        block.style.textAlign = 'justify';
         block.style.direction = 'rtl';
         block.style.outline = 'none';
         block.style.cursor = 'text';
         block.style.borderRadius = '4px';
         block.style.transition = 'background 0.2s';
+        block.style.fontFamily = "'Amiri', serif";
+        block.style.width = '100%';
 
-        // إذا كان السطر يبدأ بـ # أو يبدو عنواناً
-        if (l.startsWith('#') || (l.length < 60 && !l.endsWith('.'))) {
+        // عنوان رئيسي ##
+        if (l.startsWith('## ') || l.startsWith('##')) {
+            block.textContent = l.replace(/^##\s*/, '');
+            block.style.fontSize = '16pt';
             block.style.fontWeight = '700';
-            block.style.fontSize = '14pt';
             block.style.textAlign = 'center';
             block.style.color = 'var(--deep-gold, #6b5b2e)';
-            block.textContent = l.replace(/^#+\s*/, '');
-        } else {
+            block.style.padding = '10px 0 6px';
+            block.style.lineHeight = '1.6';
+            block.style.borderBottom = '1px solid rgba(212,175,55,0.3)';
+            block.style.marginBottom = '8px';
+        }
+        // عنوان فرعي ###
+        else if (l.startsWith('### ') || l.startsWith('###')) {
+            block.textContent = l.replace(/^###\s*/, '');
+            block.style.fontSize = '13pt';
+            block.style.fontWeight = '700';
+            block.style.textAlign = 'right';
+            block.style.color = 'var(--deep-gold, #6b5b2e)';
+            block.style.padding = '8px 0 4px';
+            block.style.lineHeight = '1.6';
+        }
+        // نص عادي
+        else {
             block.textContent = l;
+            block.style.fontSize = '13pt';
+            block.style.fontWeight = '400';
+            block.style.textAlign = 'justify';
+            block.style.color = '#1a1a1a';
+            block.style.padding = '3px 0';
+            block.style.lineHeight = '2';
         }
 
-        // إضافة تفاعل hover
         block.addEventListener('mouseover', () => block.style.background = 'rgba(212,175,55,0.05)');
         block.addEventListener('mouseout',  () => block.style.background = '');
-
         dropZone.appendChild(block);
     });
 
-    // إخفاء نتيجة الذكاء الاصطناعي بعد الإضافة
     document.getElementById('aiResultWrap').style.display = 'none';
     document.getElementById('aiResult').value = '';
     document.getElementById('aiPrompt').value = '';
-
-    // التمرير لمنطقة الوثيقة
     dropZone.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 </script>
