@@ -19,11 +19,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H fr-int-web1580.main-hosting.eu >> ~/.ssh/known_hosts
+          ssh-keyscan -p 65002 -H fr-int-web1580.main-hosting.eu >> ~/.ssh/known_hosts
 
       - name: إنشاء المجلد على السيرفر إن لم يكن موجوداً
         run: |
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
+          ssh -i ~/.ssh/deploy_key -p 65002 -o StrictHostKeyChecking=no \
             u307296675@fr-int-web1580.main-hosting.eu \
             "mkdir -p /home/u307296675/domains/sarh.site/public_html/4_conn"
 
@@ -33,5 +33,5 @@ jobs:
             --exclude='.git' \
             --exclude='.github' \
             --exclude='.env' \
-            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            -e "ssh -i ~/.ssh/deploy_key -p 65002 -o StrictHostKeyChecking=no" \
             ./ u307296675@fr-int-web1580.main-hosting.eu:/home/u307296675/domains/sarh.site/public_html/4_conn/
