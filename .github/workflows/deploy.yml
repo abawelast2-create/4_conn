@@ -1,0 +1,26 @@
+name: نشر تلقائي على sarh.site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: نشر الملفات عبر SSH
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: استنساخ المستودع
+        uses: actions/checkout@v4
+
+      - name: نشر الملفات عبر rsync
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avzr --delete --exclude='.git' --exclude='.github' --exclude='.env'
+          path: ./
+          remote_path: /home/u307296675/domains/sarh.site/public_html/4_conn
+          remote_host: fr-int-web1580.main-hosting.eu
+          remote_user: u307296675
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote_key_pass: ${{ secrets.SSH_PASSPHRASE }}
