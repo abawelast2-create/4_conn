@@ -1017,6 +1017,176 @@
             background: linear-gradient(180deg, rgba(212,175,55,0.4), rgba(184,134,11,0.25));
             border-radius: 3px;
         }
+        /* ══════ قسم الذكاء الاصطناعي ══════ */
+        .ai-section {
+            margin-top: 20px;
+            background: linear-gradient(135deg, rgba(107,91,46,0.08) 0%, rgba(212,175,55,0.06) 100%);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 14px;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-section::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 60px; height: 60px;
+            background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .ai-section h2 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--deep-gold);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ai-prompt-area {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-family: 'Amiri', serif;
+            font-size: 0.9rem;
+            resize: vertical;
+            background: rgba(255,255,255,0.7);
+            color: #1a1a1a;
+            outline: none;
+            transition: border-color 0.3s;
+            direction: rtl;
+        }
+        .ai-prompt-area:focus {
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.12);
+        }
+        .ai-prompt-label {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.8rem;
+            color: var(--deep-gold);
+            margin-bottom: 6px;
+            display: block;
+            opacity: 0.85;
+        }
+        .ai-generate-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 11px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--deep-gold) 0%, var(--antique) 50%, var(--gold) 100%);
+            color: #fff;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(107,91,46,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-generate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107,91,46,0.35);
+        }
+        .ai-generate-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+        .ai-spinner {
+            width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .ai-result-wrap {
+            margin-top: 12px;
+            display: none;
+        }
+        .ai-result-area {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid rgba(212,175,55,0.4);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-family: 'Amiri', serif;
+            font-size: 0.88rem;
+            resize: vertical;
+            background: rgba(255,255,255,0.85);
+            color: #1a1a1a;
+            outline: none;
+            direction: rtl;
+            line-height: 1.7;
+            transition: border-color 0.3s;
+        }
+        .ai-result-area:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.12);
+        }
+        .ai-insert-btn {
+            width: 100%;
+            margin-top: 8px;
+            padding: 10px;
+            border: 1px solid rgba(39,174,96,0.4);
+            border-radius: 10px;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: #fff;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: 0 3px 10px rgba(39,174,96,0.2);
+        }
+        .ai-insert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 16px rgba(39,174,96,0.35);
+        }
+        .ai-error {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: rgba(231,76,60,0.1);
+            border: 1px solid rgba(231,76,60,0.3);
+            border-radius: 8px;
+            color: #c0392b;
+            font-size: 0.82rem;
+            font-family: 'Amiri', serif;
+            display: none;
+        }
+        .ai-doc-type {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.7);
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.85rem;
+            color: var(--deep-gold);
+            margin-bottom: 10px;
+            outline: none;
+            cursor: pointer;
+            direction: rtl;
+        }
+        .ai-doc-type:focus { border-color: var(--gold); }
+
         .sidebar::-webkit-scrollbar-thumb:hover, .props-panel::-webkit-scrollbar-thumb:hover, .preview-area::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, rgba(212,175,55,0.6), rgba(184,134,11,0.45));
         }
@@ -1269,10 +1439,236 @@
                 <input id="propFooter" class="prop-field" value="مجموعة صرح الإتقان المحدودة وشركة فضاء المحركات">
             </div>
         </div>
+
+        <!-- ═══ قسم الذكاء الاصطناعي ═══ -->
+        <div class="ai-section">
+            <h2>🤖 إنشاء بالذكاء الاصطناعي</h2>
+
+            <label class="ai-prompt-label">نوع الكتاب / المستند</label>
+            <select class="ai-doc-type" id="aiDocType">
+                <option value="official_letter">كتاب رسمي</option>
+                <option value="internal_memo">مذكرة داخلية</option>
+                <option value="decision">قرار إداري</option>
+                <option value="report">تقرير</option>
+                <option value="announcement">إعلان / بلاغ</option>
+                <option value="contract">عقد / اتفاقية</option>
+                <option value="request">طلب رسمي</option>
+                <option value="other">أخرى</option>
+            </select>
+
+            <label class="ai-prompt-label">مفتاح Groq API
+                <span id="aiKeyStatus" style="margin-right:6px;font-size:0.75rem;"></span>
+            </label>
+            <div style="display:flex;gap:6px;margin-bottom:10px;">
+                <input type="password" class="ai-prompt-area" id="aiKeyInput"
+                       style="min-height:unset;padding:8px 10px;flex:1;"
+                       placeholder="gsk_..." oninput="saveAIKey(this.value)">
+            </div>
+
+            <label class="ai-prompt-label">صف ما تريد كتابته</label>
+            <textarea class="ai-prompt-area" id="aiPrompt" placeholder="مثال: كتاب رسمي يطلب فيه الموظف إجازة سنوية لمدة أسبوعين اعتباراً من تاريخ 1 أبريل 2026..."></textarea>
+
+            <button class="ai-generate-btn" id="aiGenerateBtn" onclick="generateWithAI()">
+                <span class="ai-spinner" id="aiSpinner"></span>
+                <span id="aiGenerateBtnText">✨ توليد المحتوى</span>
+            </button>
+
+            <div class="ai-error" id="aiError"></div>
+
+            <div class="ai-result-wrap" id="aiResultWrap">
+                <label class="ai-prompt-label" style="margin-top:4px;">المحتوى المُولَّد (يمكنك تعديله)</label>
+                <textarea class="ai-result-area" id="aiResult"></textarea>
+                <button class="ai-insert-btn" onclick="insertAIContent()">
+                    📋 إضافة المحتوى للوثيقة
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
 <script src="js/document-creator.js"></script>
+
+<script>
+// ══════════════════════════════════════════
+//  الذكاء الاصطناعي - Groq API
+// ══════════════════════════════════════════
+
+// تحميل المفتاح المحفوظ عند فتح الصفحة
+(function loadSavedKey() {
+    const k = localStorage.getItem('groq_api_key');
+    if (k) {
+        const inp = document.getElementById('aiKeyInput');
+        if (inp) inp.value = k;
+        updateKeyStatus(k);
+    }
+})();
+
+function saveAIKey(val) {
+    const v = val.trim();
+    if (v) { localStorage.setItem('groq_api_key', v); }
+    else   { localStorage.removeItem('groq_api_key'); }
+    updateKeyStatus(v);
+}
+
+function updateKeyStatus(key) {
+    const el = document.getElementById('aiKeyStatus');
+    if (!el) return;
+    if (key && key.startsWith('gsk_') && key.length > 20) {
+        el.textContent = '✅ محفوظ';
+        el.style.color = '#27ae60';
+    } else if (key) {
+        el.textContent = '⚠️ قد يكون خاطئاً';
+        el.style.color = '#e67e22';
+    } else {
+        el.textContent = '';
+    }
+}
+
+async function generateWithAI() {
+    const prompt   = document.getElementById('aiPrompt').value.trim();
+    const docType  = document.getElementById('aiDocType').value;
+    const apiKey   = (document.getElementById('aiKeyInput').value.trim()) ||
+                     (localStorage.getItem('groq_api_key') || '');
+    const btn      = document.getElementById('aiGenerateBtn');
+    const spinner  = document.getElementById('aiSpinner');
+    const btnText  = document.getElementById('aiGenerateBtnText');
+    const errorEl  = document.getElementById('aiError');
+    const resultWrap = document.getElementById('aiResultWrap');
+    const resultArea = document.getElementById('aiResult');
+
+    if (!prompt) {
+        showAIError('يرجى كتابة وصف للمحتوى المطلوب أولاً.');
+        return;
+    }
+    if (!apiKey || !apiKey.startsWith('gsk_')) {
+        showAIError('يرجى إدخال مفتاح Groq API صحيح (يبدأ بـ gsk_) أعلاه.');
+        return;
+    }
+
+    errorEl.style.display = 'none';
+    resultWrap.style.display = 'none';
+    btn.disabled = true;
+    spinner.style.display = 'block';
+    btnText.textContent = 'جارٍ التوليد...';
+
+    const typeLabels = {
+        official_letter: 'كتاب رسمي',
+        internal_memo:   'مذكرة داخلية',
+        decision:        'قرار إداري',
+        report:          'تقرير',
+        announcement:    'إعلان أو بلاغ',
+        contract:        'عقد أو اتفاقية',
+        request:         'طلب رسمي',
+        other:           'وثيقة رسمية'
+    };
+
+    const systemMsg = `أنت كاتب وثائق رسمية محترف باللغة العربية. مهمتك كتابة محتوى ${typeLabels[docType]} رسمي واحترافي وكامل. 
+اكتب النص مباشرةً دون مقدمات أو تفسيرات. 
+الأسلوب: رسمي وواضح ومنظم. 
+استخدم العناوين والفقرات المناسبة. 
+لا تضف تعليقات أو ملاحظات خارج نص الوثيقة.`;
+
+    try {
+        const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + apiKey
+            },
+            body: JSON.stringify({
+                model: 'llama-3.3-70b-versatile',
+                messages: [
+                    { role: 'system', content: systemMsg },
+                    { role: 'user',   content: prompt }
+                ],
+                temperature: 0.7,
+                max_tokens: 2048
+            })
+        });
+
+        if (!resp.ok) {
+            const err = await resp.json();
+            throw new Error(err?.error?.message || `خطأ ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        const text = data.choices?.[0]?.message?.content || '';
+
+        if (!text) throw new Error('لم يُرجع النموذج أي محتوى.');
+
+        resultArea.value = text;
+        resultWrap.style.display = 'block';
+        resultWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    } catch (e) {
+        showAIError('حدث خطأ: ' + e.message);
+    } finally {
+        btn.disabled = false;
+        spinner.style.display = 'none';
+        btnText.textContent = '✨ توليد المحتوى';
+    }
+}
+
+function showAIError(msg) {
+    const el = document.getElementById('aiError');
+    el.textContent = msg;
+    el.style.display = 'block';
+}
+
+function insertAIContent() {
+    const text = document.getElementById('aiResult').value.trim();
+    if (!text) return;
+
+    const dropZone = document.getElementById('dropZone');
+
+    // إنشاء فقرة نصية لكل سطر غير فارغ
+    const lines = text.split('\n');
+    lines.forEach(line => {
+        const l = line.trim();
+        if (!l) return;
+
+        const block = document.createElement('div');
+        block.className = 'doc-block';
+        block.setAttribute('data-type', 'paragraph');
+        block.setAttribute('contenteditable', 'true');
+        block.style.padding = '4px 0';
+        block.style.lineHeight = '1.8';
+        block.style.fontSize = '13pt';
+        block.style.fontFamily = "'Amiri', serif";
+        block.style.textAlign = 'justify';
+        block.style.direction = 'rtl';
+        block.style.outline = 'none';
+        block.style.cursor = 'text';
+        block.style.borderRadius = '4px';
+        block.style.transition = 'background 0.2s';
+
+        // إذا كان السطر يبدأ بـ # أو يبدو عنواناً
+        if (l.startsWith('#') || (l.length < 60 && !l.endsWith('.'))) {
+            block.style.fontWeight = '700';
+            block.style.fontSize = '14pt';
+            block.style.textAlign = 'center';
+            block.style.color = 'var(--deep-gold, #6b5b2e)';
+            block.textContent = l.replace(/^#+\s*/, '');
+        } else {
+            block.textContent = l;
+        }
+
+        // إضافة تفاعل hover
+        block.addEventListener('mouseover', () => block.style.background = 'rgba(212,175,55,0.05)');
+        block.addEventListener('mouseout',  () => block.style.background = '');
+
+        dropZone.appendChild(block);
+    });
+
+    // إخفاء نتيجة الذكاء الاصطناعي بعد الإضافة
+    document.getElementById('aiResultWrap').style.display = 'none';
+    document.getElementById('aiResult').value = '';
+    document.getElementById('aiPrompt').value = '';
+
+    // التمرير لمنطقة الوثيقة
+    dropZone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
 
 </body>
 </html>
